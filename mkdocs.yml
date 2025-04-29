@@ -1,4 +1,4 @@
-site_name: Login and selecting software modules
+site_name: Selecting software modules
 site_url: https://hpc2n.github.io/selecting-modules/
 site_description: Material for the course Login and selecting software modules
 site_dir: site.build
@@ -31,7 +31,7 @@ extra_css:
 nav:
   - Home: index.md
   - Introduction: intro.md
-  - Login: login.md
+  - Preparations: prep.md
   - The module system: module-overview.md
   - Useful commands: commands.md
   - Load examples: loading.md
