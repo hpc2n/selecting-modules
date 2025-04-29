@@ -1,4 +1,4 @@
-# Welcome to the course: Login and selecting software modules 
+# Welcome to the course: Selecting software modules 
 
 This NAISS course is given under under NAISS, by staff working at the branches located at UPPMAX, LUNARC, and HPC2N.
 
