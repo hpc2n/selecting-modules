@@ -9,8 +9,8 @@ This NAISS course is given under under NAISS, by staff working at the branches l
     - Documentation about selecting modules at some of the Swedish HPC centres 
         - HPC2N: <a href="https://docs.hpc2n.umu.se/software/modules/" target="_blank">https://docs.hpc2n.umu.se/software/modules/</a> 
         - UPPMAX: <a href="https://docs.uppmax.uu.se/cluster_guides/modules/" target="_blank">https://docs.uppmax.uu.se/cluster_guides/modules/</a>  
-        - LUNARC: 
-        - PDC:
+        - LUNARC: <a href="https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/" target="_blank">https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/</a>  
+        - PDC: 
         - NSC: 
     - Documentation from Software Carpentry: 
 
