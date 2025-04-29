@@ -5,7 +5,7 @@ site_dir: site.build
 theme:
   name: readthedocs
   locale: en
-  logo: images/logo-modules-course.png
+  logo: images/logo-modules-course_v2.png
   include_sidebar: true
   font:
     code: Robot Mono
