@@ -8,3 +8,4 @@ markdown-exec[ansi]
 markdown-include
 mkdocs-open-in-new-tab
 markdown-extra
+mkdocs-material
