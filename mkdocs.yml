@@ -30,13 +30,10 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Introduction: intro.md
-  - Preparations: prep.md
-  - The module system: module-overview.md
-  - Useful commands: commands.md
-  - Load examples: loading.md
+  - The module system: intro.md
   - Compiler toolchains: toolchains.md
-  - Program examples: programs.md
+  - Software module examples: programs.md
+  - Modules in batch scripts: batch.md
   - Summary: summary.md
 plugins:
   - search
