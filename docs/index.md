@@ -12,11 +12,19 @@ This NAISS course is given under under NAISS, by staff working at the branches l
         - LUNARC: <a href="https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/" target="_blank">https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/</a>  
         - PDC: <a href="https://support.pdc.kth.se/doc/basics/quickstart/#how-to-use-easybuild" target="_blank">https://support.pdc.kth.se/doc/basics/quickstart/#how-to-use-easybuild</a>   
         - NSC: <a href="https://www.nsc.liu.se/software/modules/" target="_blank">https://www.nsc.liu.se/software/modules/</a>  
-    - Documentation from Software Carpentry: 
+        - C3SE: <a href="https://www.c3se.chalmers.se/documentation/module_system/" target="_blank">https://www.c3se.chalmers.se/documentation/module_system/</a> 
 
 !!! note "Prerequisites"
 
     - Basic Linux 
+
+    If you lack Linux experience, please follow a tutorial before the course. 
+
+    This is from a recent NAISS course about basic Linux: 
+  
+    - Material: <a href="https://hpc2n.github.io/intro-linux/" target="_blank">https://hpc2n.github.io/intro-linux/</a>
+    - Exercises: ``wget https://github.com/hpc2n/intro-linux/raw/refs/heads/main/exercises.tar.gz`` and then ``tar zxvf exercises.tar.gz`` 
+    - Recordings from the course, on YouTube: <a href="https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq" target="_blank">https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq</a> 
 
 !!! note "Learning outcome"   
 
@@ -33,12 +41,16 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 
 !!! admonition "Cluster-specific approaches"
 
+    The course will show you how to find and load modules. While the modules may be somewhat differently named and have somewhat different versions depending on the system, the procedure and commands are the same. 
+
+    We will use Tetralith for those who do not have other access to a Swedish HPC system, and some examples will be shown for other centres. You should be able to code-along - with minor adjustments - regardless of which center you are at. 
+
 ## Important info
 
-- There is an "important info" page for this course, containing info on the course project, login info for Tetralith/Dardel????, etc. 
-    - It can be found here: 
+- There is an "important info" page for this course, containing info on the course project, login info for Tetralith, etc. 
+    - It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EX7cOrKbXyhKrUfGvi1QYPIBY9OLYS1ecearjJefFiOhjg" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EX7cOrKbXyhKrUfGvi1QYPIBY9OLYS1ecearjJefFiOhjg</a> 
 - There is a Q/A page for use during the lectures. Since the lectures are recorded, you may get recorded if you ask questions in the Zoom, but you can always write questions on the Q/A and get answers there. It also has the advantage that you can go back and look at the answers later. 
-    - The Q/A page can be found here: 
+    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w</a>  
 
 ## Preliminary schedule
 
@@ -65,8 +77,15 @@ In order to type along and do the exercises, please prepare your course environm
     - You will not need a graphical user interface for this course. 
     - Even so, if you do not have a favourite SSH client, we recomment using <a href="https://www.cendio.com/thinlinc/download/" target="_blank">ThinLinc</a>
     
-    Connection info: 
+    Connection info for some Swedish HPC systems - use the one you have access to: 
 
+    - **NSC**
+        - SSH: ``ssh <user>@tetralith.nsc.liu.se``
+        - ThinLinc:
+            - Server: ``tetralith.nsc.liu.se``
+            - Username: ``<your-nsc-username>``
+            - Password: ``<your-nsc-password>``
+        - Note that you need to setup <a href="https://www.nsc.liu.se/support/2fa/" target="_blank">TFA</a> to use NSC!
     - **HPC2N**
         - SSH: ``ssh <user>@kebnekaise.hpc2n.umu.se`` 
         - ThinLinc: 
@@ -93,13 +112,6 @@ In order to type along and do the exercises, please prepare your course environm
             - Username: ``<your-lunarc-username>``
             - Password: ``<your-lunarc-password>``
         - Note that you need to setup <a href="https://lunarc-documentation.readthedocs.io/en/latest/getting_started/login_howto/" target="_blank">TFA (PocketPass)</a> to use LUNARC! 
-    - **NSC** 
-        - SSH: ``ssh <user>@tetralith.nsc.liu.se``
-        - ThinLinc: 
-            - Server: ``tetralith.nsc.liu.se``
-            - Username: ``<your-nsc-username>``
-            - Password: ``<your-nsc-password>`` 
-        - Note that you need to setup <a href="https://www.nsc.liu.se/support/2fa/" target="_blank">TFA</a> to use NSC! 
     - **PDC** 
         - SSH: ``ssh <user>@dardel.pdc.kth.se`` 
         - ThinLinc: 
@@ -107,6 +119,23 @@ In order to type along and do the exercises, please prepare your course environm
             - Username: ``<your-pdc-username>``
             - Password: ``<your-pdc-password>`` 
         - Note that you need to setup <a href="https://support.pdc.kth.se/doc/login/ssh_login/" target="_blank">SSH keys</a> or kerberos in order to login to PDC!    
+    - **C3SE**: 
+        - SSH: ``ssh <user>@alvis1.c3se.chalmers.se``
+               or 
+               ``ssh <user>@alvis2.c3se.chalmers.se``
+        - ThinLinc: 
+            - Server: ``alvis1.c3se.chalmers.se`` 
+                      or 
+                      ``alvis2.c3se.chalmers.se``
+            - Username: ``<your-c3se-username>``
+            - Password: ``<your-c3se-username>`` 
+        - ThinLinc Webaccess: 
+            - Put ``https://alvis1.c3se.chalmers.se:300`` or ``https://alvis2.c3se.chalmers.se:300`` in browser address bar 
+            - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box that opens and click ``Login`` 
+        - OpenOndemand portal: 
+            - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
+            - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box 
+        - Note that Alvis is accessible via SUNET networks (i.e. most Swedish university networks). If you are not on one of those networks you need to use a VPN - preferrably your own Swedish university VPN. If this is not possible, contact ``support@chalmers.se`` and ask to be added to the Chalmers's eduVPN. 
 
 !!! note "2. Setup a working directory"
 
@@ -118,7 +147,6 @@ In order to type along and do the exercises, please prepare your course environm
 !!! note "3. Download the exercises" 
 
     - ``wget ...`` 
-
 
 !!! note "4. Extract the exercises" 
 
