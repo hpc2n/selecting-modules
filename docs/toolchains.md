@@ -135,19 +135,14 @@ of Python will be older than most of the module versions.
 
 ## Compiling serial code using a toolchain
 
-If you have loaded a toolchain, build use the following commands to compile:
+If you have loaded a toolchain, choose your compiler from the following table
+based on your coding language and toolchain choice.
 
-=== "GCC Toolchain"
-
-    * **gcc**: C compiler
-    * **g++**: C++ compiler
-    * **gfortran**: Fortran compiler
-
-=== "Intel Toolchain"
-
-    * **icc**: C compiler
-    * **icpc**: C++ compiler
-    * **ifort**: Fortran compiler
+| Coding Language | GCC Toolchain | Intel Toolchain |
+| :-------------- | :------------ | :-------------- |
+| C               | gcc           | icc             |
+| C++             | g++           | icpc            |
+| Fortran         | gfortran      | ifort           |
 
 For some open-source toolchains, there may be no difference between compiling
 serial code with a toolchain and using a built-in compiler. The differences are
