@@ -57,8 +57,8 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 | Time | Topic | Activity |
 | ---- | ----- | -------- |
 | 10:00 | Welcome+Syllabus | Lecture |
-| 10:15 | The module system: overview | Lecture | 
-| 10:35 | The module system: Useful commands | Lecture+type along+exercise | 
+| 10:15 | The module system: overview | Lecture+exercise | 
+| 10:25 | The module system: versions, loading, unloading, listing | Lecture+type along+exercise | 
 | 10:55 | Break | | 
 | 11:05 | Compiler toolchains | Lecture+type along |
 | 11:20 | Software modules | Lecture+type along | 

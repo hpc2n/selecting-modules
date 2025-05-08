@@ -31,10 +31,14 @@ extra_css:
 nav:
   - Home: index.md
   - The module system: intro.md
+  - Module system commands: commands.md
   - Compiler toolchains: toolchains.md
   - Software module examples: programs.md
   - Modules in batch scripts: batch.md
   - Summary: summary.md
+  - Extra:
+    - Advanced module commands: advanced_module.md
+    - Links to more information: links.md 
 plugins:
   - search
   - external-markdown
@@ -60,6 +64,8 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.caret
   - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
   - attr_list
