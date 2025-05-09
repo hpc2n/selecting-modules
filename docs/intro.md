@@ -228,7 +228,7 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
 
 !!! warning
 
-    If you do ``module avail`` at one of the centres that recommend ``module spider`` you will not get a full list of software, only those are available to load with **no other prerequisites than are currently loaded**. 
+    If you do ``module avail`` at one of the centres that recommend ``module spider`` you will not get a full list of software, only those are available to load with **no other prerequisites than are currently loaded**. This *is* however, a good way to find **compiler toolchains** (more about that later).  
 
 ??? note "Example, HPC2N" 
 
