@@ -53,19 +53,6 @@ Note that unlike most clusters, on Tetralith, users must load a module of the fo
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "NSC (Tetralith)"
-   
-    **GCC Compiler Toolchains**
-    
-       * **GCC**: GCC compiler only
-       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
-       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
-       
-    **Intel Compiler Toolchains**
-    
-       * **intel**: icc, ifort, Intel MPI, MKL
-       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
-
 === "UPPMAX (Rackham)"
 
     **GCC Compiler Toolchains**
@@ -79,6 +66,18 @@ Note that unlike most clusters, on Tetralith, users must load a module of the fo
        * **intel**: icc, ifort, Intel MPI, MKL
        * **iimpi**: icc, ifort, Intel MPI
 
+=== "NSC (Tetralith)"
+   
+    **GCC Compiler Toolchains**
+    
+       * **GCC**: GCC compiler only
+       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
+       
+    **Intel Compiler Toolchains**
+    
+       * **intel**: icc, ifort, Intel MPI, MKL
+       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
 
 ### CUDA based toolchains for GPU nodes
 
