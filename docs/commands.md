@@ -679,16 +679,86 @@ There are situations where you need to load several modules, even at centres whe
         ```
 
         ```bash 
-        module load GCC/12.3.0 OpenMPI/4.1.5
-        module load TensorFlow/2.15.1-CUDA-12.1.1
+        b-an01 [~]$ module load GCC/12.3.0 OpenMPI/4.1.5
+        b-an01 [~]$ module load TensorFlow/2.15.1-CUDA-12.1.1
         ```
 
     === "UPPMAX" 
 
-        TensorFlow is included in the Python_ML_packages 
+        TensorFlow is included in the Python_ML_packages. Python gets loaded with the Python_ML_packages so nothing extra needs loading here 
+
+        ```bash
+        [bbrydsoe@rackham1 ~]$ ml spider python_ML_packages/3.11.8-cpu
+
+        --------------------------------------------------------------------------------------------
+          python_ML_packages: python_ML_packages/3.11.8-cpu
+        --------------------------------------------------------------------------------------------
+
+            This module can be loaded directly: module load python_ML_packages/3.11.8-cpu
+
+            Help:
+              python_ML_packages version 3.11.8-cpu
+        ```    
         
+        ```bash 
+        [bbrydsoe@rackham1 ~]$ ml python_ML_packages/3.11.8-cpu
+        [bbrydsoe@rackham1 ~]$
+        ``` 
+
+        However, if you for instance need Matlab together with Gurobi, then you need to load both modules: 
+
+        ```bash 
+        [bbrydsoe@rackham1 ~]$ ml spider matlab/R2023b
+        [bbrydsoe@rackham1 ~]$ ml Gurobi/11.0.3
+        ``` 
 
 ## Unload software modules
+
+Aside from ``module unload`` this section will also cover ``module purge``! 
+
+!!! note 
+
+    Why would you want to unload a module?
+
+    - If you want to use a different version of a module, you need to unload the current one first 
+    - If you need a different version of a dependent module, but it is not compatible with the current prerequisite you have loaded 
+  
+Modules can be unloaded with: 
+
+- ``module unload <MODULE>`` **may or may not work**
+- ``module unload <MODULE>/<version>``
+- ``ml unload <MODULE>/<version>`` **short form of the above**
+- ``module -<MODULE>/<version>`` 
+- ``ml -<MODULE>/<version>`` **short form of the above** 
+- ``ml -<MODULE>/<version>`` **short form of the above**
+
+Unloading a module **will not unload the prerequisites**. 
+
+This is not usually a problem at the centres where there rarely are prerequisites (UPPMAX, NSC), but can be annoying at centres who usually have prerequisites for the modules (HPC2N, LUNARC, C3SE, PDC). However, there the easy solution is ``module purge`` (HPC2N, LUNARC, C3SE). 
+
+The command ``module purge`` removes all the loaded modules, except the "sticky" modules. It is recommended at HPC2N, LUNARC, and C3SE. 
+
+!!! warning 
+
+    Do not use ``module purge`` at PDC! 
+
+    At PDC, there are a lot of necessary, "system-modules" that are preloaded. When you do ``module purge`` they will also be unloaded and things may not work as it should! 
+
+    At UPPMAX, the system-module "uppmax" will get unloaded with ``module purge``, but can easily be reloaded with ``module load uppmax``. 
+
+### Unloading examples 
+
+Unloading one module, with no prerequisites (for clarity, we also do ``module list`` before and after to show what is happening. 
+
+!!! tip 
+
+    Type along! 
+
+
+
+
+
+
 
 ## module show 
 
