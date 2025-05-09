@@ -748,7 +748,365 @@ The command ``module purge`` removes all the loaded modules, except the "sticky"
 
 ### Unloading examples 
 
+#### No prerequisites 
+
 Unloading one module, with no prerequisites (for clarity, we also do ``module list`` before and after to show what is happening. 
+
+!!! tip
+
+    Type along!
+
+    First load a suitable module for your center (with no prerequisites). Suggestions: 
+
+    - HPC2N, LUNARC: GCC/12.3.0
+    - UPPMAX: python/3.11.8 
+    - C3SE: Python/3.12.3-GCCcore-13.3.0
+    - NSC: Python/3.11.5-env-hpc1-gcc-2023b-eb
+    - PDC: cray-python/3.11.5
+
+!!! note "HPC2N"
+
+    Check which modules are loaded (after loading GCC/12.3.0 earlier)
+
+    ```bash
+    b-an01 [~]$ module list
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   3) GCCcore/12.3.0   5) binutils/2.40
+      2) systemdefault   (S)   4) zlib/1.2.13      6) GCC/12.3.0
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    b-an01 [~]$ 
+    ```
+
+    Unload GCC/12.3.0 
+
+    ```bash
+    b-an01 [~]$ module unload GCC/12.3.0
+    b-an01 [~]$ 
+    ```
+
+    Check which modules are loaded 
+
+    ```bash
+    b-an01 [~]$ module list
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   2) systemdefault (S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+!!! note "NSC"
+
+    Check which modules are loaded (after loading Python/3.11.5-env-hpc1-gcc-2023b-eb earlier) 
+
+    ```bash 
+    [x_birbr@tetralith3 ~]$ module list    
+    Currently Loaded Modules:
+      1) hpc/.1.10.1 (H,S)   2) Python/3.11.5-env-hpc1-gcc-2023b-eb
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+       H:             Hidden Module
+    ```
+
+    Unload Python/3.11.5-env-hpc1-gcc-2023b-eb 
+
+    ```bash
+    [x_birbr@tetralith3 ~]$ ml -Python/3.11.5-env-hpc1-gcc-2023b-eb
+    [x_birbr@tetralith3 ~]$ 
+    ``` 
+
+    Check which modules are loaded 
+
+    ```bash  
+    [x_birbr@tetralith3 ~]$ ml
+
+    Currently Loaded Modules:
+      1) hpc/.1.10.1 (H,S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+       H:             Hidden Module
+    ```
+
+#### Prerequisites
+
+Here we look at what happens when you unload something that has a prerequisite. 
+
+!!! note "Example, HPC2N"
+
+    LUNARC would be the same. 
+
+    Loading Python and prerequisites
+
+    ```bash
+    b-an01 [~]$ module load GCC/12.3.0
+    b-an01 [~]$ module load Python/3.11.3 
+    ```
+
+    Check loaded modules
+
+    ```bash
+    b-an01 [~]$ ml
+    
+    Currently Loaded Modules:
+      1) snicenvironment (S)   4) zlib/1.2.13     7) bzip2/1.0.8      10) Tcl/8.6.13     13) libffi/3.4.4
+      2) systemdefault   (S)   5) binutils/2.40   8) ncurses/6.4      11) SQLite/3.42.0  14) OpenSSL/1.1
+      3) GCCcore/12.3.0        6) GCC/12.3.0      9) libreadline/8.2  12) XZ/5.4.2       15) Python/3.11.3
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+    Unload Python/3.11.3
+
+    ```bash
+    b-an01 [~]$ ml unload Python/3.11.3
+    ```
+
+    Check loaded modules 
+
+    ```bash 
+    b-an01 [~]$ ml
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   3) GCCcore/12.3.0   5) binutils/2.40
+      2) systemdefault   (S)   4) zlib/1.2.13      6) GCC/12.3.0
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+    Unload GCC/12.3.0
+
+    ```bash
+    b-an01 [~]$ ml -GCC/12.3.0
+    ```
+
+    Check loaded modules
+
+    ```bash 
+    b-an01 [~]$ ml
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   2) systemdefault (S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+What happens if you try and unload the prerequisite?
+
+!!! note "Example, HPC2N"
+
+    ```bash
+    b-an01 [~]$ ml GCC/12.3.0 Python/3.11.3
+    b-an01 [~]$ ml
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   4) zlib/1.2.13     7) bzip2/1.0.8      10) Tcl/8.6.13     13) libffi/3.4.4
+      2) systemdefault   (S)   5) binutils/2.40   8) ncurses/6.4      11) SQLite/3.42.0  14) OpenSSL/1.1
+      3) GCCcore/12.3.0        6) GCC/12.3.0      9) libreadline/8.2  12) XZ/5.4.2       15) Python/3.11.3
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    b-an01 [~]$ ml -GCC/12.3.0
+
+    Inactive Modules:
+      1) OpenSSL/1.1       3) SQLite/3.42.0     5) XZ/5.4.2        7) libffi/3.4.4
+      2) Python/3.11.3     4) Tcl/8.6.13        6) bzip2/1.0.8     8) libreadline/8.2
+
+    Due to MODULEPATH changes, the following have been reloaded:
+      1) binutils/2.40     2) ncurses/6.4     3) zlib/1.2.13
+    ```
+
+What about ``module purge``? 
+
+=== "HPC2N" 
+
+    ```bash
+    b-an01 [~]$ ml GCC/12.3.0 Python/3.11.3
+    b-an01 [~]$ ml
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   4) zlib/1.2.13     7) bzip2/1.0.8      10) Tcl/8.6.13     13) libffi/3.4.4
+      2) systemdefault   (S)   5) binutils/2.40   8) ncurses/6.4      11) SQLite/3.42.0  14) OpenSSL/1.1
+      3) GCCcore/12.3.0        6) GCC/12.3.0      9) libreadline/8.2  12) XZ/5.4.2       15) Python/3.11.3
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+    b-an01 [~]$ ml purge
+    The following modules were not unloaded:
+      (Use "module --force purge" to unload all):
+
+      1) snicenvironment   2) systemdefault
+    b-an01 [~]$ ml
+
+    Currently Loaded Modules:
+      1) snicenvironment (S)   2) systemdefault (S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+    All good! 
+
+=== "LUNARC"
+
+    ```bash
+    [bbrydsoe@cosmos3 ~]$ ml GCC/12.3.0 Python/3.11.3
+    [bbrydsoe@cosmos3 ~]$ ml
+
+    Currently Loaded Modules:
+      1) SoftwareTree/Milan (S)   4) binutils/2.40   7) ncurses/6.4      10) SQLite/3.42.0  13) OpenSSL/1.1
+      2) GCCcore/12.3.0           5) GCC/12.3.0      8) libreadline/8.2  11) XZ/5.4.2       14) Python/3.11.3
+      3) zlib/1.2.13              6) bzip2/1.0.8     9) Tcl/8.6.13       12) libffi/3.4.4
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+    [bbrydsoe@cosmos3 ~]$ ml purge
+    The following modules were not unloaded:
+      (Use "module --force purge" to unload all):
+
+      1) SoftwareTree/Milan
+    [bbrydsoe@cosmos3 ~]$ ml
+
+    Currently Loaded Modules:
+      1) SoftwareTree/Milan (S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+    All good!
+
+=== "UPPMAX"
+
+    ```bash
+    [bbrydsoe@rackham1 ~]$ ml python/3.11.8
+    [bbrydsoe@rackham1 ~]$ ml
+
+    Currently Loaded Modules:
+      1) uppmax   2) python/3.11.8
+
+ 
+
+    [bbrydsoe@rackham1 ~]$ ml purge
+    [bbrydsoe@rackham1 ~]$ ml
+    No modules loaded
+    ```
+
+    Warning! You need to reload "uppmax" module! ``module load uppmax``
+
+=== "C3SE"
+
+    ```bash 
+    [brydso@alvis1 ~]$ ml
+    No modules loaded
+    [brydso@alvis1 ~]$ ml Python/3.12.3-GCCcore-13.3.0
+    [brydso@alvis1 ~]$ ml
+
+    Currently Loaded Modules:
+      1) GCCcore/13.3.0                 5) ncurses/6.5-GCCcore-13.3.0       9) XZ/5.4.5-GCCcore-13.3.0
+      2) zlib/1.3.1-GCCcore-13.3.0      6) libreadline/8.2-GCCcore-13.3.0  10) libffi/3.4.5-GCCcore-13.3.0
+      3) binutils/2.42-GCCcore-13.3.0   7) Tcl/8.6.14-GCCcore-13.3.0       11) OpenSSL/3
+      4) bzip2/1.0.8-GCCcore-13.3.0     8) SQLite/3.45.3-GCCcore-13.3.0    12) Python/3.12.3-GCCcore-13.3.0
+
+ 
+
+    [brydso@alvis1 ~]$ ml purge
+    [brydso@alvis1 ~]$ ml
+    No modules loaded
+    ``` 
+
+    All good! No modules before that got lost! 
+
+=== "NSC"
+
+    ```bash 
+    [x_birbr@tetralith3 ~]$ ml Python/3.11.5-env-hpc1-gcc-2023b-eb
+    [x_birbr@tetralith3 ~]$ ml 
+
+    Currently Loaded Modules:
+      1) hpc/.1.10.1 (H,S)   2) Python/3.11.5-env-hpc1-gcc-2023b-eb
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+       H:             Hidden Module
+    [x_birbr@tetralith3 ~]$ ml purge
+    The following modules were not unloaded:
+      (Use "module --force purge" to unload all):
+
+      1) hpc/.1.10.1
+    [x_birbr@tetralith3 ~]$ ml
+
+    Currently Loaded Modules:
+      1) hpc/.1.10.1 (H,S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+       H:             Hidden Module
+    ```
+
+    All good! 
+
+=== "PDC"         
+
+    ```bash 
+    bbrydsoe@login1:~> ml
+
+    Currently Loaded Modules:
+      1) craype-x86-rome                        6) cce/17.0.0           11) PrgEnv-cray/8.5.0
+      2) libfabric/1.20.1                       7) craype/2.7.30        12) snic-env/1.0.0
+      3) craype-network-ofi                     8) cray-dsmml/0.2.2     13) systemdefault/1.0.0 (S)
+      4) perftools-base/23.12.0                 9) cray-mpich/8.1.28
+      5) xpmem/2.8.2-1.0_3.9__g84a27a5.shasta  10) cray-libsci/23.12.5
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+    bbrydsoe@login1:~> ml cray-python/3.11.5
+    bbrydsoe@login1:~> ml
+
+    Currently Loaded Modules:
+      1) craype-x86-rome                        6) cce/17.0.0           11) PrgEnv-cray/8.5.0
+      2) libfabric/1.20.1                       7) craype/2.7.30        12) snic-env/1.0.0
+      3) craype-network-ofi                     8) cray-dsmml/0.2.2     13) systemdefault/1.0.0 (S)
+      4) perftools-base/23.12.0                 9) cray-mpich/8.1.28    14) cray-python/3.11.5
+      5) xpmem/2.8.2-1.0_3.9__g84a27a5.shasta  10) cray-libsci/23.12.5
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+
+ 
+
+    bbrydsoe@login1:~> ml purge
+    The following modules were not unloaded:
+      (Use "module --force purge" to unload all):
+
+      1) systemdefault/1.0.0
+    bbrydsoe@login1:~> ml
+
+    Currently Loaded Modules:
+      1) systemdefault/1.0.0 (S)
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ``` 
+
+    WARNING WARNING WARNING !!! Lots of modules got unloaded! Either logout and login again, or make sure you have saved a list of the system-modules so you can reload all of them (or use [module collections](../advanced_module/#module__collections) - you can read about this under "extra", but it is not part of this course). 
 
 !!! tip 
 
