@@ -12,6 +12,15 @@ framework or not, to keep software versions consistent and reproducible.
 
 ### Toolchains for regular CPU nodes
 
+For most of the following toolchains, multiple versions are available on each of
+the specified clusters. Use `ml spider <toolchain>` to determine which versions
+are available and what modules are required as prerequisites to load them, if
+any.
+
+Note that unlike most clusters, on Tetralith, users must load a module of the form
+`buildtool-easybuild/X.X.X-hpcXXXXXXXXX` before loading any of the toolchains below.
+(putting this up here temporarily to see if compilation is affected)
+
 === "HPC2N (Kebnekaise)"
 
     **GCC Compiler Toolchains**
@@ -45,9 +54,6 @@ framework or not, to keep software versions consistent and reproducible.
        * **iimpi**: icc, ifort, Intel MPI
 
 === "NSC (Tetralith)"
-
-    Note that unlike most clusters, on Tetralith, users must load a module of the form
-    `buildtool-easybuild/X.X.X-hpcXXXXXXXXX` before loading any of the toolchains below.
    
     **GCC Compiler Toolchains**
     
