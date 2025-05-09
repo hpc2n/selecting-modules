@@ -14,28 +14,32 @@ framework or not, to keep software versions consistent and reproducible.
 
 === "HPC2N (Kebnekaise)"
 
-    - GCC Compiler Toolchains
+    **GCC Compiler Toolchains**
+    
        * **GCC**: GCC
        * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
        * **gompi**: GCC, OpenMPI
        * **gomkl**: GCC, OpenMPI, MKL
        * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
 
-    - Intel Compiler Toolchains
+    **Intel Compiler Toolchains**
+    
        * **intel**: icc, ifort, Intel MPI, MKL
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
 
 === "LUNARC (Cosmos)"
 
-    - GCC Compiler Toolchains
+    **GCC Compiler Toolchains**
+    
        * **GCC**: GCC compiler only
        * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
        * **gompi**: GCC, OpenMPI
        * **gomkl**: GCC, OpenMPI, MKL
        * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
        
-    - Intel Compiler Toolchains
+    **Intel Compiler Toolchains**
+    
        * **intel**: icc, ifort, Intel MPI, MKL
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
@@ -45,23 +49,27 @@ framework or not, to keep software versions consistent and reproducible.
     Note that unlike most clusters, on Tetralith, users must load a module of the form
     `buildtool-easybuild/X.X.X-hpcXXXXXXXXX` before loading any of the toolchains below.
    
-    - GCC Compiler Toolchains
+    **GCC Compiler Toolchains**
+    
        * **GCC**: GCC compiler only
        * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
        * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
        
-    - Intel Compiler Toolchains
+    **Intel Compiler Toolchains**
+    
        * **intel**: icc, ifort, Intel MPI, MKL
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
 
 === "UPPMAX (Rackham)"
 
-    - GCC Compiler Toolchains
+    **GCC Compiler Toolchains**
+    
        * **GCC**: GCC compiler only
        * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
        * **gompi**: GCC, OpenMPI
        
-    - Intel Compiler Toolchains
+    **Intel Compiler Toolchains**
+    
        * **intel**: icc, ifort, Intel MPI, MKL
        * **iimpi**: icc, ifort, Intel MPI
 
@@ -70,39 +78,47 @@ framework or not, to keep software versions consistent and reproducible.
 
 === "HPC2N (Kebnekaise)"
 
-    - GCC compiler toolchains for GPU
+    **GCC Compiler Toolchains for GPU**
+    
        * **gcccuda**:  GCC, CUDA
        * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
-    - Intel compiler toolchains for GPU"
+    **Intel Compiler Toolchains for GPU**
+    
        * **iccifortcuda**: icc, ifort, CUDA (2019 releases only)
        * **iimpic**: icc, ifort, CUDA, Intel MPI (2019 releases only)
        * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
 
 === "LUNARC (Cosmos)"
 
-    - GCC compiler toolchains for GPU
+    **GCC Compiler Toolchains for GPU**
+    
        * **gcccuda**:  GCC, CUDA
        * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
-    - Intel compiler toolchains for GPU"
+    **Intel Compiler Toolchains for GPU**
+    
        * **iccifortcuda**: icc, ifort, CUDA
        * **iimpic**: icc, ifort, CUDA, Intel MPI
        * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
 
 === "NSC (Tetralith)"
 
-    - GCC compiler toolchains for GPU
+    **GCC Compiler Toolchains for GPU**
+    
        * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
 === "UPPMAX"
 
-    - GCC compiler toolchains for GPU (Rackham and Bianca)
+    **GCC Compiler Toolchains for GPU (Rackham and Bianca)**
+    
        * **gcccuda**:  GCC, CUDA
        * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
-    - Intel compiler toolchains for GPU"
+    **Intel Compiler Toolchains for GPU**
+    
        * FIXME
+
 
 ## Selecting a toolchain
 
@@ -118,6 +134,7 @@ Good choices for general use are the toolchains:
 ```bash
   module avail foss
 ```
+
 and you will get an output similar to this example on COSMOS:
 
 ```bash
