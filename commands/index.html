@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/selecting-modules/commands/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Module system commands - Selecting software modules</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Module system commands";
+        var mkdocs_page_input_path = "commands.md";
+        var mkdocs_page_url = "/selecting-modules/commands/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../images/logo-modules-course_v2.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">The module system</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Module system commands</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#finding__software__versions">Finding software versions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#with__module__spider">With module spider</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#with__module__avail">With module avail</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list__loaded__modules">List loaded modules</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#load__software__module">Load software module</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loading">Loading</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loading__several__modules">Loading several modules</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unload__software__modules">Unload software modules</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#unloading__examples">Unloading examples</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#no__prerequisites">No prerequisites</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#prerequisites_1">Prerequisites</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module__show">module show</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../toolchains/">Compiler toolchains</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../summary/">Summary</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../links.md">Links to more information</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Selecting software modules</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Module system commands</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="module__system__commands">Module system commands<a class="headerlink" href="#module__system__commands" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Find software module versions</li>
+<li>Load a module (with potential prerequisites):<ul>
+<li>default (often not recommended!)</li>
+<li>a specific version of software</li>
+</ul>
+</li>
+<li>Unload software modules, including specific versions </li>
+<li>Unload all software modules with <code>module purge</code><ul>
+<li>This should never be done at PDC! </li>
+<li>Also not generally recommended at UPPMAX. </li>
+</ul>
+</li>
+<li>List the loaded modules </li>
+<li>Get some information about a module  </li>
+</ul>
+</div>
+<p>In the previous section we saw how to find out which modules are available at a centre, including looking for a specific software module.    </p>
+<p>Now it is time to learn more useful module commands! </p>
+<h2 id="finding__software__versions">Finding software versions<a class="headerlink" href="#finding__software__versions" title="Permanent link">&para;</a></h2>
+<p>If you just load a module without specifying the version, you will (depending on centre) get the default version or an error. </p>
+<p>There are good reasons not to just load the default version, even when it is possible: </p>
+<ul>
+<li>The default version is often the newest one installed, which means the default changes the next time an even newer version is installed. This could break your code or at least give a different result, which is bad for resproducibility. </li>
+<li>Sometimes you actually need a specific version, which could differ from the one the centre has decided on as default. </li>
+</ul>
+<p>So how do you find out which versions are available for a specific software? </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is again done differently, depending on the center you are at: </p>
+<ul>
+<li>HPC2N, LUNARC, C3SE, PDC: <code>module spider MODULE</code> or <code>ml spider MODULE</code></li>
+<li>UPPMAX, NSC: <code>module avail MODULE</code> or <code>ml avail MODULE</code> </li>
+</ul>
+</div>
+<h3 id="with__module__spider">With <code>module spider</code><a class="headerlink" href="#with__module__spider" title="Permanent link">&para;</a></h3>
+<p>Recommended at HPC2N, LUNARC, C3SE, and PDC. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command to find the available versions for a software module named MODULE is: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>spider<span class="w"> </span>MODULE
+</span></code></pre></div>
+<p>or, in short form </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ml<span class="w"> </span>spider<span class="w"> </span>MODULE
+</span></code></pre></div>
+</div>
+<h3 id="with__module__avail">With <code>module avail</code><a class="headerlink" href="#with__module__avail" title="Permanent link">&para;</a></h3>
+<p>Recommended at UPPMAX and NSC. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command to find the available version for a software module named MODULE is: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>avail<span class="w"> </span>MODULE
+</span></code></pre></div>
+<p>or, in short form </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ml<span class="w"> </span>av<span class="w"> </span>MODULE
+</span></code></pre></div>
+</div>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Finding available versions of Python. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Type along!</p>
+</div>
+<p><strong>module spider</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">HPC2N</label><label for="__tabbed_1_2">LUNARC</label><label for="__tabbed_1_3">C3SE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>Python:
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>Description:
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">     </span>Versions:
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span>Python/2.7.15
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span>Python/2.7.16
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span>Python/2.7.18-bare
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span>Python/2.7.18
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span>Python/3.7.2
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span>Python/3.7.4
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span>Python/3.8.2
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span>Python/3.8.6
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span>Python/3.9.5-bare
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span>Python/3.9.5
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span>Python/3.9.6-bare
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span>Python/3.9.6
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">        </span>Python/3.10.4-bare
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">        </span>Python/3.10.4
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">        </span>Python/3.10.8-bare
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span>Python/3.10.8
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">        </span>Python/3.11.3
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">        </span>Python/3.11.5
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">        </span>Python/3.12.3
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">        </span>Biopython<span class="w">  </span>Boost.Python<span class="w">  </span>Brotli-python<span class="w">  </span>GitPython<span class="w">  </span>IPython<span class="w">  </span>Python-bundle-PyPI<span class="w">  </span>bx-python<span class="w">  </span>flatbuffers-python<span class="w">  </span>...
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">  </span>To<span class="w"> </span>find<span class="w"> </span>other<span class="w"> </span>possible<span class="w"> </span>module<span class="w"> </span>matches<span class="w"> </span>execute:
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">      </span>$<span class="w"> </span>module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s1">&#39;.*Python.*&#39;</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python/3.12.3
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>--------------------------------------------------------------------------------------------------------------------
+</span></code></pre></div>
+</details>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>bbrydsoe@cosmos3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>Python:
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span>Description:
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">     </span>Versions:
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span>Python/2.7.18-bare
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span>Python/2.7.18
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span>Python/3.8.6
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span>Python/3.9.5-bare
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span>Python/3.9.5
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span>Python/3.9.6-bare
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span>Python/3.9.6
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span>Python/3.10.4-bare
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span>Python/3.10.4
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">        </span>Python/3.10.8-bare
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">        </span>Python/3.10.8
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">        </span>Python/3.11.3
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">        </span>Python/3.11.5
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">        </span>Python/3.12.3
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">        </span>Biopython<span class="w">  </span>GitPython<span class="w">  </span>IPython<span class="w">  </span>Python-bundle<span class="w">  </span>Python-bundle-PyPI<span class="w">  </span>bx-python<span class="w">  </span>flatbuffers-python<span class="w">  </span>graphviz-python<span class="w">  </span>...
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">  </span>To<span class="w"> </span>find<span class="w"> </span>other<span class="w"> </span>possible<span class="w"> </span>module<span class="w"> </span>matches<span class="w"> </span>execute:
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">      </span>$<span class="w"> </span>module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s1">&#39;.*Python.*&#39;</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python/3.12.3
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w"> </span>----------------------------------------------------------------------------------------------------------------------------
+</span></code></pre></div>
+</details>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>brydso@alvis1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>Python:
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span>Description:
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">     </span>Versions:
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">        </span>Python/2.7.18-GCCcore-11.2.0-bare
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">        </span>Python/2.7.18-GCCcore-11.3.0-bare
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">        </span>Python/2.7.18-GCCcore-12.2.0-bare
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span>Python/3.9.5-GCCcore-10.3.0-bare
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">        </span>Python/3.9.5-GCCcore-10.3.0
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">        </span>Python/3.9.6-GCCcore-11.2.0-bare
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">        </span>Python/3.9.6-GCCcore-11.2.0
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">        </span>Python/3.10.4-GCCcore-11.3.0-bare
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">        </span>Python/3.10.4-GCCcore-11.3.0
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">        </span>Python/3.10.8-GCCcore-12.2.0-bare
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">        </span>Python/3.10.8-GCCcore-12.2.0
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">        </span>Python/3.11.3-GCCcore-12.3.0
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">        </span>Python/3.11.5-GCCcore-13.2.0
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">        </span>Python/3.12.3-GCCcore-13.3.0
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">        </span>Biopython<span class="w">  </span>Boost.Python<span class="w">  </span>CUDA-Python<span class="w">  </span>GitPython<span class="w">  </span>IPython<span class="w">  </span>Python-bundle-PyPI<span class="w">  </span>flatbuffers-python<span class="w">  </span>meson-python<span class="w">  </span>...
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">  </span>To<span class="w"> </span>find<span class="w"> </span>other<span class="w"> </span>possible<span class="w"> </span>module<span class="w"> </span>matches<span class="w"> </span>execute:
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">      </span>$<span class="w"> </span>module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s1">&#39;.*Python.*&#39;</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;Python&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python/3.12.3-GCCcore-13.3.0
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span></code></pre></div>
+</details>
+</div>
+</div>
+</div>
+<p><strong>module spider, mostly</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">PDC</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>module<span class="w"> </span>spider<span class="w"> </span>python
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show - python</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>python
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>python:
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">     </span>Versions:
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">        </span>python/2.7.6
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">        </span>python/2.7.9
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">        </span>python/2.7.11
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span>python/2.7.15
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">        </span>python/3.3
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">        </span>python/3.3.1
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">        </span>python/3.4.3
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">        </span>python/3.5.0
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">        </span>python/3.6.0
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">        </span>python/3.6.8
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">        </span>python/3.7.2
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">        </span>python/3.8.7
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">        </span>python/3.9.5
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">        </span>python/3.9.6
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">        </span>python/3.10.8
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">        </span>python/3.11.4
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">        </span>python/3.11.6-gcc-oc3
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">        </span>python/3.11.6-gcc-qyw
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">        </span>python/3.11.6-gcc-spv
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">        </span>python/3.11.8
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">        </span>python/3.11.9-gcc-epm
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">        </span>python/3.12.1
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">        </span>python/3.12.3
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">        </span>python/3.13.0-gcc-cgo
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">     </span>Other<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matches:
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">        </span>biopython<span class="w">  </span>cray-python<span class="w">  </span>dbus-python<span class="w">  </span>pdc-python<span class="w">  </span>py-meson-python<span class="w">  </span>py-python-dateutil<span class="w">  </span>python-2.7.18-gcc-11.2.0-namldiz<span class="w">  </span>python-3.8.12-gcc-11.2.0-nwj732o<span class="w">  </span>python-3.8.12-gcc-11.2.0-vhhulma<span class="w">  </span>...
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">  </span>To<span class="w"> </span>find<span class="w"> </span>other<span class="w"> </span>possible<span class="w"> </span>module<span class="w"> </span>matches<span class="w"> </span>execute:
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>
+</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">      </span>$<span class="w"> </span>module<span class="w"> </span>-r<span class="w"> </span>spider<span class="w"> </span><span class="s1">&#39;.*python.*&#39;</span>
+</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>
+</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">  </span>For<span class="w"> </span>detailed<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>specific<span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="w"> </span>package<span class="w"> </span><span class="o">(</span>including<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>the<span class="w"> </span>modules<span class="o">)</span><span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>module<span class="err">&#39;</span>s<span class="w"> </span>full<span class="w"> </span>name.
+</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">  </span>Note<span class="w"> </span>that<span class="w"> </span>names<span class="w"> </span>that<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>trailing<span class="w"> </span><span class="o">(</span>E<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>extensions<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>other<span class="w"> </span>modules.
+</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="w">  </span>For<span class="w"> </span>example:
+</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a>
+</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="w">     </span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>python/3.13.0-gcc-cgo
+</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a>-----------------------------------------------------------------------------------------------------------------------------
+</span></code></pre></div>
+</details>
+<details class="note">
+<summary>Click to show - cray-python</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>cray-python
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>------------------------------------<span class="w"> </span>/opt/cray/pe/lmod/modulefiles/core<span class="w"> </span>-------------------------------------
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">   </span>cray-python/3.10.10<span class="w">    </span>cray-python/3.11.5<span class="w"> </span><span class="o">(</span>D<span class="o">)</span><span class="w">    </span>cray-python/3.11.7
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span>Where:
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>If<span class="w"> </span>the<span class="w"> </span>avail<span class="w"> </span>list<span class="w"> </span>is<span class="w"> </span>too<span class="w"> </span>long<span class="w"> </span>consider<span class="w"> </span>trying:
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s2">&quot;module --default avail&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;ml -d av&quot;</span><span class="w"> </span>to<span class="w"> </span>just<span class="w"> </span>list<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>modules.
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="s2">&quot;module overview&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;ml ov&quot;</span><span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>name.
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+</span></code></pre></div>
+</details>
+</div>
+</div>
+</div>
+<p><strong>module avail</strong> </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">UPPMAX</label><label for="__tabbed_3_2">NSC</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>module<span class="w"> </span>avail<span class="w"> </span>python
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>python
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>---------------------------------<span class="w"> </span>/sw/mf/rackham/applications<span class="w"> </span>----------------------------------
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">   </span>python_GIS_packages/3.10.8<span class="w">      </span>python_ML_packages/3.9.5-gpu<span class="w">         </span>wrf-python/1.3.1
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">   </span>python_ML_packages/3.9.5-cpu<span class="w">    </span>python_ML_packages/3.11.8-cpu<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>-----------------------------------<span class="w"> </span>/sw/mf/rackham/compilers<span class="w"> </span>-----------------------------------
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">   </span>python/2.7.6<span class="w">     </span>python/3.4.3<span class="w">    </span>python/3.9.5<span class="w">         </span>python3/3.6.0<span class="w">     </span>python3/3.11.4
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">   </span>python/2.7.9<span class="w">     </span>python/3.5.0<span class="w">    </span>python/3.10.8<span class="w">        </span>python3/3.6.8<span class="w">     </span>python3/3.11.8
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">   </span>python/2.7.11<span class="w">    </span>python/3.6.0<span class="w">    </span>python/3.11.4<span class="w">        </span>python3/3.7.2<span class="w">     </span>python3/3.12.1
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">   </span>python/2.7.15<span class="w">    </span>python/3.6.8<span class="w">    </span>python/3.11.8<span class="w">        </span>python3/3.8.7<span class="w">     </span>python3/3.12.7<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">   </span>python/3.3<span class="w">       </span>python/3.7.2<span class="w">    </span>python/3.12.1<span class="w">        </span>python3/3.9.5
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">   </span>python/3.3.1<span class="w">     </span>python/3.8.7<span class="w">    </span>python/3.12.7<span class="w"> </span><span class="o">(</span>D<span class="o">)</span><span class="w">    </span>python3/3.10.8
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">  </span>Where:
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+</span></code></pre></div>
+<p>Ignore the comment about using <code>module spider</code>! </p>
+</details>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>module<span class="w"> </span>avail<span class="w"> </span>python<span class="w"> </span>
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>python
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>---------------------<span class="w"> </span>/software/sse2/tetralith_el9/modules<span class="w"> </span>---------------------
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">   </span>ASE/3.22.1-hpc1-python
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">   </span>ASE/3.23.0-hpc1-python
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">   </span>GaussSum/3.0.2-Python-3.7.8-hpc1
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">   </span>NCL/6.6.2-hpc2-Python
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">   </span>Pylint/3.2.5-hpc1-Python-3.11.5
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">   </span>Python/recommendation<span class="w">                </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">   </span>Python/2.7.18-bare-hpc1-gcc-2022a-eb
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">   </span>Python/3.10.4-bare-hpc1-gcc-2022a-eb
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">   </span>Python/3.10.4-env-hpc1-gcc-2022a-eb
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">   </span>Python/3.10.4-env-hpc2-gcc-2022a-eb
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">   </span>Python/3.11.5-bare-hpc1-gcc-2023b-eb
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">   </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">  </span>Where:
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</span></code></pre></div>
+</details>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><img src="../images/shell-logo_small.png"> Exercise</p>
+<ol>
+<li>At your chosen centre, check the different output for <code>module avail Python</code> and <code>module spider Python</code></li>
+<li>Do you get the same output for &ldquo;Python&rdquo; and &ldquo;python&rdquo;? </li>
+</ol>
+</div>
+<h2 id="list__loaded__modules">List loaded modules<a class="headerlink" href="#list__loaded__modules" title="Permanent link">&para;</a></h2>
+<p>There is a very useful command to list which modules you have loaded. </p>
+<p>It is </p>
+<p><code>module list</code></p>
+<p>or, in short form </p>
+<p><code>ml</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Try it now! </p>
+</div>
+<p>With nothing loaded, only the &ldquo;sticky&rdquo; modules are listed. They are modules that are needed for the environment to function correctly, so do not remove them! </p>
+<h2 id="load__software__module">Load software module<a class="headerlink" href="#load__software__module" title="Permanent link">&para;</a></h2>
+<p>In order to load modules, we need to know <em>how</em>. This differs by center only inasmuch as some centers have prerequisites (usually <strong>compiler toolchains</strong>) for most of the software modules. </p>
+<p>The centers that recommend <code>module spider</code> for finding the software modules generally have prerequisites (HPC2N, LUNARC, C3SE, PDC), while those who recommend <code>module avail</code> generally do not (UPPMAX, NSC). </p>
+<p>Thus; if the centers suggests you do <code>module spider</code> you will need to check the required prerequisites to load. </p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This is done with <code>module spider &lt;module&gt;/&lt;version&gt;</code> </li>
+<li>You can also do this at the centers recommending <code>module avail</code>, but that will generally just tell you the module can be loaded directly. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Example, HPC2N</p>
+<p>Finding out how to load Python, version 3.12.3 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>Python/3.12.3
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>Python:<span class="w"> </span>Python/3.12.3
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span>Description:
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;Python/3.12.3&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">      </span>GCCcore/13.3.0
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>provides<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>extensions:
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">       </span>flit_core/3.9.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>packaging/24.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>pip/24.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>setuptools/70.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>setuptools_scm/8.1.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tomli/2.0.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>typing_extensions/4.11.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>wheel/0.43.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">    </span>Help:
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">      </span><span class="nv">Description</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">      </span><span class="o">===========</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">      </span>Python<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>lets<span class="w"> </span>you<span class="w"> </span>work<span class="w"> </span>more<span class="w"> </span>quickly<span class="w"> </span>and<span class="w"> </span>integrate<span class="w"> </span>your<span class="w"> </span>systems<span class="w"> </span>more<span class="w"> </span>effectively.
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">      </span>More<span class="w"> </span><span class="nv">information</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">      </span><span class="o">================</span>
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="w">       </span>-<span class="w"> </span>Homepage:<span class="w"> </span>https://python.org/
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="w">      </span>Included<span class="w"> </span><span class="nv">extensions</span>
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a><span class="w">      </span><span class="o">===================</span>
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a><span class="w">      </span>flit_core-3.9.0,<span class="w"> </span>packaging-24.0,<span class="w"> </span>pip-24.0,<span class="w"> </span>setuptools-70.0.0,<span class="w"> </span>setuptools_scm-8.1.0,<span class="w"> </span>tomli-2.0.1,<span class="w"> </span>typing_extensions-4.11.0,<span class="w"> </span>wheel-0.43.0
+</span></code></pre></div>
+<p>There are some things to pay attention to here: </p>
+<ul>
+<li>You are told the prerequisites are &ldquo;GCCcore/13.3.0&rdquo;</li>
+<li>After loading that, you can load the module itself, &ldquo;Python/3.12.3&rdquo; </li>
+<li>You are told about the extensions that are included. Here, this would be the Python packages that are included, which is not very many. HPC2N and some of the other centres use separate modules or <em>module bundles</em> (SciPy-bundle for instance) for any extensions/packages that you might need. </li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example, UPPMAX</p>
+<p>Finding out how to load Python, version 3.11.8 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>avail<span class="w"> </span>python/3.11.8
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>-----------------------------------<span class="w"> </span>/sw/mf/rackham/compilers<span class="w"> </span>-----------------------------------
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">   </span>python/3.11.8
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+</span></code></pre></div>
+<p>This did not tell us much! Let us try <code>module spider</code> </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>python/3.11.8
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>--------------------------------------------------------------------------------------------
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span>python:<span class="w"> </span>python/3.11.8
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>--------------------------------------------------------------------------------------------
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>loaded<span class="w"> </span>directly:<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>python/3.11.8
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span>Help:
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">      </span>Python<span class="w"> </span>-<span class="w"> </span>use<span class="w"> </span>python/3.11.8
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">          </span>Version<span class="w"> </span><span class="m">3</span>.11.8
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">          </span>https://python.org
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">      </span>This<span class="w"> </span>module<span class="w"> </span>was<span class="w"> </span>built<span class="w"> </span>with<span class="w"> </span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">          </span>gcc/12.3.0<span class="w"> </span>sqlite/3.34.0<span class="w"> </span>Tcl-Tk/8.6.11
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="w">      </span>This<span class="w"> </span>module<span class="w"> </span>provides<span class="w"> </span>the<span class="w"> </span>executable<span class="w"> </span>names<span class="w"> </span><span class="s1">&#39;python&#39;</span><span class="w"> </span>and<span class="w"> </span><span class="s1">&#39;python3&#39;</span>.
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="w">      </span>Several<span class="w"> </span>additional<span class="w"> </span>python<span class="w"> </span>packages<span class="w"> </span>are<span class="w"> </span>also<span class="w"> </span>installed<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module.<span class="w"> </span>The<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>packages<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>module,<span class="w"> </span>produced<span class="w"> </span>using<span class="w"> </span><span class="s1">&#39;pip list&#39;</span>,<span class="w"> </span>is:
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="w">      </span>Package<span class="w">                   </span>Version
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="w">      </span>-------------------------<span class="w"> </span>---------------
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="w">      </span>anndata<span class="w">                   </span><span class="m">0</span>.10.5.post1
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="w">      </span>anyio<span class="w">                     </span><span class="m">4</span>.2.0
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="w">      </span>argon2-cffi<span class="w">               </span><span class="m">23</span>.1.0
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a><span class="w">      </span>argon2-cffi-bindings<span class="w">      </span><span class="m">21</span>.2.0
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="w">      </span>array_api_compat<span class="w">          </span><span class="m">1</span>.4.1
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="w">      </span>arrow<span class="w">                     </span><span class="m">1</span>.3.0
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="w">      </span>asteval<span class="w">                   </span><span class="m">0</span>.9.31
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="w">      </span>asttokens<span class="w">                 </span><span class="m">2</span>.4.1
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="w">      </span>async-lru<span class="w">                 </span><span class="m">2</span>.0.4
+</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="w">      </span>...<span class="w"> </span>
+</span></code></pre></div>
+<p>Here we learn: </p>
+<ul>
+<li>You can load &ldquo;python/3.11.8&rdquo; directly</li>
+<li>It was built with &ldquo;gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11&rdquo; (might be useful for compatibility with other things). </li>
+<li>It lists all the extensions (here Python packages) loaded with it - and it is a lot, around 250 packages. </li>
+</ul>
+</div>
+<h3 id="loading">Loading<a class="headerlink" href="#loading" title="Permanent link">&para;</a></h3>
+<p>To load a software module, do: </p>
+<ul>
+<li>(if needed) <code>module load &lt;prerequisite&gt;/&lt;suitable version&gt;</code></li>
+<li><code>module load &lt;module&gt;/&lt;compatible version&gt;</code></li>
+</ul>
+<p>and the versions you got from <code>module spider</code>. </p>
+<p>Again, <code>ml load &lt;module&gt;/&lt;version&gt;</code> can be used as a short form. </p>
+<p>When you have loaded the module, you can see that your list of loaded modules has changed. This is done with <code>module list</code> or <code>ml</code>. </p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Type along! </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example, HPC2N</p>
+<p>Loading Python 3.12.3 and prerequisites, and checking before and after which modules are loaded.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>module<span class="w"> </span>list
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span>Where:
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</details>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>module<span class="w"> </span>load<span class="w"> </span>GCCcore/13.3.0<span class="w"> </span>Python/3.12.3
+</span></code></pre></div>
+<p>or load them on separate lines </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>module<span class="w"> </span>load<span class="w"> </span>GCCcore/13.3.0
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>module<span class="w"> </span>load<span class="w"> </span>Python/3.12.3
+</span></code></pre></div>
+<p>What is the advantage to loading them one at a time? You can then easier find compatible modules that depend on that version, using <code>module avail</code>. </p>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCCcore/13.3.0<span class="w"> </span>Python/3.12.3
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$
+</span></code></pre></div>
+</details>
+<p>And now do <code>module list</code> again! </p>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1<span class="w">      </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>ncurses/6.5<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>SQLite/3.45.3<span class="w">  </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>OpenSSL/3
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.42<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>XZ/5.4.5<span class="w">       </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>Python/3.12.3
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/13.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">     </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.14<span class="w">       </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>libffi/3.4.5
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">  </span>Where:
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</details>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Example, NSC</p>
+<p>Loading Python version 3.11.5 (the module is called Python/3.11.5-env-hpc1-gcc-2023b-eb and can be loaded directly). Also do <code>module list</code> before and after! </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>module<span class="w"> </span>list
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1<span class="w"> </span><span class="o">(</span>H,S<span class="o">)</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span>Where:
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">   </span>H:<span class="w">             </span>Hidden<span class="w"> </span>Module
+</span></code></pre></div>
+</details>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+</details>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ml
+</span></code></pre></div>
+<details class="note">
+<summary>Click to show output!</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1<span class="w"> </span><span class="o">(</span>H,S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span>Where:
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="w">   </span>H:<span class="w">             </span>Hidden<span class="w"> </span>Module
+</span></code></pre></div>
+</details>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<ul>
+<li>You can do several <code>module load</code> on the same line. Or you can do them one at a time, as you want.<ul>
+<li>The modules have to be loaded in order! You cannot list the prerequisite after the module that needs it!</li>
+</ul>
+</li>
+<li>One advantage to loading modules one at a time is that you can then find compatible modules that depend on that version easily.<ul>
+<li>Example: you have loaded GCC/13.2.0 and Python/3.11.5 at HPC2N or LUNARC. You can now do <code>ml av</code> or <code>module avail</code> to see which versions of other modules you want to load, say <code>SciPy-bundle</code>, are compatible. </li>
+<li>If you know the name of the module you want, you can even start writing <code>module load SciPy-bundle/</code> (for instance) and press TAB - the system will then autocomplete to the compatible one(s). </li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="loading__several__modules">Loading several modules<a class="headerlink" href="#loading__several__modules" title="Permanent link">&para;</a></h3>
+<p>There are situations where you need to load several modules, even at centres where there are no prerequisites. </p>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>You need some Python packages not included in the base Python you loaded, for instance TensorFlow or maybe AlphaFold. </p>
+<p>You now need to load a version of that module which is compatible with the Python you want. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">HPC2N</label><label for="__tabbed_4_2">UPPMAX</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Tensorflow needs Python and SciPy-bundle. SciPy-bundle also needs OpenMPI. TensorFlow <em>loads</em> Python and SciPy-bundle itself, but you need their prerequisites: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>TensorFlow/2.15.1-CUDA-12.1.1
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">  </span>TensorFlow:<span class="w"> </span>TensorFlow/2.15.1-CUDA-12.1.1
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>--------------------------------------------------------------------------------------------------------------------
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span>Description:
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w">      </span>An<span class="w"> </span>open-source<span class="w"> </span>software<span class="w"> </span>library<span class="w"> </span><span class="k">for</span><span class="w"> </span>Machine<span class="w"> </span>Intelligence
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">    </span>You<span class="w"> </span>will<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>all<span class="w"> </span>module<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>on<span class="w"> </span>any<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>lines<span class="w"> </span>below<span class="w"> </span>before<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;TensorFlow/2.15.1-CUDA-12.1.1&quot;</span><span class="w"> </span>module<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>to<span class="w"> </span>load.
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">      </span>GCC/12.3.0<span class="w">  </span>OpenMPI/4.1.5
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>provides<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>extensions:
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="w">       </span>absl-py/2.1.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>astor/0.8.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>astunparse/1.6.3<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>cachetools/5.3.3<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>google-auth-oauthlib/1.2.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>google-auth/2.29.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>google-pasta/0.2.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>gviz-api/1.10.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>keras/2.15.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>Markdown/3.6<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>oauthlib/3.2.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>pyasn1-modules/0.4.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>requests-oauthlib/2.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>rsa/4.9<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tblib/3.0.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorboard-data-server/0.7.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorboard-plugin-profile/2.15.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorboard/2.15.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>tensorflow-estimator/2.15.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>TensorFlow/2.15.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>termcolor/2.3.0<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>Werkzeug/3.0.2<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>,<span class="w"> </span>wrapt/1.14.1<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0<span class="w"> </span>OpenMPI/4.1.5
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>TensorFlow/2.15.1-CUDA-12.1.1
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>TensorFlow is included in the Python_ML_packages. Python gets loaded with the Python_ML_packages so nothing extra needs loading here </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>python_ML_packages/3.11.8-cpu
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>--------------------------------------------------------------------------------------------
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">  </span>python_ML_packages:<span class="w"> </span>python_ML_packages/3.11.8-cpu
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>--------------------------------------------------------------------------------------------
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w">    </span>This<span class="w"> </span>module<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>loaded<span class="w"> </span>directly:<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>python_ML_packages/3.11.8-cpu
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">    </span>Help:
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w">      </span>python_ML_packages<span class="w"> </span>version<span class="w"> </span><span class="m">3</span>.11.8-cpu
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>python_ML_packages/3.11.8-cpu
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$
+</span></code></pre></div>
+<p>However, if you for instance need Matlab together with Gurobi, then you need to load both modules: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>spider<span class="w"> </span>matlab/R2023b
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>Gurobi/11.0.3
+</span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="unload__software__modules">Unload software modules<a class="headerlink" href="#unload__software__modules" title="Permanent link">&para;</a></h2>
+<p>Aside from <code>module unload</code> this section will also cover <code>module purge</code>! </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Why would you want to unload a module?</p>
+<ul>
+<li>If you want to use a different version of a module, you need to unload the current one first </li>
+<li>If you need a different version of a dependent module, but it is not compatible with the current prerequisite you have loaded </li>
+</ul>
+</div>
+<p>Modules can be unloaded with: </p>
+<ul>
+<li><code>module unload &lt;MODULE&gt;</code> <strong>may or may not work</strong></li>
+<li><code>module unload &lt;MODULE&gt;/&lt;version&gt;</code></li>
+<li><code>ml unload &lt;MODULE&gt;/&lt;version&gt;</code> <strong>short form of the above</strong></li>
+<li><code>module -&lt;MODULE&gt;/&lt;version&gt;</code> </li>
+<li><code>ml -&lt;MODULE&gt;/&lt;version&gt;</code> <strong>short form of the above</strong> </li>
+<li><code>ml -&lt;MODULE&gt;/&lt;version&gt;</code> <strong>short form of the above</strong></li>
+</ul>
+<p>Unloading a module <strong>will not unload the prerequisites</strong>. </p>
+<p>This is not usually a problem at the centres where there rarely are prerequisites (UPPMAX, NSC), but can be annoying at centres who usually have prerequisites for the modules (HPC2N, LUNARC, C3SE, PDC). However, there the easy solution is <code>module purge</code> (HPC2N, LUNARC, C3SE). </p>
+<p>The command <code>module purge</code> removes all the loaded modules, except the &ldquo;sticky&rdquo; modules. It is recommended at HPC2N, LUNARC, and C3SE. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use <code>module purge</code> at PDC! </p>
+<p>At PDC, there are a lot of necessary, &ldquo;system-modules&rdquo; that are preloaded. When you do <code>module purge</code> they will also be unloaded and things may not work as it should! </p>
+<p>At UPPMAX, the system-module &ldquo;uppmax&rdquo; will get unloaded with <code>module purge</code>, but can easily be reloaded with <code>module load uppmax</code>. </p>
+</div>
+<h3 id="unloading__examples">Unloading examples<a class="headerlink" href="#unloading__examples" title="Permanent link">&para;</a></h3>
+<h4 id="no__prerequisites">No prerequisites<a class="headerlink" href="#no__prerequisites" title="Permanent link">&para;</a></h4>
+<p>Unloading one module, with no prerequisites (for clarity, we also do <code>module list</code> before and after to show what is happening. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Type along!</p>
+<p>First load a suitable module for your center (with no prerequisites). Suggestions: </p>
+<ul>
+<li>HPC2N, LUNARC: GCC/12.3.0</li>
+<li>UPPMAX: python/3.11.8 </li>
+<li>C3SE: Python/3.12.3-GCCcore-13.3.0</li>
+<li>NSC: Python/3.11.5-env-hpc1-gcc-2023b-eb</li>
+<li>PDC: cray-python/3.11.5</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">HPC2N</p>
+<p>Check which modules are loaded (after loading GCC/12.3.0 earlier)</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">      </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span>Where:
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+<p>Unload GCC/12.3.0 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>unload<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+<p>Check which modules are loaded </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">  </span>Where:
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">NSC</p>
+<p>Check which modules are loaded (after loading Python/3.11.5-env-hpc1-gcc-2023b-eb earlier) </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>list<span class="w">    </span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1<span class="w"> </span><span class="o">(</span>H,S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="w">  </span>Where:
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="w">   </span>H:<span class="w">             </span>Hidden<span class="w"> </span>Module
+</span></code></pre></div>
+<p>Unload Python/3.11.5-env-hpc1-gcc-2023b-eb </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>-Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+<p>Check which modules are loaded </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1<span class="w"> </span><span class="o">(</span>H,S<span class="o">)</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="w">  </span>Where:
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="w">   </span>H:<span class="w">             </span>Hidden<span class="w"> </span>Module
+</span></code></pre></div>
+</div>
+<h4 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h4>
+<p>Here we look at what happens when you unload something that has a prerequisite. </p>
+<div class="admonition note">
+<p class="admonition-title">Example, HPC2N</p>
+<p>LUNARC would be the same. </p>
+<p>Loading Python and prerequisites</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>GCC/12.3.0
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Python/3.11.3<span class="w"> </span>
+</span></code></pre></div>
+<p>Check loaded modules</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">     </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a><span class="w">  </span>Where:
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>Unload Python/3.11.3</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>unload<span class="w"> </span>Python/3.11.3
+</span></code></pre></div>
+<p>Check loaded modules </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40
+</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">      </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0
+</span><span id="__span-46-6"><a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a>
+</span><span id="__span-46-7"><a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a><span class="w">  </span>Where:
+</span><span id="__span-46-8"><a id="__codelineno-46-8" name="__codelineno-46-8" href="#__codelineno-46-8"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>Unload GCC/12.3.0</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>-GCC/12.3.0
+</span></code></pre></div>
+<p>Check loaded modules</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="w">  </span>Where:
+</span><span id="__span-48-7"><a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+</div>
+<p>What happens if you try and unload the prerequisite?</p>
+<div class="admonition note">
+<p class="admonition-title">Example, HPC2N</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">     </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a>
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="w">  </span>Where:
+</span><span id="__span-49-10"><a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-49-11"><a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>-GCC/12.3.0
+</span><span id="__span-49-12"><a id="__codelineno-49-12" name="__codelineno-49-12" href="#__codelineno-49-12"></a>
+</span><span id="__span-49-13"><a id="__codelineno-49-13" name="__codelineno-49-13" href="#__codelineno-49-13"></a>Inactive<span class="w"> </span>Modules:
+</span><span id="__span-49-14"><a id="__codelineno-49-14" name="__codelineno-49-14" href="#__codelineno-49-14"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1<span class="w">       </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">     </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">        </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-49-15"><a id="__codelineno-49-15" name="__codelineno-49-15" href="#__codelineno-49-15"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Python/3.11.3<span class="w">     </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">     </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libreadline/8.2
+</span><span id="__span-49-16"><a id="__codelineno-49-16" name="__codelineno-49-16" href="#__codelineno-49-16"></a>
+</span><span id="__span-49-17"><a id="__codelineno-49-17" name="__codelineno-49-17" href="#__codelineno-49-17"></a>Due<span class="w"> </span>to<span class="w"> </span>MODULEPATH<span class="w"> </span>changes,<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>reloaded:
+</span><span id="__span-49-18"><a id="__codelineno-49-18" name="__codelineno-49-18" href="#__codelineno-49-18"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">     </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">     </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13
+</span></code></pre></div>
+</div>
+<p>What about <code>module purge</code>? </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:6"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><input id="__tabbed_5_5" name="__tabbed_5" type="radio" /><input id="__tabbed_5_6" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">HPC2N</label><label for="__tabbed_5_2">LUNARC</label><label for="__tabbed_5_3">UPPMAX</label><label for="__tabbed_5_4">C3SE</label><label for="__tabbed_5_5">NSC</label><label for="__tabbed_5_6">PDC</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">     </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w">   </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-50-8"><a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a>
+</span><span id="__span-50-9"><a id="__codelineno-50-9" name="__codelineno-50-9" href="#__codelineno-50-9"></a><span class="w">  </span>Where:
+</span><span id="__span-50-10"><a id="__codelineno-50-10" name="__codelineno-50-10" href="#__codelineno-50-10"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-50-11"><a id="__codelineno-50-11" name="__codelineno-50-11" href="#__codelineno-50-11"></a>
+</span><span id="__span-50-12"><a id="__codelineno-50-12" name="__codelineno-50-12" href="#__codelineno-50-12"></a>
+</span><span id="__span-50-13"><a id="__codelineno-50-13" name="__codelineno-50-13" href="#__codelineno-50-13"></a>
+</span><span id="__span-50-14"><a id="__codelineno-50-14" name="__codelineno-50-14" href="#__codelineno-50-14"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-50-15"><a id="__codelineno-50-15" name="__codelineno-50-15" href="#__codelineno-50-15"></a>The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+</span><span id="__span-50-16"><a id="__codelineno-50-16" name="__codelineno-50-16" href="#__codelineno-50-16"></a><span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">&quot;module --force purge&quot;</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+</span><span id="__span-50-17"><a id="__codelineno-50-17" name="__codelineno-50-17" href="#__codelineno-50-17"></a>
+</span><span id="__span-50-18"><a id="__codelineno-50-18" name="__codelineno-50-18" href="#__codelineno-50-18"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault
+</span><span id="__span-50-19"><a id="__codelineno-50-19" name="__codelineno-50-19" href="#__codelineno-50-19"></a>b-an01<span class="w"> </span><span class="o">[</span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-50-20"><a id="__codelineno-50-20" name="__codelineno-50-20" href="#__codelineno-50-20"></a>
+</span><span id="__span-50-21"><a id="__codelineno-50-21" name="__codelineno-50-21" href="#__codelineno-50-21"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-50-22"><a id="__codelineno-50-22" name="__codelineno-50-22" href="#__codelineno-50-22"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>snicenvironment<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>systemdefault<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-50-23"><a id="__codelineno-50-23" name="__codelineno-50-23" href="#__codelineno-50-23"></a>
+</span><span id="__span-50-24"><a id="__codelineno-50-24" name="__codelineno-50-24" href="#__codelineno-50-24"></a><span class="w">  </span>Where:
+</span><span id="__span-50-25"><a id="__codelineno-50-25" name="__codelineno-50-25" href="#__codelineno-50-25"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>All good! </p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="o">[</span>bbrydsoe@cosmos3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>GCC/12.3.0<span class="w"> </span>Python/3.11.3
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="o">[</span>bbrydsoe@cosmos3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SoftwareTree/Milan<span class="w"> </span><span class="o">(</span>S<span class="o">)</span><span class="w">   </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>binutils/2.40<span class="w">   </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>ncurses/6.4<span class="w">      </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>SQLite/3.42.0<span class="w">  </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>OpenSSL/1.1
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>GCCcore/12.3.0<span class="w">           </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>GCC/12.3.0<span class="w">      </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libreadline/8.2<span class="w">  </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>XZ/5.4.2<span class="w">       </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>Python/3.11.3
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>zlib/1.2.13<span class="w">              </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8<span class="w">     </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.13<span class="w">       </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>libffi/3.4.4
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a>
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a><span class="w">  </span>Where:
+</span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-51-11"><a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a>
+</span><span id="__span-51-12"><a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a>
+</span><span id="__span-51-13"><a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a>
+</span><span id="__span-51-14"><a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a><span class="o">[</span>bbrydsoe@cosmos3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-51-15"><a id="__codelineno-51-15" name="__codelineno-51-15" href="#__codelineno-51-15"></a>The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+</span><span id="__span-51-16"><a id="__codelineno-51-16" name="__codelineno-51-16" href="#__codelineno-51-16"></a><span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">&quot;module --force purge&quot;</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+</span><span id="__span-51-17"><a id="__codelineno-51-17" name="__codelineno-51-17" href="#__codelineno-51-17"></a>
+</span><span id="__span-51-18"><a id="__codelineno-51-18" name="__codelineno-51-18" href="#__codelineno-51-18"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SoftwareTree/Milan
+</span><span id="__span-51-19"><a id="__codelineno-51-19" name="__codelineno-51-19" href="#__codelineno-51-19"></a><span class="o">[</span>bbrydsoe@cosmos3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-51-20"><a id="__codelineno-51-20" name="__codelineno-51-20" href="#__codelineno-51-20"></a>
+</span><span id="__span-51-21"><a id="__codelineno-51-21" name="__codelineno-51-21" href="#__codelineno-51-21"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-51-22"><a id="__codelineno-51-22" name="__codelineno-51-22" href="#__codelineno-51-22"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SoftwareTree/Milan<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-51-23"><a id="__codelineno-51-23" name="__codelineno-51-23" href="#__codelineno-51-23"></a>
+</span><span id="__span-51-24"><a id="__codelineno-51-24" name="__codelineno-51-24" href="#__codelineno-51-24"></a><span class="w">  </span>Where:
+</span><span id="__span-51-25"><a id="__codelineno-51-25" name="__codelineno-51-25" href="#__codelineno-51-25"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>All good!</p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>python/3.11.8
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>uppmax<span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>python/3.11.8
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>
+</span><span id="__span-52-8"><a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>
+</span><span id="__span-52-9"><a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-52-10"><a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a><span class="o">[</span>bbrydsoe@rackham1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-52-11"><a id="__codelineno-52-11" name="__codelineno-52-11" href="#__codelineno-52-11"></a>No<span class="w"> </span>modules<span class="w"> </span>loaded
+</span></code></pre></div>
+<p>Warning! You need to reload &ldquo;uppmax&rdquo; module! <code>module load uppmax</code></p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="o">[</span>brydso@alvis1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>No<span class="w"> </span>modules<span class="w"> </span>loaded
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="o">[</span>brydso@alvis1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>Python/3.12.3-GCCcore-13.3.0
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="o">[</span>brydso@alvis1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>GCCcore/13.3.0<span class="w">                 </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>ncurses/6.5-GCCcore-13.3.0<span class="w">       </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>XZ/5.4.5-GCCcore-13.3.0
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1-GCCcore-13.3.0<span class="w">      </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>libreadline/8.2-GCCcore-13.3.0<span class="w">  </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>libffi/3.4.5-GCCcore-13.3.0
+</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>binutils/2.42-GCCcore-13.3.0<span class="w">   </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>Tcl/8.6.14-GCCcore-13.3.0<span class="w">       </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>OpenSSL/3
+</span><span id="__span-53-10"><a id="__codelineno-53-10" name="__codelineno-53-10" href="#__codelineno-53-10"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>bzip2/1.0.8-GCCcore-13.3.0<span class="w">     </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>SQLite/3.45.3-GCCcore-13.3.0<span class="w">    </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>Python/3.12.3-GCCcore-13.3.0
+</span><span id="__span-53-11"><a id="__codelineno-53-11" name="__codelineno-53-11" href="#__codelineno-53-11"></a>
+</span><span id="__span-53-12"><a id="__codelineno-53-12" name="__codelineno-53-12" href="#__codelineno-53-12"></a>
+</span><span id="__span-53-13"><a id="__codelineno-53-13" name="__codelineno-53-13" href="#__codelineno-53-13"></a>
+</span><span id="__span-53-14"><a id="__codelineno-53-14" name="__codelineno-53-14" href="#__codelineno-53-14"></a><span class="o">[</span>brydso@alvis1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-53-15"><a id="__codelineno-53-15" name="__codelineno-53-15" href="#__codelineno-53-15"></a><span class="o">[</span>brydso@alvis1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-53-16"><a id="__codelineno-53-16" name="__codelineno-53-16" href="#__codelineno-53-16"></a>No<span class="w"> </span>modules<span class="w"> </span>loaded
+</span></code></pre></div>
+<p>All good! No modules before that got lost! </p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1<span class="w"> </span><span class="o">(</span>H,S<span class="o">)</span><span class="w">   </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Python/3.11.5-env-hpc1-gcc-2023b-eb
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a><span class="w">  </span>Where:
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8" href="#__codelineno-54-8"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-54-9"><a id="__codelineno-54-9" name="__codelineno-54-9" href="#__codelineno-54-9"></a><span class="w">   </span>H:<span class="w">             </span>Hidden<span class="w"> </span>Module
+</span><span id="__span-54-10"><a id="__codelineno-54-10" name="__codelineno-54-10" href="#__codelineno-54-10"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-54-11"><a id="__codelineno-54-11" name="__codelineno-54-11" href="#__codelineno-54-11"></a>The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+</span><span id="__span-54-12"><a id="__codelineno-54-12" name="__codelineno-54-12" href="#__codelineno-54-12"></a><span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">&quot;module --force purge&quot;</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+</span><span id="__span-54-13"><a id="__codelineno-54-13" name="__codelineno-54-13" href="#__codelineno-54-13"></a>
+</span><span id="__span-54-14"><a id="__codelineno-54-14" name="__codelineno-54-14" href="#__codelineno-54-14"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1
+</span><span id="__span-54-15"><a id="__codelineno-54-15" name="__codelineno-54-15" href="#__codelineno-54-15"></a><span class="o">[</span>x_birbr@tetralith3<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>ml
+</span><span id="__span-54-16"><a id="__codelineno-54-16" name="__codelineno-54-16" href="#__codelineno-54-16"></a>
+</span><span id="__span-54-17"><a id="__codelineno-54-17" name="__codelineno-54-17" href="#__codelineno-54-17"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-54-18"><a id="__codelineno-54-18" name="__codelineno-54-18" href="#__codelineno-54-18"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>hpc/.1.10.1<span class="w"> </span><span class="o">(</span>H,S<span class="o">)</span>
+</span><span id="__span-54-19"><a id="__codelineno-54-19" name="__codelineno-54-19" href="#__codelineno-54-19"></a>
+</span><span id="__span-54-20"><a id="__codelineno-54-20" name="__codelineno-54-20" href="#__codelineno-54-20"></a><span class="w">  </span>Where:
+</span><span id="__span-54-21"><a id="__codelineno-54-21" name="__codelineno-54-21" href="#__codelineno-54-21"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-54-22"><a id="__codelineno-54-22" name="__codelineno-54-22" href="#__codelineno-54-22"></a><span class="w">   </span>H:<span class="w">             </span>Hidden<span class="w"> </span>Module
+</span></code></pre></div>
+<p>All good! </p>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>ml
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>craype-x86-rome<span class="w">                        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>cce/17.0.0<span class="w">           </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>PrgEnv-cray/8.5.0
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>libfabric/1.20.1<span class="w">                       </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>craype/2.7.30<span class="w">        </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>snic-env/1.0.0
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>craype-network-ofi<span class="w">                     </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>cray-dsmml/0.2.2<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>systemdefault/1.0.0<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>perftools-base/23.12.0<span class="w">                 </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>cray-mpich/8.1.28
+</span><span id="__span-55-8"><a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>xpmem/2.8.2-1.0_3.9__g84a27a5.shasta<span class="w">  </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>cray-libsci/23.12.5
+</span><span id="__span-55-9"><a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a>
+</span><span id="__span-55-10"><a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a><span class="w">  </span>Where:
+</span><span id="__span-55-11"><a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-55-12"><a id="__codelineno-55-12" name="__codelineno-55-12" href="#__codelineno-55-12"></a>
+</span><span id="__span-55-13"><a id="__codelineno-55-13" name="__codelineno-55-13" href="#__codelineno-55-13"></a>
+</span><span id="__span-55-14"><a id="__codelineno-55-14" name="__codelineno-55-14" href="#__codelineno-55-14"></a>
+</span><span id="__span-55-15"><a id="__codelineno-55-15" name="__codelineno-55-15" href="#__codelineno-55-15"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>ml<span class="w"> </span>cray-python/3.11.5
+</span><span id="__span-55-16"><a id="__codelineno-55-16" name="__codelineno-55-16" href="#__codelineno-55-16"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>ml
+</span><span id="__span-55-17"><a id="__codelineno-55-17" name="__codelineno-55-17" href="#__codelineno-55-17"></a>
+</span><span id="__span-55-18"><a id="__codelineno-55-18" name="__codelineno-55-18" href="#__codelineno-55-18"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-55-19"><a id="__codelineno-55-19" name="__codelineno-55-19" href="#__codelineno-55-19"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>craype-x86-rome<span class="w">                        </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>cce/17.0.0<span class="w">           </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>PrgEnv-cray/8.5.0
+</span><span id="__span-55-20"><a id="__codelineno-55-20" name="__codelineno-55-20" href="#__codelineno-55-20"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>libfabric/1.20.1<span class="w">                       </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>craype/2.7.30<span class="w">        </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>snic-env/1.0.0
+</span><span id="__span-55-21"><a id="__codelineno-55-21" name="__codelineno-55-21" href="#__codelineno-55-21"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>craype-network-ofi<span class="w">                     </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>cray-dsmml/0.2.2<span class="w">     </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>systemdefault/1.0.0<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-55-22"><a id="__codelineno-55-22" name="__codelineno-55-22" href="#__codelineno-55-22"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>perftools-base/23.12.0<span class="w">                 </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>cray-mpich/8.1.28<span class="w">    </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>cray-python/3.11.5
+</span><span id="__span-55-23"><a id="__codelineno-55-23" name="__codelineno-55-23" href="#__codelineno-55-23"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>xpmem/2.8.2-1.0_3.9__g84a27a5.shasta<span class="w">  </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>cray-libsci/23.12.5
+</span><span id="__span-55-24"><a id="__codelineno-55-24" name="__codelineno-55-24" href="#__codelineno-55-24"></a>
+</span><span id="__span-55-25"><a id="__codelineno-55-25" name="__codelineno-55-25" href="#__codelineno-55-25"></a><span class="w">  </span>Where:
+</span><span id="__span-55-26"><a id="__codelineno-55-26" name="__codelineno-55-26" href="#__codelineno-55-26"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span><span id="__span-55-27"><a id="__codelineno-55-27" name="__codelineno-55-27" href="#__codelineno-55-27"></a>
+</span><span id="__span-55-28"><a id="__codelineno-55-28" name="__codelineno-55-28" href="#__codelineno-55-28"></a>
+</span><span id="__span-55-29"><a id="__codelineno-55-29" name="__codelineno-55-29" href="#__codelineno-55-29"></a>
+</span><span id="__span-55-30"><a id="__codelineno-55-30" name="__codelineno-55-30" href="#__codelineno-55-30"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>ml<span class="w"> </span>purge
+</span><span id="__span-55-31"><a id="__codelineno-55-31" name="__codelineno-55-31" href="#__codelineno-55-31"></a>The<span class="w"> </span>following<span class="w"> </span>modules<span class="w"> </span>were<span class="w"> </span>not<span class="w"> </span>unloaded:
+</span><span id="__span-55-32"><a id="__codelineno-55-32" name="__codelineno-55-32" href="#__codelineno-55-32"></a><span class="w">  </span><span class="o">(</span>Use<span class="w"> </span><span class="s2">&quot;module --force purge&quot;</span><span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>all<span class="o">)</span>:
+</span><span id="__span-55-33"><a id="__codelineno-55-33" name="__codelineno-55-33" href="#__codelineno-55-33"></a>
+</span><span id="__span-55-34"><a id="__codelineno-55-34" name="__codelineno-55-34" href="#__codelineno-55-34"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>systemdefault/1.0.0
+</span><span id="__span-55-35"><a id="__codelineno-55-35" name="__codelineno-55-35" href="#__codelineno-55-35"></a>bbrydsoe@login1:~&gt;<span class="w"> </span>ml
+</span><span id="__span-55-36"><a id="__codelineno-55-36" name="__codelineno-55-36" href="#__codelineno-55-36"></a>
+</span><span id="__span-55-37"><a id="__codelineno-55-37" name="__codelineno-55-37" href="#__codelineno-55-37"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-55-38"><a id="__codelineno-55-38" name="__codelineno-55-38" href="#__codelineno-55-38"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>systemdefault/1.0.0<span class="w"> </span><span class="o">(</span>S<span class="o">)</span>
+</span><span id="__span-55-39"><a id="__codelineno-55-39" name="__codelineno-55-39" href="#__codelineno-55-39"></a>
+</span><span id="__span-55-40"><a id="__codelineno-55-40" name="__codelineno-55-40" href="#__codelineno-55-40"></a><span class="w">  </span>Where:
+</span><span id="__span-55-41"><a id="__codelineno-55-41" name="__codelineno-55-41" href="#__codelineno-55-41"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>WARNING WARNING WARNING !!! Lots of modules got unloaded! Either logout and login again, or make sure you have saved a list of the system-modules so you can reload all of them (or use <a href="../advanced_module/#module__collections">module collections</a> - you can read about this under &ldquo;extra&rdquo;, but it is not part of this course). </p>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Type along! </p>
+</div>
+<h2 id="module__show">module show<a class="headerlink" href="#module__show" title="Permanent link">&para;</a></h2>
+<p><img src="../images/shell-logo_small.png"> Exercise</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../intro/" class="btn btn-neutral float-left" title="The module system"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../toolchains/" class="btn btn-neutral float-right" title="Compiler toolchains">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../toolchains/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
