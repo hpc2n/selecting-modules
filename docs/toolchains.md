@@ -8,37 +8,101 @@ familiar packages that users typically work with. Most HPC centers recommend
 using toolchains to build and compile software, whether you use the EasyBuild
 framework or not, to keep software versions consistent and reproducible.
 
-## Examples of currently provided toolchains
+## Available Toolchains by HPC Center
 
-Not all of the toolchains below are available at all institutions.
+### Toolchains for regular CPU nodes
 
-### Toolchains for CPU nodes
+=== "HPC2N (Kebnekaise)"
 
-=== "GCC compiler toolchains"
+    - GCC Compiler Toolchains
+       * **GCC**: GCC
+       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+       * **gompi**: GCC, OpenMPI
+       * **gomkl**: GCC, OpenMPI, MKL
+       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
 
-    * **GCC**: GCC
-    * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
-    * **gompi**: GCC, OpenMPI
-    * **gomkl**: GCC, OpenMPI, MKL
-    * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
+    - Intel Compiler Toolchains
+       * **intel**: icc, ifort, Intel MPI, MKL
+       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
+       * **iimpi**: icc, ifort, Intel MPI
 
-=== "Intel compiler toolchains"
+=== "LUNARC (Cosmos)"
 
-    * **intel**: icc, ifort, Intel MPI, MKL
-    * **iimpi**: icc, ifort, Intel MPI
+    - GCC Compiler Toolchains
+       * **GCC**: GCC compiler only
+       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+       * **gompi**: GCC, OpenMPI
+       * **gomkl**: GCC, OpenMPI, MKL
+       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
+       
+    - Intel Compiler Toolchains
+       * **intel**: icc, ifort, Intel MPI, MKL
+       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
+       * **iimpi**: icc, ifort, Intel MPI
+
+=== "NSC (Tetralith)"
+
+    Note that unlike most clusters, on Tetralith, users must load a module of the form
+    `buildtool-easybuild/X.X.X-hpcXXXXXXXXX` before loading any of the toolchains below.
+   
+    - GCC Compiler Toolchains
+       * **GCC**: GCC compiler only
+       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
+       
+    - Intel Compiler Toolchains
+       * **intel**: icc, ifort, Intel MPI, MKL
+       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
+
+=== "UPPMAX (Rackham)"
+
+    - GCC Compiler Toolchains
+       * **GCC**: GCC compiler only
+       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+       * **gompi**: GCC, OpenMPI
+       
+    - Intel Compiler Toolchains
+       * **intel**: icc, ifort, Intel MPI, MKL
+       * **iimpi**: icc, ifort, Intel MPI
+
 
 ### CUDA based toolchains for GPU nodes
 
-=== "GCC compiler toolchains for GPU"
+=== "HPC2N (Kebnekaise)"
 
-    * **gcccuda**:  GCC, CUDA
-    * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+    - GCC compiler toolchains for GPU
+       * **gcccuda**:  GCC, CUDA
+       * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
-=== "Intel compiler toolchains for GPU"
+    - Intel compiler toolchains for GPU"
+       * **iccifortcuda**: icc, ifort, CUDA (2019 releases only)
+       * **iimpic**: icc, ifort, CUDA, Intel MPI (2019 releases only)
+       * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
 
-    * **iccifortcuda**: icc, ifort, CUDA
-    * **iimpic**: icc, ifort, CUDA, Intel MPI
-    * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
+=== "LUNARC (Cosmos)"
+
+    - GCC compiler toolchains for GPU
+       * **gcccuda**:  GCC, CUDA
+       * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+
+    - Intel compiler toolchains for GPU"
+       * **iccifortcuda**: icc, ifort, CUDA
+       * **iimpic**: icc, ifort, CUDA, Intel MPI
+       * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
+
+=== "NSC (Tetralith)"
+
+    - GCC compiler toolchains for GPU
+       * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+
+=== "UPPMAX"
+
+    - GCC compiler toolchains for GPU (Rackham and Bianca)
+       * **gcccuda**:  GCC, CUDA
+       * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+
+    - Intel compiler toolchains for GPU"
+       * FIXME
 
 ## Selecting a toolchain
 
@@ -136,13 +200,15 @@ of Python will be older than most of the module versions.
 ## Compiling serial code using a toolchain
 
 If you have loaded a toolchain, choose your compiler from the following table
-based on your coding language and toolchain choice.
+based on your coding language and toolchain choice. Note that there are 2 Intel
+versions per language; versions ending with x are newer OneAPI versions supported
+from 2023 onward.
 
 | Coding Language | GCC Toolchain | Intel Toolchain |
 | :-------------- | :------------ | :-------------- |
-| C               | gcc           | icc             |
-| C++             | g++           | icpc            |
-| Fortran         | gfortran      | ifort           |
+| C               | gcc           | icc, icx        |
+| C++             | g++           | icpc, icpx      |
+| Fortran         | gfortran      | ifort, ifx      |
 
 For some open-source toolchains, there may be no difference between compiling
 serial code with a toolchain and using a built-in compiler. The differences are
