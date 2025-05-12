@@ -11,7 +11,7 @@
         - This should never be done at PDC! 
         - Also not generally recommended at UPPMAX. 
     - List the loaded modules 
-    - Get some information about a module  
+    - Get some information about a module (``module show`` and ``module help``)  
 
 In the previous section we saw how to find out which modules are available at a centre, including looking for a specific software module.    
 
@@ -1121,14 +1121,15 @@ What about ``module purge``?
 
 !!! note "<img src="../images/shell-logo_small.png"> Exercise"
 
-    
-
-
-
-
-
+    1. Check how to load R at your centre. Pick a version. 
+    2. Does it have prerequisites at your centre?
+    3. Load R for a specific version (but first load prerequisites if there are any). 
+    4. Run ``module list`` to see what modules got loaded. Was it more than you expected? 
+    5. Unload R (and prerequisites if there are any). See what happens. 
+    6. Do ``module list`` again. 
 
 ## module show 
 
+## module help 
 
 <img src="../images/shell-logo_small.png"> Exercise
