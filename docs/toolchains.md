@@ -348,7 +348,8 @@ Using the environment variable (prefaced with $) for linking is highly recommend
     ml foss/2024a
     ml buildenv/default
     ```
-, you can also just load foss before buildenv: 
+
+     you can also just load foss before buildenv: 
 
     ```bash
     ml foss/2024a
