@@ -109,7 +109,7 @@ This is the recommended way to find existing software modules at **HPC2N**, **LU
 
     You can check if a specific software module is installed by trying ``module spider <SOFTWARE>``
 
-    Example, GROMACS at HPC2N: 
+    Example, GROMACS at HPC2N (it works the same at LUNARC, C3SE, and PDC): 
 
     ```bash
     b-an01 [~]$ module spider GROMACS
@@ -167,7 +167,7 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
 
     ``module avail`` can be written in short form as ``ml av`` 
 
-??? note "Example, UPPMAX" 
+??? note "Example, UPPMAX (NSC works the same)" 
 
     ```bash
     [bbrydsoe@rackham1 ~]$ module avail
