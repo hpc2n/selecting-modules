@@ -47,6 +47,7 @@ This is a list of some of the most useful commands for the module system. In the
 - Get more information about the paths etc. of a module: ``ml show MODULE`` or ``module show MODULE``
 - Get information about what is in a module: ``module help MODULE`` or ``ml help MODULE`` 
 - Unload all modules except the ‘sticky’ modules: ``module purge or ml purge``
+- Module collections to load/unload a bunch of modules: ``module save <collection>`` and ``module restore <collection>``
 
 ## Finding existing modules 
 

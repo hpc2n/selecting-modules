@@ -36,9 +36,9 @@ nav:
   - Software module examples: programs.md
   - Modules in batch scripts: batch.md
   - Summary: summary.md
-  - Extra:
-    - Advanced module commands: advanced_module.md
-    - Links to more information: links.md 
+    #  - Extra:
+    #    - Advanced module commands: advanced_module.md
+    #    - Links to more information: links.md 
 plugins:
   - search
   - external-markdown

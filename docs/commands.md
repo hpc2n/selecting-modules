@@ -12,6 +12,7 @@
         - Also not generally recommended at UPPMAX. 
     - List the loaded modules 
     - Get some information about a module (``module show`` and ``module help``)  
+    - Learn about module collections to load/unload a bunch of modules (``module save <collection>`` and ``module restore <collection>``)
 
 In the previous section we saw how to find out which modules are available at a centre, including looking for a specific software module.    
 
@@ -1130,6 +1131,245 @@ What about ``module purge``?
 
 ## module show 
 
+This command shows commands in the module file (MODULE) and can be used to list information about modules. 
+
+- at centres with a "flat" structure this can be used on all modules since there are no prerequisites: UPPMAX, NSC
+- at centres with a "hierarchial" structure this can only be used on the modules that are currently available to load (and can be seen with ``module avail``): HPC2N, LUNARC, C3SE, PDC 
+
+**Example, HPC2N** 
+
+Let us look at CUDA: 
+
+```bash 
+b-an01 [~]$ ml show CUDA/12.6.0
+----------------------------------------------------------------------------------------------------------------------
+   /hpc2n/eb/modules/all/Core/CUDA/12.6.0.lua:
+----------------------------------------------------------------------------------------------------------------------
+help([[
+Description
+===========
+CUDA (formerly Compute Unified Device Architecture) is a parallel
+ computing platform and programming model created by NVIDIA and implemented by the
+ graphics processing units (GPUs) that they produce. CUDA gives developers access
+ to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs.
+
+
+More information
+================
+ - Homepage: https://developer.nvidia.com/cuda-toolkit
+]])
+whatis("Description: CUDA (formerly Compute Unified Device Architecture) is a parallel
+ computing platform and programming model created by NVIDIA and implemented by the
+ graphics processing units (GPUs) that they produce. CUDA gives developers access
+ to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs.")
+whatis("Homepage: https://developer.nvidia.com/cuda-toolkit")
+whatis("URL: https://developer.nvidia.com/cuda-toolkit")
+conflict("CUDA")
+prepend_path("CMAKE_PREFIX_PATH","/hpc2n/eb/software/CUDA/12.6.0")
+prepend_path("CPATH","/hpc2n/eb/software/CUDA/12.6.0/include")
+prepend_path("CPATH","/hpc2n/eb/software/CUDA/12.6.0/extras/CUPTI/include")
+prepend_path("CPATH","/hpc2n/eb/software/CUDA/12.6.0/nvvm/include")
+prepend_path("LD_LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/lib")
+prepend_path("LD_LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/extras/CUPTI/lib64")
+prepend_path("LD_LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/nvvm/lib64")
+prepend_path("LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/lib")
+prepend_path("LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/extras/CUPTI/lib64")
+prepend_path("LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/nvvm/lib64")
+prepend_path("LIBRARY_PATH","/hpc2n/eb/software/CUDA/12.6.0/stubs/lib64")
+prepend_path("PATH","/hpc2n/eb/software/CUDA/12.6.0/bin")
+prepend_path("PATH","/hpc2n/eb/software/CUDA/12.6.0/nvvm/bin")
+prepend_path("PKG_CONFIG_PATH","/hpc2n/eb/software/CUDA/12.6.0/pkgconfig")
+prepend_path("XDG_DATA_DIRS","/hpc2n/eb/software/CUDA/12.6.0/share")
+setenv("EBROOTCUDA","/hpc2n/eb/software/CUDA/12.6.0")
+setenv("EBVERSIONCUDA","12.6.0")
+setenv("EBDEVELCUDA","/hpc2n/eb/software/CUDA/12.6.0/easybuild/Core-CUDA-12.6.0-easybuild-devel")
+setenv("CUDA_HOME","/hpc2n/eb/software/CUDA/12.6.0")
+setenv("CUDA_ROOT","/hpc2n/eb/software/CUDA/12.6.0")
+setenv("CUDA_PATH","/hpc2n/eb/software/CUDA/12.6.0")
+```
+
 ## module help 
 
-<img src="../images/shell-logo_small.png"> Exercise
+This command prints the list of possible commands and can also be used to get the help message from module(s). 
+
+- at centres with a "flat" structure this can be used on all modules since there are no prerequisites: UPPMAX, NSC
+- at centres with a "hierarchial" structure this can only be used on the modules that are currently available to load (and can be seen with ``module avail``): HPC2N, LUNARC, C3SE, PDC
+
+**Example, HPC2N** 
+
+Let us look at CUDA:
+
+```bash
+b-an01 [~]$ module help CUDA/12.6.0
+
+----------------------------------------- Module Specific Help for "CUDA/12.6.0" -----------------------------------------
+
+Description
+===========
+CUDA (formerly Compute Unified Device Architecture) is a parallel
+ computing platform and programming model created by NVIDIA and implemented by the
+ graphics processing units (GPUs) that they produce. CUDA gives developers access
+ to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs.
+
+
+More information
+================
+ - Homepage: https://developer.nvidia.com/cuda-toolkit
+```
+
+## module save/restore 
+
+Module collections are used to load/unload a bunch of modules: ``module save <collection>`` and ``module restore <collection>``. 
+
+This can be useful if you often need to load the same several modules in specific versions, for instance. 
+
+### Creating a module collection
+
+1. Load the modules you need.
+2. Save the collection (you can name it as you want, here MYMODULES):
+```bash
+module save MYMODULES
+```
+
+**Example** 
+
+Assuming we need pandas and matplotlib at HPC2N (very similar to LUNARC): 
+
+1. Load the modules
+```bash
+b-an01 [~]$ module load GCC/12.3.0 
+b-an01 [~]$ module load Python/3.11.3 
+b-an01 [~odule load OpenMPI/4.1.5 
+b-an01 [~]$ module load SciPy-bundle/2023.07 
+b-an01 [~]$ module load matplotlib/3.7.2 
+```
+2. Save to a collection (here, "mypython")
+```bash
+b-an01 [~]$ module save mypython
+Saved current collection of modules to: "mypython"
+
+b-an01 [~]$ 
+```
+
+- Then, maybe later you find you also need ``mpi4py`` so you load it and add it to the collection: 
+```bash
+b-an01 [~]$ ml mpi4py/3.1.4 
+b-an01 [~]$ 
+module save mypython
+Saved current collection of modules to: "mypython"
+
+b-an01 [~]$ 
+```
+
+- After you have been logged out and in again, or maybe unloaded/purged the modules, you can then restore it again: 
+```bash 
+b-an01 [~]$ module restore mypython
+Restoring modules from user's mypython
+b-an01 [~]$ 
+```
+
+!!! warning 
+
+    If you are working on PDC's cluster Dardel, and are used to the command ``module purge`` then this is a good way of restoring the system-modules: 
+
+    - Immediately after logging in (before loading or unloading anything) create a collection: ``module save pdcsystem`` (name as you want)
+    - Then, after you have done ``module purge``, just do ``module restore pdcsystem`` and you are back to the correct system setup. 
+
+### Workflow - module collections 
+
+- Create a module collection
+- Work with it 
+- Possibly unload all modules and load different ones to work with
+- Then later restore the module collection again and keep working
+- Possibly add more modules and save them to the collection 
+- Each time you have logged out and are logging in again, you can easily restore the modules you need
+    - Much safer than having it in your ``.bashrc`` since that is something easily forgotten about and then when you suddenly need to work with different modules or different versions, maybe months later, you are wondering why it is not working as it should and the reason is that you have auto-loaded things in your ``.bashrc``! 
+
+!!! note " <img src="../images/shell-logo_small.png"> Exercise" 
+
+    - Try loading some modules
+    - create a module collection
+    - do ``module list`` to see what you have
+    - unload the modules
+    - check with ``module list`` 
+    - restore the module collection
+    - check with ``module list`` 
+
+## Hints
+
+!!! note 
+
+    How would you find, for instance, installed Python package modules for a specific Python version?  
+
+!!! warning "Important"
+
+    At centres with prerequisites, you need to load, say, GCC instead of GCCcore in order to be able to access, for instance, SciPy-bundle!!! You also need to load a compatible OpenMPI in order to be sure to get all available installed Python package modules. 
+
+**Example, HPC2N**
+
+(Very similar to LUNARC)  
+
+1. First load the Python module and prerequisites, and OpenMPI  
+  ```bash
+  b-an01 [~]$ module load GCC/12.3.0
+  b-an01 [~]$ module load Python/3.11.3
+  b-an01 [~]$ module load OpenMPI/4.1.5
+  ```
+2. Then you can check what Python package modules are installed (scroll down a bit):  
+   ```bash 
+   b-an01 [~]$ module avail
+   ...
+   ----------------------- This is a list of module extensions "module --nx avail ..." to not show. ------------------------
+                                                  (E)     fontBitstreamVera                         (E)
+    ADGofTest                                     (E)     fontLiberation                            (E)
+    AICcmodavg                                    (E)     fontawesome                               (E)
+    ALDEx2                                        (E)     fontquiver                                (E)
+    ALL                                           (E)     fonttools                                 (E)
+    AMAPVox                                       (E)     forcats                                   (E)
+    ANCOMBC                                       (E)     foreach                                   (E)
+    ATACseqQC                                     (E)     forecast                                  (E)
+    AUC                                           (E)     foreign                                   (E)
+    AUCell                                        (E)     formatR                                   (E)
+    Aerial-Gym-Simulator                          (E)     formula.tools                             (E)
+    AgiMicroRna                                   (E)     formulaic                                 (E)
+    AlgDesign                                     (E)     fossil                                    (E)
+    Algorithm::Dependency                         (E)     fpc                                       (E)
+    Algorithm::Diff                               (E)     fpp                                       (E)
+    Alien::Base                                   (E)     fracdiff                                  (E)
+    Alien::Build::Plugin::Download::GitLab        (E)     fresh                                     (E)
+    Alien::Libxml2                                (E)     frozenlist                                (E)
+    AlphaFold                                     (E)     fs                                        (E)
+    AlphaPulldown                                 (E)     fsc.export                                (E)
+    ... 
+   ``` 
+3. The "module extensions" are things that are available as part of a modules. Sometimes several for each module. You can see for instance "foreach" R package is available (the list has everything available, not just Python packages). You can then do ``module spider foreach`` to see versions and then ``module spider foreach/1.5.2`` to see where you find that extension. 
+4. If you keep going further down on the list you got with "module avail" then you see that "mpi4py" is available and that "pandas" is available. Let us see how to load these. 
+5. Doing
+```bash
+b-an01 [~]$ module avail mpi4py
+```
+tells us it can be loaded directly
+6. Doing
+```bash
+b-an01 [~]$ module avail pandas
+```
+gives some conflicting answer, so we try with ``module spider pandas`` and then ``module spider pandas/version`` to learn that it is part of SciPy-bundle. 
+7. We can then load SciPy-bundle directly and get "pandas" available. 
+
+!!! note
+
+    Of course, you can always try doing ``module spider <software or package>`` and ``module avail <software or package>`` directly to see if you are lucky and get the name it is called. 
+
+## Summary 
+
+!!! note 
+
+    - We learned about the following commands: 
+        - load
+        - unload 
+        - purge
+        - show
+        - help
+        - save/restore 
+   
+ 
