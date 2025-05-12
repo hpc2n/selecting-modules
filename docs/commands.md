@@ -1188,6 +1188,16 @@ setenv("CUDA_ROOT","/hpc2n/eb/software/CUDA/12.6.0")
 setenv("CUDA_PATH","/hpc2n/eb/software/CUDA/12.6.0")
 ```
 
+!!! note "buildenv"
+
+    The most useful usage of ``module show`` is with the ``buildenv`` module. If you load a "compiler toolchain" (see next section) and then the "buildenv" module, you can do 
+
+    ```bash
+    module show buildenv
+    ``` 
+
+    to see all the various useful environment variables that can now be accessed for linking with when you are building something.  
+
 ## module help 
 
 This command prints the list of possible commands and can also be used to get the help message from module(s). 
