@@ -924,7 +924,13 @@ What happens if you try and unload the prerequisite?
       1) binutils/2.40     2) ncurses/6.4     3) zlib/1.2.13
     ```
 
+### ``module purge``
+
 What about ``module purge``? 
+
+!!! warning "Important"
+
+    At some centres, ``module purge`` is recommended and at some it is at least safe: HPC2N, LUNARC, NSC, C3SE 
 
 === "HPC2N" 
 
@@ -990,24 +996,6 @@ What about ``module purge``?
 
     All good!
 
-=== "UPPMAX"
-
-    ```bash
-    [bbrydsoe@rackham1 ~]$ ml python/3.11.8
-    [bbrydsoe@rackham1 ~]$ ml
-
-    Currently Loaded Modules:
-      1) uppmax   2) python/3.11.8
-
- 
-
-    [bbrydsoe@rackham1 ~]$ ml purge
-    [bbrydsoe@rackham1 ~]$ ml
-    No modules loaded
-    ```
-
-    Warning! You need to reload "uppmax" module! ``module load uppmax``
-
 === "C3SE"
 
     ```bash 
@@ -1059,6 +1047,29 @@ What about ``module purge``?
     ```
 
     All good! 
+
+!!! warning "Important"
+
+    While at other centres, it is more or less problematic to use ``module purge``: UPPMAX, PDC 
+
+
+=== "UPPMAX"
+
+    ```bash
+    [bbrydsoe@rackham1 ~]$ ml python/3.11.8
+    [bbrydsoe@rackham1 ~]$ ml
+
+    Currently Loaded Modules:
+      1) uppmax   2) python/3.11.8
+
+
+
+    [bbrydsoe@rackham1 ~]$ ml purge
+    [bbrydsoe@rackham1 ~]$ ml
+    No modules loaded
+    ```
+
+    Warning! You need to reload "uppmax" module! ``module load uppmax``
 
 === "PDC"         
 
