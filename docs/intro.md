@@ -25,6 +25,10 @@ Many, but not all, of the centres in Sweden are using the <a href="https://docs.
 
     Take care not to use any system-installed versions of ``gcc``, ``python``, etc. Always use the module instead, when available! 
 
+    Always check if there is a module instead of just building the software/package yourself!
+
+    If there is a software missing that you need, then ask if it can be installed. 
+
 ## Useful commands 
 
 This is a list of some of the most useful commands for the module system. In the list below, ``MODULE`` is used as a stand-in for any software module. 
