@@ -47,7 +47,7 @@ This is a list of some of the most useful commands for the module system. In the
 
 !!! warning 
 
-    This differs somewhat betweem centres. Some centres recommend using ``moudle avail`` while at others it is better to use ``module spider``! 
+    This differs somewhat betweem centres. Some centres recommend using ``module avail`` while at others it is better to use ``module spider``! 
 
     This is mainly to do with whether or not modules in general have prerequisite modules that needs loading before, or not. 
 

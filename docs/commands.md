@@ -1119,10 +1119,9 @@ What about ``module purge``?
 
     WARNING WARNING WARNING !!! Lots of modules got unloaded! Either logout and login again, or make sure you have saved a list of the system-modules so you can reload all of them (or use [module collections](../advanced_module/#module__collections) - you can read about this under "extra", but it is not part of this course). 
 
-!!! tip 
+!!! note "<img src="../images/shell-logo_small.png"> Exercise"
 
-    Type along! 
-
+    
 
 
 
