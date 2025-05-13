@@ -27,7 +27,7 @@ It varies between centres how many packages are installed with the base Python p
 
 Example 1: Matplotlib
 
-Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter. However, for all practrical purposes, it requires at least NumPy or Pandas to create or read in any data. **NumPy and Pandas are part of the SciPy-bundle**, which require a BLAS library (usually OpenBLAS and/or FlexiBLAS) and some version of LAPACK (usually ScaLAPACK). Therefore, it is usually better to load a full `foos` toolchain.
+Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter. However, for all practrical purposes, it requires at least NumPy or Pandas to create or read in any data. **NumPy and Pandas are part of the SciPy-bundle**, which require a BLAS library (usually OpenBLAS and/or FlexiBLAS) and some version of LAPACK (usually ScaLAPACK). Therefore, it is usually better to load a full `foss` toolchain.
 
 Example 2: MPI4Py
 
