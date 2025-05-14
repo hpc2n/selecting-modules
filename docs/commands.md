@@ -9,7 +9,7 @@
     - Unload software modules, including specific versions 
     - Unload all software modules with ``module purge``
         - This should never be done at PDC! 
-        - Also not generally recommended at UPPMAX. 
+        - You can do this at UPPMAX, but load the ``uppmax`` module afterwards.
     - List the loaded modules 
     - Get some information about a module (``module show`` and ``module help``)  
     - Learn about module collections to load/unload a bunch of modules (``module save <collection>`` and ``module restore <collection>``)
@@ -746,6 +746,8 @@ The command ``module purge`` removes all the loaded modules, except the "sticky"
     At PDC, there are a lot of necessary, "system-modules" that are preloaded. When you do ``module purge`` they will also be unloaded and things may not work as it should! 
 
     At UPPMAX, the system-module "uppmax" will get unloaded with ``module purge``, but can easily be reloaded with ``module load uppmax``. 
+
+    - To see what the ``uppmax`` module does, do: ``ml show uppmax``. It sets some environment variables and aliases.
 
 ### Unloading examples 
 
