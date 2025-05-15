@@ -10,6 +10,7 @@ In this chapter we will look at some examples of how to find and load some of th
 !!! important
 
     It is common for both R and Python packages to include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules at the same time) that are installed but cannot be founfd with `ml spider` or `ml avail`. In these cases, if you have loaded at least the prerequisites of the standalone package that the extension works with, you can use `ml show <package>` on the standalone package to view the Lua module file, which often has a section on included extensions near the top. 
+    
     For example, several of the most commonly used Python packages are included with SciPy in `SciPy-bundle`, such as NumPy, Pandas, and NumExpr. If you have at least loaded a GCC version, you can use `ml show SciPy-bundle` to view all of the included extensions (Python modules) in the compatible SciPy-bundle.
 
 
@@ -34,7 +35,15 @@ Example 1: Matplotlib
 
 Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter. However, for all practical purposes, it requires at least NumPy or Pandas to create or read in any data, so **you will need to load a SciPy-bundle** (see Important note above).
 
-If you are constrained by the GCC version, you typically don't need to look up and set the versions of any dependent modules.
+If you are constrained by an exact GCC version, you typically don't need to look up and set the versions of any dependent modules. For instance, if you only care that you use GCC/12.3.0, then you can do the following:
+
+```bash
+ml GCC/12.3.0 Python SciPy-bundle matplotlib
+```
+
+However, if you are moving code developed on a personal laptop to the cluster, you will typically be constrained to a range of Python versions (e.g., >=3.10, or 3.9 to 3.12) and a narrower range of 2-3 GCC versions, so you will have to explore a bit and find the closest approximation.
+
+Let's say you built a Matplotlib-based script using Python 3.11.8 on your own laptop.
 
 
 Example 2: MPI4Py
