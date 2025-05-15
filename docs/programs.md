@@ -19,10 +19,9 @@ It varies between centres how many packages are installed with the base Python p
 
 !!! note 
 
-    - HPC2N: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, mpi4py, matplotlib, tensorflow, ...)
-    - UPPMAX: The base Python module contains most Python packages. A few ML specific packages are available in ML_python_packages(_cpu, _gpu) 
-    - LUNARC: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, mpi4py, matplotlib, tensorflow, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but doesn't incorporate other modules as well unless they are installed in a custom environment.
-    - C3SE: 
+    - HPC2N: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
+    - LUNARC: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but does not incorporate other modules as well unless they are installed in a custom environment.
+    - C3SE: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
     - NSC: 
     - PDC:
 
