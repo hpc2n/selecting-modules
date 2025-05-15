@@ -29,9 +29,8 @@ It varies between centres how many packages are installed with the base Python p
 !!! tip
 
     For packages that require GCC, OpenMPI, and at least one of BLAS and LAPACK, it is a good idea to find and remember a `foss` toolchain that provides them all to save on typing and make more compatible modules visible to `ml avail`. Some modules with these dependencies are configured to load the rest of the toolchain automatically, but many do not. With `ml show foss/20YYr`, you can preview the module file for a particular release and see which versions of GCC, OpenMPI, Open/FlexiBLAS, and ScaLAPACK are loaded. It takes a bit of time to explore them since `ml avail` will not filter `foss` toolchains based on already loaded versions of GCC and OpenMPI, but it is a worthwhile investment.
-    
 
-Example 1: Matplotlib
+### Example 1: Matplotlib
 
 Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter. However, for all practical purposes, it requires at least NumPy or Pandas to create or read in any data, so **you will need to load a SciPy-bundle** (see Important note above).
 
@@ -178,7 +177,7 @@ Currently Loaded Modules:
 
 Note that in this example, `Tkinter/3.11.5` is loaded automatically with Matplotlib. That is not true everywhere.
 
-Example 2: MPI4Py
+### Example 2: MPI4Py
 
 Here is an example of what `ml spider MPI4Py` would output (note that `ml spider` is not case-sensitive, unlike most other LMOD commands):
 
@@ -280,7 +279,80 @@ As you can see, on the cluster where this code was run, Python was loaded automa
 
 ## R-based packages
 
-Example: Bioconductor(?)
+### Example 1: Bioconductor
+Some R-packages conveniently specify the version of R they are compatible with right in the name. One example of this is Bioconductor.
+
+```bash
+$ ml spider bioconductor
+
+---------------------------------------------------------------------------------
+  R-bundle-Bioconductor:
+---------------------------------------------------------------------------------
+    Description:
+      Bioconductor provides tools for the analysis and coprehension of
+      high-throughput genomic data.
+
+     Versions:
+        R-bundle-Bioconductor/3.15-R-4.2.1
+        R-bundle-Bioconductor/3.18-R-4.3.2
+        R-bundle-Bioconductor/3.18-R-4.4.1
+        R-bundle-Bioconductor/3.19-R-4.4.1
+
+---------------------------------------------------------------------------------
+  For detailed information about a specific "R-bundle-Bioconductor" package (includin
+g how to load the modules) use the module's full name.
+  Note that names that have a trailing (E) are extensions provided by other modules.
+  For example:
+
+     $ module spider R-bundle-Bioconductor/3.19-R-4.4.1
+---------------------------------------------------------------------------------
+```
+
+Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. That means you should not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded---that will load whatever happens to be the latest version at the time. R releases are built rarely enough that there are often multiple versions of an R-dependent package, and thus the latest version is subject to change. Let's look at one.
+
+```bash
+$ ml spider R-bundle-Bioconductor/3.18-R-4.4.1
+
+---------------------------------------------------------------------------------
+  R-bundle-Bioconductor: R-bundle-Bioconductor/3.18-R-4.4.1
+---------------------------------------------------------------------------------
+    Description:
+      Bioconductor provides tools for the analysis and coprehension of
+      high-throughput genomic data.
+
+
+    You will need to load all module(s) on any one of the lines below before the "R-b
+undle-Bioconductor/3.18-R-4.4.1" module is available to load.
+
+      GCC/12.3.0  OpenMPI/4.1.5
+ 
+    Help:
+      
+      Description
+      ===========
+      Bioconductor provides tools for the analysis and coprehension
+       of high-throughput genomic data.
+      
+      
+      More information
+      ================
+       - Homepage: https://bioconductor.org
+      
+      
+      Included extensions
+      ===================
+      affxparser-1.74.0, affy-1.80.0, affycoretools-1.74.0, affyio-1.72.0,
+      AgiMicroRna-2.52.0, agricolae-1.3-7, ALDEx2-1.34.0, ALL-1.44.0, ANCOMBC-2.4.0,
+      annaffy-1.74.0, annotate-1.80.0, AnnotationDbi-1.64.1,
+      AnnotationFilter-1.26.0, AnnotationForge-1.44.0, AnnotationHub-3.10.0,
+      anytime-0.3.9, aroma.affymetrix-3.2.1, aroma.apd-0.7.0, aroma.core-3.3.0,
+      aroma.light-3.32.0, ash-1.0-15, ATACseqQC-1.26.0, AUCell-1.24.0,
+      aws.s3-0.3.21, aws.signature-0.6.0, babelgene-22.9, ballgown-2.34.0,
+      basilisk-1.14.2, basilisk.utils-1.14.1, batchelor-1.18.1, baySeq-2.36.0,
+      beachmat-2.18.0, BH-1.84.0-0, Biobase-2.62.0, BiocBaseUtils-1.4.0, ...
+```
+
+The lists of extensions with R bundles can also get extremely long.
 
 ## Matlab
 
