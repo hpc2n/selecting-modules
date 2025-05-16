@@ -279,8 +279,19 @@ As you can see, on the cluster where this code was run, Python was loaded automa
 
 ## R-based packages
 
+At most HPC centers, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like R-bundle-CRAN and R-bundle-Bioconductor. Most HPC centers have prerequisites for R, but for a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`. 
+
+!!! note
+
+    - HPC2N: Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
+    - LUNARC: Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
+    - UPPMAX (Rackham) and C3SE (Alvis): R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
+    - NSC (Tetralith): R can be loaded directly, but contains few installed packages, and there are no bundles to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
+    - PDC (Dardel): Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
+
+
 ### Example 1: Bioconductor
-Some R-packages conveniently specify the version of R they are compatible with right in the name. One example of this is Bioconductor.
+Some R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
 
 ```bash
 $ ml spider bioconductor
@@ -308,7 +319,9 @@ g how to load the modules) use the module's full name.
 ---------------------------------------------------------------------------------
 ```
 
-Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. That means you should not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded---that will load whatever happens to be the latest version at the time. R releases are built rarely enough that there are often multiple versions of an R-dependent package, and thus the latest version is subject to change. Let's look at one.
+Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. That means you should not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded---that will load whatever happens to be the latest version at the time. New R releases are built rarely enough that there are often multiple versions of each R-dependent package, so the latest version of an R-based module is subject to change. For the sake of reproducibility, the version of such a package should always be specified.
+
+To check the prerequisites with `ml spider`, the specific version number must be included anyway, for all software.
 
 ```bash
 $ ml spider R-bundle-Bioconductor/3.18-R-4.4.1
@@ -352,15 +365,193 @@ undle-Bioconductor/3.18-R-4.4.1" module is available to load.
       beachmat-2.18.0, BH-1.84.0-0, Biobase-2.62.0, BiocBaseUtils-1.4.0, ...
 ```
 
-The lists of extensions with R bundles can also get extremely long.
+The list of extensions is too long to copy here, but some popular extensions included in this module are: DeSeq2, GenomeInfoDb, MStats, Seurat, Rsamtools, and more.
 
-Most R users also 
+The above prerequisites and the main package can be loaded either one at a time or all at once with,
+
+```bash
+$ ml GCC/12.3.0  OpenMPI/4.1.5  R-bundle-Bioconductor/3.18-R-4.4.1
+```
+
+In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centers, so pay attention to the prerequisites.
 
 ## Matlab
 
-At most HPC centers, Matlab can be loaded directly. Add-Ons and Toolboxes are available through 
+At most HPC centers, Matlab can be loaded directly, but a couple of centers require a basic software tree as a prerequisite. On Dardel (PDC), all Matlab versions, like nearly every other module, have a module called something like `PDC/xx.xx` or `PDCOLD/xx.xx` as a prerequisite. To view the prerequisites for a specific version of Matlab, you can do
 
-Example:
+```bash
+$ module spider matlab/<version>
+```
+
+regardless of the facility. All of the Add-Ons and Toolboxes should be available through the Matlab GUI. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`.
+
+### Example: Matlab on Tetralith (NSC)
+
+At most centers, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centers where all modules are searchable without loading prerequisites, it may be better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
+
+```bash
+$ ml avail matlab
+
+--------------------- /software/sse2/tetralith_el9/modules ---------------------
+   MATLAB/recommendation (D)    MATLAB/2023b-bdist
+   MATLAB/2023a-bdist           MATLAB/2024a-hpc1-bdist
+
+  Where:
+   D:  Default Module
+```
+
+Once you have chosen a specific version, use `ml spider` to check if there are prerequisites, like so:
+
+```bash
+$ ml spider MATLAB/2024a-hpc1-bdist
+```
+
+The full output was too verbose to reprint in full here, but the one important line reads: 
+
+```bash
+    This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
+```
+
+The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:
+
+```bash
+$ ml MATLAB/2024a-hpc1-bdist
+```
+
+It should be noted that the Matlab GUI is prone to hogging resources if not launched carefully, and that running via Desktop On-Demand is often preferred where the option exists. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
 
 ## Specialized Applications
 
+For most specialized packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically.
+
+Some specialized modules (e.g., Abaqus, Gaussian, and VASP) require users to provide license numbers, explicitly affirm license agreements, or otherwise contact the local HPC center's support staff about being added to the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialized software packages.
+
+Example: GROMACS
+
+As usual, use `ml spider` (or `ml avail` at NSC) to view the available versions. Below is an example with the output at HPC2N as of May 2025:
+
+```bash
+$ ml spider GROMACS
+
+----------------------------------------------------------------------------
+  GROMACS:
+----------------------------------------------------------------------------
+    Description:
+      GROMACS is a versatile package to perform molecular dynamics, i.e.
+      simulate the Newtonian equations of motion for systems with hundreds
+      to millions of particles.
+
+     Versions:
+        GROMACS/3.3.3-cphmd-1.3
+        GROMACS/3.3.3-cphmd-1.3-1lpernode
+        GROMACS/3.3.3-cphmd-1.4
+        GROMACS/4.0.7-ionstr
+        GROMACS/5.1.4
+        GROMACS/2016.x-drude-20180214-g3f7439a
+        GROMACS/2016.x-drude-20220117-g78fe3d1e
+        GROMACS/2016.x-drude-20220120-ge35ae4e2
+        GROMACS/2016.4
+        GROMACS/2018.8
+        GROMACS/2019
+        GROMACS/2019.4-PLUMED-2.5.4
+        GROMACS/2021
+        GROMACS/2022.4
+        GROMACS/2023.1-CUDA-11.7.0
+        GROMACS/2023.1
+        GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+        GROMACS/2024.1
+        GROMACS/2024.3-CUDA-12.4.0
+     Other possible modules matches:
+        GROMACS-LS
+```
+
+Some versions are GPU-enabled with CUDA, and some are also compiled with PLUMED (a support package for a variety of molecular dynamics suites)
+
+Let's look at the prerequisites for `GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0`:
+
+```bash
+$ ml spider GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+----------------------------------------------------------------------------
+  GROMACS: GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+----------------------------------------------------------------------------
+    Description:
+      GROMACS is a versatile package to perform molecular dynamics, i.e.
+      simulate the Newtonian equations of motion for systems with hundreds
+      to millions of particles. This is a GPU enabled build, containing
+      both MPI and threadMPI builds for both single and double precision.
+      It also contains the gmxapi extension for the single precision MPI
+      build next to PLUMED.
+
+
+    You will need to load all module(s) on any one of the lines below before the "GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0" module is available to load.
+
+      GCC/12.3.0  OpenMPI/4.1.5
+ 
+    This module provides the following extensions:
+
+       gmxapi/0.4.2 (E)
+```
+
+This module requires `GCC/12.3.0` and `OpenMPI/4.1.5`, it includes the extension `gmxapi/0.4.2`, and if we load the given prerequisites, we can use `ml show GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0` to see what gets loaded. Note that large portions of the output are omitted at the ellipses (...) to save space and draw attention to the important lines.
+
+```bash
+$ ml GCC/12.3.0  OpenMPI/4.1.5
+$ ml show GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+$ ml GCC/12.3.0  OpenMPI/4.1.5
+----------------------------------------------------------------------------
+   /hpc2n/eb/modules/all/MPI/GCC/12.3.0/OpenMPI/4.1.5/GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0.lua:
+----------------------------------------------------------------------------
+
+...
+extensions("gmxapi/0.4.2")
+depends_on("FlexiBLAS/3.3.1")
+depends_on("FFTW/3.3.10")
+depends_on("FFTW.MPI/3.3.10")
+depends_on("ScaLAPACK/2.2.0-fb")
+depends_on("CUDA/12.1.1")
+depends_on("UCX-CUDA/1.14.1-CUDA-12.1.1")
+depends_on("Python/3.11.3")
+depends_on("SciPy-bundle/2023.07")
+depends_on("networkx/3.1")
+depends_on("mpi4py/3.1.4")
+depends_on("PLUMED/2.9.0")
+...
+```
+
+If we then load the module and view what was loaded, the output (at this facility) is as follows:
+
+```bash
+$ ml GCC/12.3.0  OpenMPI/4.1.5
+$ ml GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+$ ml
+Currently Loaded Modules:
+  1) snicenvironment    (S)  25) UCX-CUDA/1.14.1-CUDA-12.1.1
+  2) systemdefault      (S)  26) bzip2/1.0.8
+  3) GCCcore/12.3.0          27) ncurses/6.4
+  4) zlib/1.2.13             28) libreadline/8.2
+  5) binutils/2.40           29) Tcl/8.6.13
+  6) GCC/12.3.0              30) SQLite/3.42.0
+  7) numactl/2.0.16          31) libffi/3.4.4
+  8) XZ/5.4.2                32) Python/3.11.3
+  9) libxml2/2.11.4          33) cffi/1.15.1
+ 10) libpciaccess/0.17       34) cryptography/41.0.1
+ 11) hwloc/2.9.1             35) virtualenv/20.23.1
+ 12) OpenSSL/1.1             36) Python-bundle-PyPI/2023.06
+ 13) libevent/2.1.12         37) pybind11/2.11.1
+ 14) UCX/1.14.1              38) SciPy-bundle/2023.07
+ 15) PMIx/4.2.4              39) networkx/3.1
+ 16) UCC/1.2.0               40) mpi4py/3.1.4
+ 17) OpenMPI/4.1.5           41) GSL/2.7
+ 18) OpenBLAS/0.3.23         42) gzip/1.12
+ 19) FlexiBLAS/3.3.1         43) lz4/1.9.4
+ 20) FFTW/3.3.10             44) zstd/1.5.5
+ 21) FFTW.MPI/3.3.10         45) ICU/73.2
+ 22) ScaLAPACK/2.2.0-fb      46) Boost/1.82.0
+ 23) CUDA/12.1.1             47) PLUMED/2.9.0
+ 24) GDRCopy/2.3.1           48) GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
+
+  Where:
+   S:  Module is Sticky, requires --force to unload or purge
+```
+
+Evidently, all the packages in the `depends_on("<package")` commands in the .lua file were loaded automatically.
