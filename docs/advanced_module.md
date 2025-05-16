@@ -2,8 +2,6 @@
 
 ## buildenv - build environment
 
-(You can remove this if you do not want it here) 
-
 Using a compiler toolchain by itself is possible but can require some manual work, figuring out which paths to add to -I or -L for including files and libraries, and similar.
 
 To make life as a software builder easier there is a special module available, ``buildenv``. This is handled somewhat differently by different centres, with some including the buildenv module when you load a compiler toolchain and others requiring you to load it yourself after the toolchain. 

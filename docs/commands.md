@@ -1198,7 +1198,9 @@ setenv("CUDA_PATH","/hpc2n/eb/software/CUDA/12.6.0")
     module show buildenv
     ``` 
 
-    to see all the various useful environment variables that can now be accessed for linking with when you are building something.  
+    to see all the various useful environment variables that can now be accessed for linking with when you are building something. 
+
+    If you want to read more about this, you can check the [buildenv - build environment](../advanced_module/#buildenv__-__build__environment) section under "EXTRA" -> "Advanced module commands".  
 
 ## module help 
 
