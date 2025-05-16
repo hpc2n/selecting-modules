@@ -28,7 +28,7 @@ Using the environment variable (prefaced with $) for linking is highly recommend
 
     OR use the environment variable ``$LIBLAPACK`` (recommended, as it does not change with version and toolchain):
 
-    ``bash
+    ```bash
     gcc -o PROGRAM PROGRAM.c $LIBLAPACK
     ```
 
