@@ -42,7 +42,6 @@ This is a list of some of the most useful commands for the module system. In the
 - See which modules are currently loaded: ``module list`` or ``ml``
 - Loading a module: ``module load MODULE`` or ``ml MODULE``
 - Loading a specific version of a module: ``module load MODULE/VERSION`` or ``ml MODULE/VERSION``
-    - At UPPMAX and NSC this is done with ``module avail MODULE/VERSION`` instead
 - Unload a module: ``module unload MODULE`` or ``ml -MODULE``
 - Get more information about the paths etc. of a module: ``ml show MODULE`` or ``module show MODULE``
 - Get information about what is in a module: ``module help MODULE`` or ``ml help MODULE`` 
@@ -53,7 +52,7 @@ This is a list of some of the most useful commands for the module system. In the
 
 !!! warning 
 
-    This differs somewhat betweem centres. Some centres recommend using ``module avail`` while at others it is better to use ``module spider``! 
+    This differs somewhat between centres. Some centres recommend using ``module avail`` while at others it is better to use ``module spider``! 
 
     This is mainly to do with whether or not modules in general have prerequisite modules that needs loading before, or not. 
 
