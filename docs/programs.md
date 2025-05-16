@@ -424,134 +424,89 @@ It should be noted that the Matlab GUI is prone to hogging resources if not laun
 
 For most specialized packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically.
 
-Some specialized modules (e.g., Abaqus, Gaussian, and VASP) require users to provide license numbers, explicitly affirm license agreements, or otherwise contact the local HPC center's support staff about being added to the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialized software packages.
+!!! important
 
-Example: GROMACS
+    Some specialized modules (e.g., Abaqus, Gaussian, and VASP) require users to provide license numbers, explicitly affirm license agreements, or otherwise contact the local HPC center's support staff about being added to the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialized software packages.
 
-As usual, use `ml spider` (or `ml avail` at NSC) to view the available versions. Below is an example with the output at HPC2N as of May 2025:
+### Example: OpenFOAM
+
+As usual, we start by checking the versions available with `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
+
+An example output might look like this (from COSMOS at LUNARC):
 
 ```bash
-$ ml spider GROMACS
+$ ml spider OpenFOAM
 
-----------------------------------------------------------------------------
-  GROMACS:
-----------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+  OpenFOAM:
+--------------------------------------------------------------------------------------
     Description:
-      GROMACS is a versatile package to perform molecular dynamics, i.e.
-      simulate the Newtonian equations of motion for systems with hundreds
-      to millions of particles.
+      OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
+      range of features to solve anything from complex fluid flows involving chemical
+      reactions, turbulence and heat transfer, to solid dynamics and
+      electromagnetics.
 
      Versions:
-        GROMACS/3.3.3-cphmd-1.3
-        GROMACS/3.3.3-cphmd-1.3-1lpernode
-        GROMACS/3.3.3-cphmd-1.4
-        GROMACS/4.0.7-ionstr
-        GROMACS/5.1.4
-        GROMACS/2016.x-drude-20180214-g3f7439a
-        GROMACS/2016.x-drude-20220117-g78fe3d1e
-        GROMACS/2016.x-drude-20220120-ge35ae4e2
-        GROMACS/2016.4
-        GROMACS/2018.8
-        GROMACS/2019
-        GROMACS/2019.4-PLUMED-2.5.4
-        GROMACS/2021
-        GROMACS/2022.4
-        GROMACS/2023.1-CUDA-11.7.0
-        GROMACS/2023.1
-        GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
-        GROMACS/2024.1
-        GROMACS/2024.3-CUDA-12.4.0
-     Other possible modules matches:
-        GROMACS-LS
+        OpenFOAM/v2112
+        OpenFOAM/v2206
+        OpenFOAM/v2306
+        OpenFOAM/v2406
+        OpenFOAM/7-20200508
+        OpenFOAM/9
+        OpenFOAM/10
+        OpenFOAM/11
+
+--------------------------------------------------------------------------------------
+  For detailed information about a specific "OpenFOAM" package (including how to load the 
+modules) use the module's full name.
+  Note that names that have a trailing (E) are extensions provided by other modules.
+  For example:
+
+     $ module spider OpenFOAM/11
+--------------------------------------------------------------------------------------
 ```
 
-Some versions are GPU-enabled with CUDA, and some are also compiled with PLUMED (a support package for a variety of molecular dynamics suites)
-
-Let's look at the prerequisites for `GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0`:
+Let's look at a recent version:
 
 ```bash
-$ ml spider GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
-----------------------------------------------------------------------------
-  GROMACS: GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
-----------------------------------------------------------------------------
+$ ml spider OpenFOAM/11
+--------------------------------------------------------------------------------------
+  OpenFOAM: OpenFOAM/11
+--------------------------------------------------------------------------------------
     Description:
-      GROMACS is a versatile package to perform molecular dynamics, i.e.
-      simulate the Newtonian equations of motion for systems with hundreds
-      to millions of particles. This is a GPU enabled build, containing
-      both MPI and threadMPI builds for both single and double precision.
-      It also contains the gmxapi extension for the single precision MPI
-      build next to PLUMED.
+      OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
+      range of features to solve anything from complex fluid flows involving chemical
+      reactions, turbulence and heat transfer, to solid dynamics and
+      electromagnetics.
 
 
-    You will need to load all module(s) on any one of the lines below before the "GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0" module is available to load.
+    You will need to load all module(s) on any one of the lines below before the "OpenFOAM
+/11" module is available to load.
 
-      GCC/12.3.0  OpenMPI/4.1.5
+      GCC/11.3.0  OpenMPI/4.1.4
  
-    This module provides the following extensions:
+    Help:
+      Description
+      ===========
+      OpenFOAM is a free, open source CFD software package.
+       OpenFOAM has an extensive range of features to solve
+       anything from complex fluid flows involving chemical
+       reactions, turbulence and heat transfer, to solid dynamics
+       and electromagnetics.
+      
+      
+      More information
+      ================
+       - Homepage: https://www.openfoam.org/
 
-       gmxapi/0.4.2 (E)
 ```
 
-This module requires `GCC/12.3.0` and `OpenMPI/4.1.5`, it includes the extension `gmxapi/0.4.2`, and if we load the given prerequisites, we can use `ml show GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0` to see what gets loaded. Note that large portions of the output are omitted at the ellipses (...) to save space and draw attention to the important lines.
+On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
+
+Now we can load everything all at once like so:
 
 ```bash
-$ ml GCC/12.3.0  OpenMPI/4.1.5
-$ ml show GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
-$ ml GCC/12.3.0  OpenMPI/4.1.5
-----------------------------------------------------------------------------
-   /hpc2n/eb/modules/all/MPI/GCC/12.3.0/OpenMPI/4.1.5/GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0.lua:
-----------------------------------------------------------------------------
-
-...
-extensions("gmxapi/0.4.2")
-depends_on("FlexiBLAS/3.3.1")
-depends_on("FFTW/3.3.10")
-depends_on("FFTW.MPI/3.3.10")
-depends_on("ScaLAPACK/2.2.0-fb")
-depends_on("CUDA/12.1.1")
-depends_on("UCX-CUDA/1.14.1-CUDA-12.1.1")
-depends_on("Python/3.11.3")
-depends_on("SciPy-bundle/2023.07")
-depends_on("networkx/3.1")
-depends_on("mpi4py/3.1.4")
-depends_on("PLUMED/2.9.0")
-...
+$ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
 ```
 
-If we then load the module and view what was loaded, the output (at this facility) is as follows:
-
-```bash
-$ ml GCC/12.3.0  OpenMPI/4.1.5
-$ ml GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
-$ ml
-Currently Loaded Modules:
-  1) snicenvironment    (S)  25) UCX-CUDA/1.14.1-CUDA-12.1.1
-  2) systemdefault      (S)  26) bzip2/1.0.8
-  3) GCCcore/12.3.0          27) ncurses/6.4
-  4) zlib/1.2.13             28) libreadline/8.2
-  5) binutils/2.40           29) Tcl/8.6.13
-  6) GCC/12.3.0              30) SQLite/3.42.0
-  7) numactl/2.0.16          31) libffi/3.4.4
-  8) XZ/5.4.2                32) Python/3.11.3
-  9) libxml2/2.11.4          33) cffi/1.15.1
- 10) libpciaccess/0.17       34) cryptography/41.0.1
- 11) hwloc/2.9.1             35) virtualenv/20.23.1
- 12) OpenSSL/1.1             36) Python-bundle-PyPI/2023.06
- 13) libevent/2.1.12         37) pybind11/2.11.1
- 14) UCX/1.14.1              38) SciPy-bundle/2023.07
- 15) PMIx/4.2.4              39) networkx/3.1
- 16) UCC/1.2.0               40) mpi4py/3.1.4
- 17) OpenMPI/4.1.5           41) GSL/2.7
- 18) OpenBLAS/0.3.23         42) gzip/1.12
- 19) FlexiBLAS/3.3.1         43) lz4/1.9.4
- 20) FFTW/3.3.10             44) zstd/1.5.5
- 21) FFTW.MPI/3.3.10         45) ICU/73.2
- 22) ScaLAPACK/2.2.0-fb      46) Boost/1.82.0
- 23) CUDA/12.1.1             47) PLUMED/2.9.0
- 24) GDRCopy/2.3.1           48) GROMACS/2023.3-CUDA-12.1.1-PLUMED-2.9.0
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-```
-
-Evidently, all the packages in the `depends_on("<package")` commands in the .lua file were loaded automatically.
+or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualization libraries that can be viewed by just entering `ml`.
