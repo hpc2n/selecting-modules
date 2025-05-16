@@ -32,15 +32,15 @@ It varies between centres how many packages are installed with the base Python p
 
 ### Example 1: Matplotlib
 
-Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter. However, for all practical purposes, it requires at least NumPy or Pandas to create or read in any data, so **you will need to load a SciPy-bundle** (see Important note above).
+Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter if you want to interact with the plots at runtime. At many centers, Python and Tkinter will be loaded automatically if you load Matplotlib, so you only really need to load GCC first (but you should always double-check). However, for all practical purposes, Matplotlib requires at least NumPy or Pandas to create or read in any data, so **you will need to load a SciPy-bundle** (see "Important" note near top of page) even though it is not an explicit prerequisite.
 
-If you are constrained by an exact GCC version, you typically don't need to look up and set the versions of any dependent modules. For instance, if you only care that you use `GCC/12.3.0`, then you can do the following:
+If you are constrained by an exact GCC version, you typically don't need to set the versions of any dependent modules. It is rare for one version of a Python package to be associated with multiple GCC versions (usually, this happens with third-party packages that are rarely maintained). For instance, if you only care that you use `GCC/12.3.0`, then you can do the following:
 
 ```bash
-ml GCC/12.3.0 Python matplotlib SciPy-bundle
+$ ml GCC/12.3.0 Python matplotlib SciPy-bundle
 ```
 
-However, if you are moving code developed on a personal laptop to the cluster, you will typically be constrained to a range of Python versions (e.g., >=3.10, or 3.9 to 3.12) and a narrower range of 2-3 GCC versions, so you will have to explore a bit and find the closest approximation.
+However, if you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a range of Python versions (e.g., >=3.10, or 3.9 to 3.12).
 
 Let's say you built a Matplotlib-based script using Python 3.11.8 on your own laptop. Glob patterns don't work to filter `ml spider` or `ml avail` (`ml -r spider '.*Python/.*'` will expand the results to every module containing `Python` in the name, but adding `3.11` will **not** limit the results to only those with `Python/3.11`), so you'll have to look at the full list first:
 
@@ -109,7 +109,7 @@ your systems more effectively.
       scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
 ```
 
-It's usually safer to load GCC than GCCcore. Many modules that have Python as a prerequisite require the full GCC instead of only GCCcore. Matplotlib is a prime example:
+It's usually safer to load GCC than GCCcore. Many Python modules, including Matplotlib, require the full GCC instead of only GCCcore. For example:
 
 ```bash
 $ ml spider matplotlib/3.8.2
@@ -131,12 +131,12 @@ plotlib/3.8.2" module is available to load.
       GCC/13.2.0
 ```
 
-On some centers, loading GCC and then Matplotlib will automatically load Python as well, so Python is not always listed as a prerequisite. In practice, though, you will typically know which Python you need, not which Matplotlib to use, and `ml show matplotlib/<version>` will not show you which Python is associated with that version.
+Also note that `ml show matplotlib/<version>` will **not** show you which Python version is associated with that version of Matplotlib.
 
 Each version of Matplotlib and SciPy-bundle should only be associated with one Python version, so now we can load them all at once like this:
 
 ```bash
-ml GCC/13.2.0 Python/3.11.5 Matplotlib SciPy-bundle
+ml GCC/13.2.0 Python matplotlib SciPy-bundle
 ```
 
 And if we check what's loaded, we get this: 
@@ -175,7 +175,7 @@ Currently Loaded Modules:
    S:  Module is Sticky, requires --force to unload or purge
 ```
 
-Note that in this example, `Tkinter/3.11.5` is loaded automatically with Matplotlib. That is not true everywhere.
+If you are comfortable editing code in a basic text editor and running at the command-line, the above is all you need, as long as `Tkinter` is on the list. However, it is often more convenient to work in an integrated development environment (IDE) like Jupyter Lab or Spyder, and if your HPC center does not have Desktop On-Demand, you will need to load those as well. For more information on choosing and loading IDEs, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
 ### Example 2: MPI4Py
 
@@ -354,9 +354,11 @@ undle-Bioconductor/3.18-R-4.4.1" module is available to load.
 
 The lists of extensions with R bundles can also get extremely long.
 
+Most R users also 
+
 ## Matlab
 
-At most HPC centers, Matlab can be loaded directly.
+At most HPC centers, Matlab can be loaded directly. Add-Ons and Toolboxes are available through 
 
 Example:
 
