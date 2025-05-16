@@ -62,7 +62,7 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 | 10:55 | Break | | |
 | 11:05 | Compiler toolchains | Lecture+type along | RP |
 | 11:15 | Software modules | Lecture+type along | RP | 
-| 11:45 | Modules in batch scripts | Lecture+type along | BB |  
+| 11:45 | Modules in batch scripts | Lecture | BB |  
 | 11:55 | Summary | | All | 
 | 12:00 | END | | | 
 
