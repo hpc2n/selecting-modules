@@ -23,7 +23,6 @@ This NAISS course is given under under NAISS, by staff working at the branches l
     This is from a recent NAISS course about basic Linux: 
   
     - Material: <a href="https://hpc2n.github.io/intro-linux/" target="_blank">https://hpc2n.github.io/intro-linux/</a>
-    - Exercises: ``wget https://github.com/hpc2n/intro-linux/raw/refs/heads/main/exercises.tar.gz`` and then ``tar zxvf exercises.tar.gz`` 
     - Recordings from the course, on YouTube: <a href="https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq" target="_blank">https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq</a> 
 
 !!! note "Learning outcome"   
@@ -50,7 +49,7 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 - There is an "important info" page for this course, containing info on the course project, login info for Tetralith, etc. 
     - It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EX7cOrKbXyhKrUfGvi1QYPIBY9OLYS1ecearjJefFiOhjg" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EX7cOrKbXyhKrUfGvi1QYPIBY9OLYS1ecearjJefFiOhjg</a> 
 - There is a Q/A page for use during the lectures. Since the lectures are recorded, you may get recorded if you ask questions in the Zoom, but you can always write questions on the Q/A and get answers there. It also has the advantage that you can go back and look at the answers later. 
-    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w</a>  
+    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w</a>   
 
 ## Preliminary schedule
 
@@ -146,7 +145,7 @@ In order to type along and do the exercises, please prepare your course environm
 
 !!! note "3. Download the exercises" 
 
-    - ``wget ...`` 
+    - ``wget https://github.com/hpc2n/selecting-modules/raw/refs/heads/main/exercises.tar.gz`` 
 
 !!! note "4. Extract the exercises" 
 
