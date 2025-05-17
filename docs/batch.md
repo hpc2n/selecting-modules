@@ -435,7 +435,8 @@ Here there are two things to pay attention to:
 
         # Run your Python script
         python add-list.py
-   
+        ```  
+ 
     === "PDC"
 
         Dardel has 4 AMD Instinct™ MI250X á 2 GCDs per node. 
