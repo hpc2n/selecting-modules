@@ -294,8 +294,7 @@ Continuing with a Python example
 
     === "C3SE" 
 
-        Note: on Alvis you *must* request a GPU regardless - it is only really f
-or GPU jobs. Here I just ask for 1 T4 
+        Note: on Alvis you *must* request a GPU regardless - it is only really for GPU jobs. Here I just ask for 1 T4 
 
         ```bash
         #!/bin/bash
