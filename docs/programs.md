@@ -1,5 +1,12 @@
 # Examples
 
+!!! note "Objectives" 
+
+    - be able to find some typical software modules that are installed 
+    - learn how to load those software modules (and any prerequisites)
+    - be able to find out if Python packages are installed as their own modules
+    - learn how to find bundles of R packages installed as modules 
+
 Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. 
 
 In the previous section we looked at toolchains, which are often used to install or build your own software. 

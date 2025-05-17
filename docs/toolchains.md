@@ -1,5 +1,11 @@
 # Compiler toolchains
 
+!!! note "Objectives"
+
+    - Learn about compiler toolchains and what they are 
+    - Be able to find which compiler toolchains are installed
+    - Be able load the compiler toolchain you want 
+
 A large proportion of the software at Swedish HPC centers is built using the
 EasyBuild software deployment framework. Under this framework, software is built
 around so-called "toolchains"---compatible groups of C (and Fortran) compilers, linear algebra packages, MPI libraries, and other fundamental packages that underlie the more familiar packages that users typically work with. Most HPC centers recommend

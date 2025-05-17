@@ -51,6 +51,11 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 - There is a Q/A page for use during the lectures. Since the lectures are recorded, you may get recorded if you ask questions in the Zoom, but you can always write questions on the Q/A and get answers there. It also has the advantage that you can go back and look at the answers later. 
     - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w</a>   
 
+## Evaluation survey 
+
+- This is the first instance of this course. Please help us by filling an evaluation survey after the course: <a href="https://forms.office.com/e/HvhGtn5XCm" target="_blank">https://forms.office.com/e/HvhGtn5XCm</a> 
+
+
 ## Preliminary schedule
 
 | Time | Topic | Activity | Teacher | 

@@ -1,5 +1,10 @@
 # Modules in batch scripts 
 
+!!! note "Objectives" 
+
+    - learn briefly about using modules in batch jobs 
+    - learn about the difference between when it is a serial, MPI, and GPU job 
+
 This section looks at how to use modules in batch scripts. This is done much the same as when you just load them on the command line. 
 
 !!! note 
@@ -316,9 +321,54 @@ Here there are two things to pay attention to:
 
 !!! note "Example - GPU job script" 
 
+    In this example we make a batch script for running a small Python GPU script called <a href="../add-list.py" target="_blank">add-list.py</a>. It needs "numba". 
+
     === "HPC2N" 
 
+        At HPC2N there are many different types of GPU's with different amount of GPU cards. You can read more about that here: <a href="https://docs.hpc2n.umu.se/documentation/batchsystem/resources/" target="_blank">https://docs.hpc2n.umu.se/documentation/batchsystem/resources/</a>. 
+
+        ```bash
+        #!/bin/bash
+        # Remember to change this to your own project ID!
+        #SBATCH -A hpc2nXXXX-YYY     # HPC2N ID - change to your own
+        # We are asking for 5 minutes
+        #SBATCH --time=00:05:00
+        # Asking for one L40s GPU - see the link above for more options
+        #SBATCH --gpus=1
+        #SBATCH -C l40s
+
+        # Remove any loaded modules and load the ones we need
+        module purge  > /dev/null 2>&1
+        module load GCC/12.3.0 Python/3.11.3 OpenMPI/4.1.5 SciPy-bundle/2023.07 CUDA/12.1.1 numba/0.58.1 CUDA/12.1.1
+
+        # Run your Python script
+        python add-list.py
+        ```
+
     === "UPPMAX"
+
+        At UPPMAX the main thing to pay attention to is that the resource "Rackham" does not have GPUs and the batch jobs needing that are therefore submitted to "Snowy" which does have GPUs. 
+
+        ```bash 
+        #!/bin/bash
+        # Remember to change this to your own project ID!
+        #SBATCH -A uppmaxXXXX-Y-ZZZ
+        # We want to run on Snowy which has GPUs 
+        #SBATCH -M snowy
+        # We are asking for 10 minutes
+        #SBATCH --time=00:10:00
+        # Asking for one GPU
+        #SBATCH --gres=gpu:1
+
+        # If you remove any loaded modules with "module purge" you need 
+        # to load the module "uppmax" again. This is how it is done here. 
+        module purge  > /dev/null 2>&1
+        module load uppmax
+        module load python_ML_packages/3.11.8-gpu python/3.11.8
+
+        # Run your Python script
+        python add-list.py
+        ``` 
 
     === "LUNARC"
 
