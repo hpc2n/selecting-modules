@@ -118,6 +118,9 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
         #SBATCH -A naissXXXX-YY-ZZZ # Change to your own
         #SBATCH --time=00:10:00 # Asking for 10 minutes
         #SBATCH -n 1 # Asking for 1 core
+        # At Dardel you always have to give the partition to run in
+        # In this case it is the "main" partition 
+        #SBATCH -p main 
 
         # WARNING! Do not do "module purge" here! 
         # Load any modules you need, here for cray-python/3.11.7.
@@ -131,12 +134,13 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
 
         Short serial example for running on Alvis. Loading Python/3.11.5-GCCcore-13.2.0 and SciPy-bundle/2023.11-gfbf-2023b 
 
+        Note: on Alvis you *must* request a GPU regardless - it is only really for GPU jobs. Here I just ask for 1 T4 
+
         ```bash 
         #!/bin/bash
         #SBATCH -A naissXXXX-YY-ZZZ # Change to your own
         #SBATCH --time=00:10:00 # Asking for 10 minutes
-        #SBATCH -n 1 # Asking for 1 core
-
+        #SBATCH -N 1 --gpus-per-node=T4:8  # 1 node with 8 Nvidia T4 GPUs 
         # Purge the environment of any modules
         module purge > /dev/null 2>&1
         # Load any modules you need, here for Python/3.11.5-GCCcore-13.2.0 and SciPy-bundle/2023.11-gfbf-2023b 
@@ -290,12 +294,16 @@ Continuing with a Python example
 
     === "C3SE" 
 
+        Note: on Alvis you *must* request a GPU regardless - it is only really f
+or GPU jobs. Here I just ask for 1 T4 
+
         ```bash
         #!/bin/bash
         # The name of the account you are running in, mandatory.
         #SBATCH -A naissXXXX-YY-ZZZ
         # Request resources - here for eight MPI tasks
         #SBATCH -n 8
+        #SBATCH -N 1 --gpus-per-node=T4:8  # 1 node with 8 Nvidia T4 GPUs
         # Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum at most centres. Here asking for 15 min.
         #SBATCH --time=00:15:00
 
@@ -364,6 +372,7 @@ Here there are two things to pay attention to:
         # to load the module "uppmax" again. This is how it is done here. 
         module purge  > /dev/null 2>&1
         module load uppmax
+        # The Python package "numba" is included in the python_ML_packages which has both a _cpu and a _gpu version.  
         module load python_ML_packages/3.11.8-gpu python/3.11.8
 
         # Run your Python script
@@ -372,11 +381,110 @@ Here there are two things to pay attention to:
 
     === "LUNARC"
 
+        LUNARC has Nvidia A100 GPUs. The modules are arranged as at HPC2N, with prerequisites, and with numba its own module 
+
+        ```bash 
+        #!/bin/bash
+        Remember to change this to your own project ID!
+        #SBATCH -A luXXXX-Y-ZZ
+        We are asking for 5 minutes
+        #SBATCH --time=00:05:00
+        #SBATCH --ntasks-per-node=1
+        Asking for one A100 GPU
+        #SBATCH -p gpua100
+        #SBATCH --gres=gpu:1
+
+        Remove any loaded modules and load the ones we need
+        module purge  > /dev/null 2>&1
+        module load GCC/12.3.0  Python/3.11.3 OpenMPI/4.1.5 numba/0.58.1 SciPy-bundle/2023.07 CUDA/12.1.1
+
+        Run your Python script
+        python add-list.py 
+        ```
+ 
     === "NSC"
+
+        Tetralith has Nvidia T4 GPUs. 
+
+        ```bash 
+        #!/bin/bash
+        # Remember to change this to your own project ID!
+        #SBATCH -A naissXXXX-YY-ZZZ
+        # We are asking for 5 minutes
+        #SBATCH --time=00:05:00
+        # This is how you ask for a GPU at Tetralith - you need all three lines
+        #SBATCH -n 1
+        #SBATCH -c 32
+        #SBATCH --gpus-per-task=1
+
+        # Remove any loaded modules and load the ones we need. This is safe here
+        module purge  > /dev/null 2>&1
+        # numba is not installed, but we need these in order to get the 
+        # prerequisites for an install in a virtual environment 
+        module load buildtool-easybuild/4.8.0-hpce082752a2 GCC/13.2.0 Python/3.11.5 SciPy-bundle/2023.11 JupyterLab/4.2.0
+
+        # Load a virtual environment where numba is installed
+        # you can create it with the following steps BEFORE running the batch script:
+        # ml buildtool-easybuild/4.8.0-hpce082752a2 GCC/13.2.0 Python/3.11.5 SciPy-bundle/2023.11 JupyterLab/4.2.0
+        # python -m venv mynumba
+        # source mynumba/bin/activate
+        # pip install numba
+        #
+
+        Then when you want to use it in the batch script, we include this 
+        source <path-to>/mynumba/bin/activate
+
+        # Run your Python script
+        python add-list.py
    
     === "PDC"
 
+        Dardel has 4 AMD Instinct™ MI250X á 2 GCDs per node. 
+
+        - This is AMD GPUs and numba after version 0.53.1 only has compatibility with CUDA (Nvidia GPUs). 
+        - The numba 0.53.1 version is too old to work with anything else installed. 
+        - Thus, no numba example for PDC. 
+        - You would have to use an example with hip instead and you would also need to install hip-python in a virtual environment to get any of it to work.
+
+        If you want to ask for a GPU on Dardel, you add this to a batch script: 
+
+        ```bash 
+        #SBATCH -N 1
+        #SBATCH --ntasks-per-node=1
+        #SBATCH -p gpu
+        ```
+
     === "C3SE" 
 
-    
+        There is some information about job scripts on Alvis here: <a href="https://www.c3se.chalmers.se/documentation/submitting_jobs/running_jobs/#writing-a-job-script" target="_blank">https://www.c3se.chalmers.se/documentation/submitting_jobs/running_jobs/#writing-a-job-script</a> 
 
+        On Alvis there are the following options on (Nvidia) GPUs to request and the lines to add in each case. 
+
+        So you would add ONE of these: 
+
+        ```bash
+        #SBATCH --gpus-per-node=V100:1      # up to 4
+        #SBATCH --gpus-per-node=T4:1        # up to 8
+        #SBATCH --gpus-per-node=A40:1       # up to 4
+        #SBATCH --gpus-per-node=A100:1      # up to 4
+        #SBATCH --gpus-per-node=A100fat:1   # up to 4
+        ``` 
+
+        This is the example script to run the numba example: 
+
+        ```bash 
+        #!/usr/bin/env bash
+        # Change to your own job ID! The partition is alvis 
+        #SBATCH -A NAISSXXXX-Y-ZZ -p alvis
+        #SBATCH -N 1 --gpus-per-node=T4:8  # 1 node with 8 Nvidia T4 GPUs
+        #SBATCH -t 0-00:10:00
+
+        # module purge and then load the needed modules. numba at Alvis 
+        # automatically loads all the other needed modules (GCC, Python, 
+        # OpenMPI, SciPy-bundle, etc. so can be loaded directly 
+        module purge  > /dev/null 2>&1 
+        ml numba/0.58.1-foss-2023a 
+
+        # Run your Python script
+        python add-list.py
+        ``` 
