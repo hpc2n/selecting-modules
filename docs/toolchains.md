@@ -2,15 +2,15 @@
 
 !!! note "Objectives"
 
-    - Learn about compiler toolchains and what they are 
+    - Learn what compiler toolchains are and why they are used
     - Be able to find which compiler toolchains are installed
-    - Be able load the compiler toolchain you want 
+    - Be able load the compiler toolchain you want
 
 A large proportion of the software at Swedish HPC centers is built using the
 EasyBuild software deployment framework. Under this framework, software is built
 around so-called "toolchains": compatible groups of C (and Fortran) compilers,
-linear algebra libraries, MPI libraries, and other fundamental packages that form
-the bases of the more familiar packages that users typically work with.
+linear algebra libraries, MPI libraries, and other fundamental packages that are
+used internally by the more familiar packages that users typically work with.
 
 If you can think of familiar software packages like cars, then toolchains can be
 thought of like car *platforms*: it is common for similarly-sized cars from several
