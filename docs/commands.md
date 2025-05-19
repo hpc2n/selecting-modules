@@ -1131,7 +1131,7 @@ What about ``module purge``?
        S:  Module is Sticky, requires --force to unload or purge
     ``` 
 
-    WARNING WARNING WARNING !!! Lots of modules got unloaded! Either logout and login again, or make sure you have saved a list of the system-modules so you can reload all of them (or use [module collections](../advanced_module/#module__collections) - you can read about this under "extra", but it is not part of this course). 
+    WARNING WARNING WARNING !!! Lots of modules got unloaded! Either logout and login again, or make sure you have saved a list of the system-modules so you can reload all of them (or use [module collections](#module__saverestore) - which we get to soon.  
 
 !!! note "<img src="../images/shell-logo_small.png"> Exercise"
 
