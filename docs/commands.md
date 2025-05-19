@@ -379,6 +379,17 @@ Finding available versions of Python.
     1. At your chosen centre, check the different output for ``module avail Python`` and ``module spider Python``
     2. Do you get the same output for "Python" and "python"? 
 
+!!! note "Prerequisites"
+
+    At some centres it is common that modules have prerequisites (usually GCC, various libraries or something similar) while at other centres most modules can be loaded directly. 
+
+    - **HPC2N**: most software modules have prerequisites (GCC/Intel, OpenMPI, ...), a few do not (MATLAB, ...)  
+    - **LUNARC**: most software modules have prerequisites (GCC/Intel, OpenMPI, ...), a few do not (MATLAB, ...)
+    - **UPPMAX**: software modules can generally be loaded directly  
+    - **NSC**: software modules can generally be loaded directly
+    - **PDC**: most software modules have prerequisites (PDC which is a collection of compilers and libraries), a few do not (MATLAB, cray-modules, ...)
+    - **C3SE**: software modules can generally be loaded directly
+
 ## List loaded modules 
 
 There is a very useful command to list which modules you have loaded. 
