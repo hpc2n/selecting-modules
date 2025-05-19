@@ -126,16 +126,16 @@ any.
     
        * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
-=== "UPPMAX"
+=== "UPPMAX (Rackham)"
 
-    **GCC Compiler Toolchains for GPU (Rackham and Bianca)**
+    !!! important
+
+        Rackham only has GPUs on the login nodes. You will need an account on Snowy to use GPUs intensively.
+
+    **GCC Compiler Toolchains for GPU**
     
        * **gcccuda**:  GCC, CUDA
        * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
-
-    **Intel Compiler Toolchains for GPU**
-    
-       * FIXME
 
 
 ## Selecting a toolchain
