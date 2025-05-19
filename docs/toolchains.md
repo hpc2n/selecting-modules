@@ -8,9 +8,18 @@
 
 A large proportion of the software at Swedish HPC centers is built using the
 EasyBuild software deployment framework. Under this framework, software is built
-around so-called "toolchains"---compatible groups of C (and Fortran) compilers, linear algebra packages, MPI libraries, and other fundamental packages that underlie the more familiar packages that users typically work with. Most HPC centers recommend
-using toolchains to build and compile software, whether you use the EasyBuild
-framework or not, to keep software versions consistent and reproducible.
+around so-called "toolchains": compatible groups of C (and Fortran) compilers,
+linear algebra libraries, MPI libraries, and other fundamental packages that form
+the bases of the more familiar packages that users typically work with.
+
+If you can think of familiar software packages like cars, then toolchains can be
+thought of like car *platforms*: it is common for similarly-sized cars from several
+brands to share standardized engine components, power steering systems, wheel axles,
+suspensions, and floorpans the same manufacturer.
+
+Most HPC centers recommend using toolchains to build and compile software, whether
+you use the EasyBuild framework or not, to keep software versions consistent and
+reproducible.
 
 ## Available Toolchains by HPC Center
 
@@ -25,7 +34,7 @@ any.
 
     **GCC Compiler Toolchains**
     
-       * **GCC**: GCC
+       * **GCC**: GCC compiler only
        * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
        * **gompi**: GCC, OpenMPI
        * **gomkl**: GCC, OpenMPI, MKL
