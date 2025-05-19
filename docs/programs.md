@@ -2,10 +2,10 @@
 
 !!! note "Objectives" 
 
-    - be able to find some typical software modules that are installed 
-    - learn how to load those software modules (and any prerequisites)
-    - be able to find out if Python packages are installed as their own modules
-    - learn how to find bundles of R packages installed as modules 
+    - Be able to find some typical software modules that are installed 
+    - Learn how to load those software modules (and any prerequisites)
+    - Be able to find out if Python packages are installed as their own modules
+    - Learn how to find bundles of R packages installed as modules 
 
 Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. 
 
@@ -13,18 +13,19 @@ In the previous section we looked at toolchains, which are often used to install
 
 In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed at many of the Swedish HPC centres. 
 
+Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.
 
 !!! important
 
-    It is common for both R and Python packages to include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules at the same time) that are installed but cannot be found with `ml spider` or `ml avail`. In these cases, if you have loaded at least the prerequisites of the standalone package that the extension works with, you can use `ml show <package>` on the standalone package to view the Lua module file, which often has a section on included extensions near the top.
+    Both R and Python packages often include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules) that are installed, but cannot be found with `ml spider` or `ml avail`.
     
-    For example, several of the most commonly used Python packages are included with SciPy in `SciPy-bundle`, such as NumPy, Pandas, and NumExpr. If you have at least loaded a GCC version, you can use `ml show SciPy-bundle` to view all of the included extensions (Python modules) in the compatible SciPy-bundle.
+    In these cases, if you have loaded at least the prerequisites of a standalone package containing the extension, you can use `ml show <package>` on the standalone package to view the Lua module file, which usually has a section on included extensions near the top.
+    
+    For example, NumPy, SciPy, and Pandas, among other packages, are all are included in `SciPy-bundle`. If you have at least loaded a GCC version, you can use `ml show SciPy-bundle` to view all of the included extensions (Python modules) in the compatible SciPy-bundle.
 
 !!! tip
-        
-    It is tempting to try to pipe `ml show <package>` to `grep` to search for a package when the list of extensions is extremely long (as in R bundles). Unfortunately, grep does not work directly on module commands. Usually, it's still easy enough to search by eye since the list is in alphabetical order, but it is not foolproof.
     
-    What you can do instead, if you have loaded the module's prerequisites, is use `ml show` to get the module file's full path (the first line of alphanumeric text in the output), and then use `less /sw/path/to/module.lua | grep <extension>`. If the extension is present, the full contents of the lua module file will be printed with the extension highlighted. Otherwise, there will be no output.
+    To search for an extension in a very long Lua module file, copy the full path of the .lua file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present. `grep` does not work directly on the outputs of module commands like `ml show <module>`. 
 
 
 ## Python-based packages
@@ -33,29 +34,82 @@ It varies between centres how many packages are installed with the base Python p
 
 !!! note 
 
-    - HPC2N: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
-    - LUNARC: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but does not incorporate other modules as well unless they are installed in a custom environment.
-    - C3SE: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
-    - NSC: Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.8.0-hpc<version>` that must be loaded before anything else.  
-    - PDC: most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are included with `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. The Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
-
-!!! tip
-
-    For packages that require GCC, OpenMPI, and at least one of BLAS and LAPACK, it is a good idea to find and remember a `foss` toolchain that provides them all to save on typing and make more compatible modules visible to `ml avail`. Some modules with these dependencies are configured to load the rest of the toolchain automatically, but many do not. With `ml show foss/20YYr`, you can preview the module file for a particular release and see which versions of GCC, OpenMPI, Open/FlexiBLAS, and ScaLAPACK are loaded. It takes a bit of time to explore them since `ml avail` will not filter `foss` toolchains based on already loaded versions of GCC and OpenMPI, but it is a worthwhile investment.
+    - **HPC2N:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
+    - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but does not incorporate other modules as well unless they are installed in a custom environment.
+    - **C3SE:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
+    - **NSC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.8.0-hpc<version>` that must be loaded before anything else.  
+    - **PDC:** most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
 
 ### Example 1: Matplotlib
 
-Matplotlib is technically a standalone package requiring only GCC, Python, and sometimes an extra GUI support package like Tkinter if you want to interact with the plots at runtime. At many centers, Python and Tkinter will be loaded automatically if you load Matplotlib, so you only really need to load GCC first (but you should always double-check). However, for all practical purposes, Matplotlib requires at least NumPy or Pandas to create or read in any data, so **you will need to load a SciPy-bundle** (see "Important" note near top of page) even though it is not an explicit prerequisite.
+Matplotlib prerequisites vary significantly across HPC centers: some require none, some need one, some need two, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centers here](https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run)). A good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
-If you are constrained by an exact GCC version, you typically don't need to set the versions of any dependent modules. It is rare for one version of a Python package to be associated with multiple GCC versions (usually, this happens with third-party packages that are rarely maintained). For instance, if you only care that you use `GCC/12.3.0`, then you can do the following:
+All of the following code blocks in this example are taken from Cosmos.
+
+```bash
+$ ml spider matplotlib
+
+----------------------------------------------------------------------------
+  matplotlib:
+----------------------------------------------------------------------------
+    Description:
+      matplotlib is a python 2D plotting library which produces publication
+      quality figures in a variety of hardcopy formats and interactive
+      environments across platforms. matplotlib can be used in python
+      scripts, the python and ipython shell, web application servers, and
+      six graphical user interface toolkits.
+
+     Versions:
+        matplotlib/2.2.5-Python-2.7.18
+        matplotlib/3.3.3
+        matplotlib/3.4.2
+        matplotlib/3.4.3
+        matplotlib/3.5.2
+        matplotlib/3.7.0
+        matplotlib/3.7.2
+        matplotlib/3.8.2
+        matplotlib/3.9.2
+
+----------------------------------------------------------------------------
+```
+
+If you try the above command at your local HPC center and get a "not found" error, that probably means Matplotlib is an extension of another module (e.g. on Rackham, it is part of the base Python module).
+
+Let us look at `matplotlib/3.8.2`, for example:
+
+```bash
+$ ml spider matplotlib/3.8.2
+
+---------------------------------------------------------------------------------
+  matplotlib: matplotlib/3.8.2
+---------------------------------------------------------------------------------
+    Description:
+      matplotlib is a python 2D plotting library which produces publication
+      quality figures in a variety of hardcopy formats and interactive
+      environments across platforms. matplotlib can be used in python scripts,
+      the python and ipython shell, web application servers, and six graphical
+      user interface toolkits.
+
+
+    You will need to load all module(s) on any one of the lines below before the "mat
+plotlib/3.8.2" module is available to load.
+
+      GCC/13.2.0
+```
+
+So, at Cosmos, only GCC must be loaded before Matplotlib. However, for all practical purposes, Matplotlib is unusable without the tools needed to read in or create the data arrays, so NumPy and/or Pandas are necessary. At most facilities, that means SciPy-bundle is also required.
+
+Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib.
+
+If you are constrained by an exact GCC version, you can typically omit the version numbers for everything else unless, e.g. you're using a very old GCC version that makes both Python 2 and Python 3 modules available. For instance, if you only care that you use `GCC/12.3.0`, then you can do the following:
 
 ```bash
 $ ml GCC/12.3.0 Python matplotlib SciPy-bundle
 ```
 
-However, if you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a range of Python versions (e.g., >=3.10, or 3.9 to 3.12).
+However, if you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a Python version (use `python --version` to check), or more practically, a *range* of versions.
 
-Let's say you built a Matplotlib-based script using Python 3.11.8 on your own laptop. Glob patterns don't work to filter `ml spider` or `ml avail` (`ml -r spider '.*Python/.*'` will expand the results to every module containing `Python` in the name, but adding `3.11` will **not** limit the results to only those with `Python/3.11`), so you'll have to look at the full list first:
+Say you built a Matplotlib-based script using Python 3.11.8 on your own laptop. Glob patterns do not work to filter `ml spider` or `ml avail`, so it is necessary to view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
 
 ```bash
 $ ml spider Python
@@ -86,7 +140,7 @@ your systems more effectively.
         bx-python  flatbuffers-python  graphviz-python  meson-python  ...
 ```
 
-The closest result is `Python/3.11.5`, so let's see what that requires:
+The closest result is `Python/3.11.5` (though probably anything from 3.10.x to 3.12.x would work). Let us check what that requires:
 
 ```bash
 $ ml spider Python/3.11.5
@@ -122,29 +176,7 @@ your systems more effectively.
       scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
 ```
 
-It's usually safer to load GCC than GCCcore. Many Python modules, including Matplotlib, require the full GCC instead of only GCCcore. For example:
-
-```bash
-$ ml spider matplotlib/3.8.2
-
----------------------------------------------------------------------------------
-  matplotlib: matplotlib/3.8.2
----------------------------------------------------------------------------------
-    Description:
-      matplotlib is a python 2D plotting library which produces publication
-      quality figures in a variety of hardcopy formats and interactive
-      environments across platforms. matplotlib can be used in python scripts,
-      the python and ipython shell, web application servers, and six graphical
-      user interface toolkits.
-
-
-    You will need to load all module(s) on any one of the lines below before the "mat
-plotlib/3.8.2" module is available to load.
-
-      GCC/13.2.0
-```
-
-Also note that `ml show matplotlib/<version>` will **not** show you which Python version is associated with that version of Matplotlib.
+On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module requires GCC, so you may as well use GCC every time.
 
 Each version of Matplotlib and SciPy-bundle should only be associated with one Python version, so now we can load them all at once like this:
 
@@ -152,7 +184,7 @@ Each version of Matplotlib and SciPy-bundle should only be associated with one P
 ml GCC/13.2.0 Python matplotlib SciPy-bundle
 ```
 
-And if we check what's loaded, we get this: 
+And if we check what was loaded, we get this: 
 
 ```bash
 $ ml
@@ -188,11 +220,11 @@ Currently Loaded Modules:
    S:  Module is Sticky, requires --force to unload or purge
 ```
 
-If you are comfortable editing code in a basic text editor and running at the command-line, the above is all you need, as long as `Tkinter` is on the list. However, it is often more convenient to work in an integrated development environment (IDE) like Jupyter Lab or Spyder, and if your HPC center does not have Desktop On-Demand, you will need to load those as well. For more information on choosing and loading IDEs, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
+If you are comfortable editing code in a basic text editor and running at the command-line, the above is all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
 ### Example 2: MPI4Py
 
-Here is an example of what `ml spider MPI4Py` would output (note that `ml spider` is not case-sensitive, unlike most other LMOD commands):
+Here is an example of what `ml spider MPI4Py` would output (note that `ml spider` and `ml avail` are only case-sensitive when the module version number is included):
 
 ```bash
 $ ml spider MPI4Py
@@ -220,7 +252,9 @@ he modules) use the module's full name.
 ---------------------------------------------------------------------------------
 ```
 
-Here again, you will typically only know which Python version you need and/or which GCC version to load, not which version of `mpi4py` you need. However, since the previous example showed how to work from a known Python version, this example will show a workflow based on working backwards from the latest version of a module. In the above output, that is `mpi4py/4.0.1`, so here is how to view the dependencies for that:
+Here again, you will typically only know which Python version you need and/or which GCC version to load, not which version of `mpi4py` you need. However, since the previous example showed how to work from a known Python version, this example will show a workflow based on working backwards from the latest version of a module.
+
+In the above output from Cosmos, the latest version is `mpi4py/4.0.1`, so here is how to view its dependencies:
 
 ```bash
 $ ml spider mpi4py/4.0.1
@@ -288,13 +322,15 @@ Currently Loaded Modules:
    S:  Module is Sticky, requires --force to unload or purge
 ```
 
-As you can see, on the cluster where this code was run, Python was loaded automatically. However, note that no BLAS or LAPACK libraries are loaded, which might be unexpected given the types of problems MPI is typically used for. These libraries are available through either a `foss` toolchain or a `SciPy-bundle`, and in practice, you will almost always load one or both of `foss` and `SciPy-bundle` when using `mpi4py`.
+As you can see, on the cluster where this code was run, Python was loaded automatically.
+
+However, note that no BLAS or LAPACK libraries are loaded, which might be unexpected given the types of problems MPI is typically used for. These libraries are available through either a `foss` toolchain or a `SciPy-bundle`, and in practice, you will almost always load one or both of those when using `mpi4py`.
 
 ### Example 3: Check if a Python extension is loaded
 
-Users occasionally submit tickets about installing a package that is actually included in the base Python module, SciPy-bundle, another common package, or a package that one of the aforementioned modules loads automatically. If you do not see a module you want with `ml avail` or `ml spider`, you should also check `pip list` and `grep` for the package after loading your preferred Python version, bundle(s), and other packages you need to see whether it is still included.
+Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with `ml avail`, `ml spider`, or `ml show <module>`, you should also check `pip list` and `grep` for the package after loading the rest of your modules. 
 
-For example, `psutil` is part of Python-bundle-PyPI, which is silently loaded upon loading the SciPy-bundle. Here is the easiest way to find `psutil`:
+For example, `psutil` is part of Python-bundle-PyPI, which is silently loaded with any SciPy-bundle. Here is the easiest way to find `psutil`:
 
 ```bash
 $ pip list | grep psutil
@@ -312,18 +348,23 @@ The `pip list | grep` approach is also helpful if you want to see the version of
 
 ## R-based packages
 
-At most HPC centers, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like R-bundle-CRAN and R-bundle-Bioconductor. Most HPC centers have prerequisites for R, but for a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
+At most HPC centers, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like `R-bundle-CRAN` and `R-bundle-Bioconductor`. Most HPC centers have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
 
 !!! note
 
-    - HPC2N: Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
-    - LUNARC: Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
-    - UPPMAX (Rackham) and C3SE (Alvis): R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
-    - NSC (Tetralith): R can be loaded directly, but contains few installed packages, and there are no bundles to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
-    - PDC (Dardel): Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
+    - **HPC2N:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
+    - **LUNARC:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
+    - **UPPMAX (Rackham) and C3SE (Alvis):** R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
+    - **NSC (Tetralith):** R can be loaded directly, but contains few installed packages, and there are no bundles to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
+    - **PDC (Dardel):** Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
+
+!!! important
+
+    Most facilities have only built a handful of R releases, so many of the dependent modules are adapted for multiple versions. The version of such any dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.
 
 ### Example 1: Bioconductor
-Some R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
+
+Many R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
 
 ```bash
 $ ml spider bioconductor
@@ -351,7 +392,7 @@ g how to load the modules) use the module's full name.
 ---------------------------------------------------------------------------------
 ```
 
-Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. That means you should not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded---that will load whatever happens to be the latest version at the time. New R releases are built rarely enough that there are often multiple versions of each R-dependent package, so the latest version of an R-based module is subject to change. For the sake of reproducibility, the version of such a package should always be specified.
+Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. Do not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded.
 
 To check the prerequisites with `ml spider`, the specific version number must be included anyway, for all software.
 
@@ -409,18 +450,15 @@ In this case, R-bundle-Bioconductor loads the version of R that it is based on a
 
 ## Matlab
 
-At most HPC centers, Matlab can be loaded directly, but a couple of centers require a basic software tree as a prerequisite. On Dardel (PDC), all Matlab versions, like nearly every other module, have a module called something like `PDC/xx.xx` or `PDCOLD/xx.xx` as a prerequisite. To view the prerequisites for a specific version of Matlab, you can do
+At most HPC centers, Matlab can be loaded directly, but a couple of centers require a basic software tree as a prerequisite. On Dardel (PDC), all Matlab versions, like nearly every other module, have a module called something like `PDC/xx.xx` or `PDCOLD/xx.xx` as a prerequisite. The example further down in this section shows how finding and determining the prerequisites for Matlab works at another such facility.
 
-```bash
-$ module spider matlab/<version>
-```
+Capitalization and other naming conventions also vary between HPC centers; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions).
 
-regardless of the facility. **All of the Add-Ons and Toolboxes should be available through the Matlab GUI.**
+**All Add-Ons and Toolboxes should be available through the Matlab GUI.**
 
 !!! important
 
     The Matlab GUI is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
-
 
 ### Example: Matlab on Tetralith (NSC)
 
@@ -457,17 +495,17 @@ $ ml MATLAB/2024a-hpc1-bdist
 
 ## Specialized Applications
 
-For most specialized packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically.
+For most specialized packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically, without the need to choose a CUDA-containing toolchain.
 
 !!! important
 
-    Some specialized modules (e.g., Abaqus, Gaussian, and VASP) require users to provide license numbers, explicitly affirm license agreements, or otherwise contact the local HPC center's support staff about being added to the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialized software packages.
+    Some specialized modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialized software packages.
 
 ### Example: OpenFOAM
 
 As usual, we start by checking the versions available with `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
 
-An example output might look like this (from COSMOS at LUNARC):
+An example output might look like this (from Cosmos):
 
 ```bash
 $ ml spider OpenFOAM
@@ -501,7 +539,7 @@ modules) use the module's full name.
 --------------------------------------------------------------------------------------
 ```
 
-Let's look at a recent version:
+Let us look at a recent version:
 
 ```bash
 $ ml spider OpenFOAM/11
@@ -533,7 +571,6 @@ $ ml spider OpenFOAM/11
       More information
       ================
        - Homepage: https://www.openfoam.org/
-
 ```
 
 On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
@@ -544,4 +581,4 @@ Now we can load everything all at once like so:
 $ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
 ```
 
-or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualization libraries that can be viewed by just entering `ml`.
+or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualization libraries, all of which can be viewed by entering `ml`.
