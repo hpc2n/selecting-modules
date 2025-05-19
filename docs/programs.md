@@ -16,9 +16,15 @@ In this chapter we will look at some examples of how to find and load some of th
 
 !!! important
 
-    It is common for both R and Python packages to include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules at the same time) that are installed but cannot be founfd with `ml spider` or `ml avail`. In these cases, if you have loaded at least the prerequisites of the standalone package that the extension works with, you can use `ml show <package>` on the standalone package to view the Lua module file, which often has a section on included extensions near the top. 
+    It is common for both R and Python packages to include many so-called extensions (dependent packages that are usually called modules when not dealing with LMOD modules at the same time) that are installed but cannot be found with `ml spider` or `ml avail`. In these cases, if you have loaded at least the prerequisites of the standalone package that the extension works with, you can use `ml show <package>` on the standalone package to view the Lua module file, which often has a section on included extensions near the top.
     
     For example, several of the most commonly used Python packages are included with SciPy in `SciPy-bundle`, such as NumPy, Pandas, and NumExpr. If you have at least loaded a GCC version, you can use `ml show SciPy-bundle` to view all of the included extensions (Python modules) in the compatible SciPy-bundle.
+
+!!! tip
+        
+    It is tempting to try to pipe `ml show <package>` to `grep` to search for a package when the list of extensions is extremely long (as in R bundles). Unfortunately, grep does not work directly on module commands. Usually, it's still easy enough to search by eye since the list is in alphabetical order, but it is not foolproof.
+    
+    What you can do instead, if you have loaded the module's prerequisites, is use `ml show` to get the module file's full path (the first line of alphanumeric text in the output), and then use `less /sw/path/to/module.lua | grep <extension>`. If the extension is present, the full contents of the lua module file will be printed with the extension highlighted. Otherwise, there will be no output.
 
 
 ## Python-based packages
@@ -284,9 +290,29 @@ Currently Loaded Modules:
 
 As you can see, on the cluster where this code was run, Python was loaded automatically. However, note that no BLAS or LAPACK libraries are loaded, which might be unexpected given the types of problems MPI is typically used for. These libraries are available through either a `foss` toolchain or a `SciPy-bundle`, and in practice, you will almost always load one or both of `foss` and `SciPy-bundle` when using `mpi4py`.
 
+### Example 3: Check if a Python extension is loaded
+
+Users occasionally submit tickets about installing a package that is actually included in the base Python module, SciPy-bundle, another common package, or a package that one of the aforementioned modules loads automatically. If you do not see a module you want with `ml avail` or `ml spider`, you should also check `pip list` and `grep` for the package after loading your preferred Python version, bundle(s), and other packages you need to see whether it is still included.
+
+For example, `psutil` is part of Python-bundle-PyPI, which is silently loaded upon loading the SciPy-bundle. Here is the easiest way to find `psutil`:
+
+```bash
+$ pip list | grep psutil
+psutil                            5.9.5
+
+[notice] A new release of pip is available: 23.1.2 -> 25.1.1
+[notice] To update, run: pip install --upgrade pip
+```
+
+The `pip list | grep` approach is also helpful if you want to see the version of a package without having to open a Python interpreter.
+
+!!! tip
+
+    The same list (and grep) approach works for Anaconda3. The only difference is that you use `conda list` instead of `pip list`. The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
+
 ## R-based packages
 
-At most HPC centers, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like R-bundle-CRAN and R-bundle-Bioconductor. Most HPC centers have prerequisites for R, but for a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`. 
+At most HPC centers, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like R-bundle-CRAN and R-bundle-Bioconductor. Most HPC centers have prerequisites for R, but for a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
 
 !!! note
 
@@ -295,7 +321,6 @@ At most HPC centers, the base R module usually contains relatively few extension
     - UPPMAX (Rackham) and C3SE (Alvis): R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
     - NSC (Tetralith): R can be loaded directly, but contains few installed packages, and there are no bundles to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
     - PDC (Dardel): Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
-
 
 ### Example 1: Bioconductor
 Some R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
@@ -390,7 +415,12 @@ At most HPC centers, Matlab can be loaded directly, but a couple of centers requ
 $ module spider matlab/<version>
 ```
 
-regardless of the facility. All of the Add-Ons and Toolboxes should be available through the Matlab GUI. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`.
+regardless of the facility. **All of the Add-Ons and Toolboxes should be available through the Matlab GUI.**
+
+!!! important
+
+    The Matlab GUI is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
+
 
 ### Example: Matlab on Tetralith (NSC)
 
@@ -424,8 +454,6 @@ The command after the colon (:) can be copied, pasted, and entered directly into
 ```bash
 $ ml MATLAB/2024a-hpc1-bdist
 ```
-
-It should be noted that the Matlab GUI is prone to hogging resources if not launched carefully, and that running via Desktop On-Demand is often preferred where the option exists. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
 
 ## Specialized Applications
 
