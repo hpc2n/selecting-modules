@@ -8,9 +8,10 @@
 
 A large proportion of the software at Swedish HPC centers is built using the
 EasyBuild software deployment framework. Under this framework, software is built
-around so-called "toolchains": compatible groups of C (and Fortran) compilers,
+around so-called "toolchains": mutually compatible groups of C and Fortran compilers,
 linear algebra libraries, MPI libraries, and other fundamental packages that are
-used internally by the more familiar packages that users typically work with.
+used internally by more familiar packages that users typically work with (e.g.,
+Python, R, GROMACS, etc.).
 
 If you can think of familiar software packages like cars, then toolchains can be
 thought of like car *platforms*: it is common for similarly-sized cars from several
@@ -19,7 +20,7 @@ suspensions, and floorpans the same manufacturer.
 
 Most HPC centers recommend using toolchains to build and compile software, whether
 you use the EasyBuild framework or not, to keep software versions consistent and
-reproducible.
+reproducible. If you chose to compile software yourself 
 
 ## Available Toolchains by HPC Center
 
