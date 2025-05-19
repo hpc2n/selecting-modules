@@ -401,7 +401,7 @@ With nothing loaded, only the "sticky" modules are listed. They are modules that
 
 In order to load modules, we need to know *how*. This differs by center only inasmuch as some centers have prerequisites (usually **compiler toolchains**) for most of the software modules. 
 
-The centers that recommend ``module spider`` for finding the software modules generally have prerequisites (HPC2N, LUNARC, C3SE, PDC), while those who recommend ``module avail`` generally do not (UPPMAX, NSC). 
+The centers that recommend ``module spider`` for finding the software modules generally have prerequisites (HPC2N, LUNARC, PDC - and sometimes C3SE), while those who recommend ``module avail`` generally do not (UPPMAX, NSC). 
 
 Thus; if the centers suggests you do ``module spider`` you will need to check the required prerequisites to load. 
 
