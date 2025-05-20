@@ -7,11 +7,17 @@
     - Be able to find out if Python packages are installed as their own modules
     - Learn how to find bundles of R packages installed as modules 
 
-Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. 
+In the previous section we looked at toolchains, which are often used to install or build your own software. In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed at many of the Swedish HPC centres. 
 
-In the previous section we looked at toolchains, which are often used to install or build your own software. 
+Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. The procedure is usually some variation on the following:
 
-In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed at many of the Swedish HPC centres. 
+    1. Use `module spider <package>` to see whether a module is installed, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
+    2. Use `module spider <package>/<version>` to view prerequisites for a specific version of the module, if any.
+    3. Load the modules with `module load <prerequisite>/<version> <package>/<version>``.
+
+!!! note
+
+    At all HPC centers tested, `ml` is an alias for various module commands. With no arguments, `ml` outputs modules that are currently loaded, i.e. it is short for `module list`. When followed by the names of packages or toolchains, `ml` is short for `module load`. Otherwise, `ml` just abbreviates `module` in LMOD commands, as in `ml avail`.
 
 Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.
 
@@ -25,8 +31,7 @@ Most of the examples below use outputs from Cosmos, but the workflows will be si
 
 !!! tip
     
-    To search for an extension in a very long Lua module file, copy the full path of the .lua file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present. `grep` does not work directly on the outputs of module commands like `ml show <module>`. 
-
+    `grep` does not work directly on the outputs of module commands like `ml show <module>`. To search for an extension in a very long Lua module file, copy the full path of the .lua file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present.
 
 ## Python-based packages
 
