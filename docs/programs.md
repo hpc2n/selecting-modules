@@ -11,13 +11,9 @@ In the previous section we looked at toolchains, which are often used to install
 
 Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. The procedure is usually some variation on the following:
 
-    1. Use `module spider <package>` to see whether a module is installed, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
-    2. Use `module spider <package>/<version>` to view prerequisites for a specific version of the module, if any.
-    3. Load the modules with `module load <prerequisite>/<version> <package>/<version>``.
-
-!!! note
-
-    At all HPC centers tested, `ml` is an alias for various module commands. With no arguments, `ml` outputs modules that are currently loaded, i.e. it is short for `module list`. When followed by the names of packages or toolchains, `ml` is short for `module load`. Otherwise, `ml` just abbreviates `module` in LMOD commands, as in `ml avail`.
+    1. Use `ml spider <package>` to see whether a module is installed, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
+    2. Use `ml spider <package>/<version>` to view prerequisites for a specific version of the module, if any.
+    3. Load the modules with `ml <prerequisite>/<version> <package>/<version>``.
 
 Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.
 
