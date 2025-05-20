@@ -13,7 +13,7 @@ Loading modules works the same whether the modules are toolchains or standalone 
 
 1. Use `ml spider <package>` to see whether a module is installed, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
 2. Use `ml spider <package>/<version>` to view prerequisites for a specific version of the module, if any.
-3. Load the modules with `ml <prerequisite>/<version> <package>/<version>``.
+3. Load the modules with `ml <prerequisite>/<version> <package>/<version>`.
 
 Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.
 
