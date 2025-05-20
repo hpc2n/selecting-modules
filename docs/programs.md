@@ -253,6 +253,10 @@ he modules) use the module's full name.
 ---------------------------------------------------------------------------------
 ```
 
+!!! note
+
+    UPPMAX does not currently have mpi4py installed, per [their documentation page on parallel programming in Python](https://docs.uppmax.uu.se/software/python_parallel_jobs/#mpi).
+
 Here again, you will typically only know which Python version you need and/or which GCC version to load, not which version of `mpi4py` you need. However, since the previous example showed how to work from a known Python version, this example will show a workflow based on working backwards from the latest version of a module.
 
 In the above output from Cosmos, the latest version is `mpi4py/4.0.1`, so here is how to view its dependencies:
