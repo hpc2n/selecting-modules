@@ -35,10 +35,10 @@ It varies between centres how many packages are installed with the base Python p
 
 !!! note 
 
-    - **HPC2N:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
+    - **HPC2N:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
     - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but does not incorporate other modules as well unless they are installed in a custom environment.
-    - **C3SE:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
-    - **NSC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.8.0-hpc<version>` that must be loaded before anything else.  
+    - **C3SE:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
+    - **NSC:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.8.0-hpc<version>` that must be loaded before anything else.  
     - **PDC:** most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
 
 ### Example 1: Matplotlib
@@ -98,17 +98,11 @@ plotlib/3.8.2" module is available to load.
       GCC/13.2.0
 ```
 
-So, at Cosmos, only GCC must be loaded before Matplotlib. However, for all practical purposes, Matplotlib is unusable without the tools needed to read in or create the data arrays, so NumPy and/or Pandas are necessary. At most facilities, that means SciPy-bundle is also required.
+This means that, on Cosmos, only GCC must be loaded before Matplotlib. However, Matplotlib is mostly unusable without the tools needed to read in or create the data arrays, so NumPy and/or Pandas are necessary. At most facilities, that means SciPy-bundle is also required.
 
-Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib.
+Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. However, once `GCC` is loaded, you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load. Usually there is only 1 version of each per GCC version, but if there are more, the version that will load if you do not specify a version number is the one with the (D) next to it. 
 
-If you are constrained by an exact GCC version, you can typically omit the version numbers for everything else unless, e.g. you're using a very old GCC version that makes both Python 2 and Python 3 modules available. For instance, if you only care that you use `GCC/12.3.0`, then you can do the following:
-
-```bash
-$ ml GCC/12.3.0 Python matplotlib SciPy-bundle
-```
-
-However, if you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a Python version (use `python --version` to check), or more practically, a *range* of versions.
+If you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a Python version (use `python --version` to check), or more practically, a *range* of versions Python/X.Y.Z in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or rarely two versions, and Z is usually not important.
 
 Say you built a Matplotlib-based script using Python 3.11.8 on your own laptop. Glob patterns do not work to filter `ml spider` or `ml avail`, so it is necessary to view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
 
@@ -177,15 +171,40 @@ your systems more effectively.
       scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
 ```
 
-On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module requires GCC, so you may as well use GCC every time.
+On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module apart from the bare Python itself requires GCC, so you may as well use GCC every time.
 
-Each version of Matplotlib and SciPy-bundle should only be associated with one Python version, so now we can load them all at once like this:
+On some facilities, each version of Matplotlib and SciPy-bundle is only be associated with one Python version, so you can load them all at once, using the GCC version to select for everything else, like this:
 
 ```bash
 ml GCC/13.2.0 Python matplotlib SciPy-bundle
 ```
 
-And if we check what was loaded, we get this: 
+However, this is considered bad practice since sometimes additional versions are installed later. We should instead check `ml avail` to see what versions of Matplotlib and Scipy-bundle we can load, like so:
+
+
+```bash
+$ ml avail Scipy-bundle
+
+----------------------------- /sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0 -----------------------------
+   SciPy-bundle/2023.11
+```
+
+(Note: some output omitted for brevity)
+
+```bash
+$ ml avail Matplotlib
+
+----------------------------- /sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0 -----------------------------
+   matplotlib/3.8.2
+```
+
+Then the one-line loading command should look like this:
+
+```bash
+ml GCC/13.2.0 Python/3.11.5 matplotlib/3.8.2 SciPy-bundle/2023.11
+```
+
+If we check what was loaded with `ml` or `module list`, the output looks like this: 
 
 ```bash
 $ ml
@@ -221,7 +240,7 @@ Currently Loaded Modules:
    S:  Module is Sticky, requires --force to unload or purge
 ```
 
-If you are comfortable editing code in a basic text editor and running at the command-line, the above is all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
+If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
 ### Example 2: MPI4Py
 
