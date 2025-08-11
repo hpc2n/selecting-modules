@@ -324,7 +324,7 @@ $ ml GCC/13.3.0  OpenMPI/5.0.3
 $ ml mpi4py/4.0.1
 ```
 
-Or you could combine them into one line, and omit the `mpi4py` version since the prerequisites make only 1 version available, as in `ml GCC/13.3.0  OpenMPI/5.0.3  mpi4py`.
+Or you could combine them into one line, as in `ml GCC/13.3.0  OpenMPI/5.0.3  mpi4py/4.0.1`.
 
 Now, if we check what was loaded, we see the following:
 
