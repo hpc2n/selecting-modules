@@ -98,13 +98,13 @@ plotlib/3.8.2" module is available to load.
       GCC/13.2.0
 ```
 
-This means that, on Cosmos, only GCC must be loaded before Matplotlib. However, Matplotlib is mostly unusable without the tools needed to read in or create the data arrays, so NumPy and/or Pandas are necessary. At most facilities, that means SciPy-bundle is also required.
+This means that, on Cosmos at least, only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. At most facilities, that means SciPy-bundle is required.
 
-Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. However, once `GCC` is loaded, you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load. Usually there is only 1 version of each per GCC version, but if there are more, the version that will load if you do not specify a version number is the one with the (D) next to it. 
+Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. However, once `GCC` is loaded, you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load. Usually there is only 1 version of each per GCC version, but if there are more, the version that loads if you do not specify a version number will be the one with "(D)" next to it. 
 
-If you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a Python version (use `python --version` to check), or more practically, a *range* of versions Python/X.Y.Z in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or rarely two versions, and Z is usually not important.
+If you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a Python version (use `python --version` to check), or more practically, a *range* of versions Python/X.Y.Z in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or two versions, and Z is usually not important.
 
-Say you built a Matplotlib-based script using Python 3.11.8 on your own laptop. Glob patterns do not work to filter `ml spider` or `ml avail`, so it is necessary to view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
+Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to filter `ml spider` or `ml avail`, so one must view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
 
 ```bash
 $ ml spider Python
@@ -135,7 +135,7 @@ your systems more effectively.
         bx-python  flatbuffers-python  graphviz-python  meson-python  ...
 ```
 
-The closest result is `Python/3.11.5` (though probably anything from 3.10.x to 3.12.x would work). Let us check what that requires:
+The closest result is `Python/3.11.5` (though probably anything from 3.10.x to 3.12.x would work). Let's check what that requires:
 
 ```bash
 $ ml spider Python/3.11.5
@@ -179,7 +179,7 @@ On some facilities, each version of Matplotlib and SciPy-bundle is only be assoc
 ml GCC/13.2.0 Python matplotlib SciPy-bundle
 ```
 
-However, this is considered bad practice since sometimes additional versions are installed later. We should instead check `ml avail` to see what versions of Matplotlib and Scipy-bundle we can load, like so:
+However, this is considered bad practice since sometimes additional versions are installed later. We should instead check `ml avail` to see what versions of Matplotlib and Scipy-bundle we can load:
 
 
 ```bash
@@ -242,115 +242,7 @@ Currently Loaded Modules:
 
 If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
-### Example 2: MPI4Py
-
-Here is an example of what `ml spider MPI4Py` would output (note that `ml spider` and `ml avail` are only case-sensitive when the module version number is included):
-
-```bash
-$ ml spider MPI4Py
-
----------------------------------------------------------------------------------
-  mpi4py:
----------------------------------------------------------------------------------
-    Description:
-      MPI for Python (mpi4py) provides bindings of the Message Passing Interface
-      (MPI) standard for the Python programming language, allowing any Python
-      program to exploit multiple processors.
-
-     Versions:
-        mpi4py/3.1.4
-        mpi4py/3.1.5
-        mpi4py/4.0.1
-
----------------------------------------------------------------------------------
-  For detailed information about a specific "mpi4py" package (including how to load t
-he modules) use the module's full name.
-  Note that names that have a trailing (E) are extensions provided by other modules.
-  For example:
-
-     $ module spider mpi4py/4.0.1
----------------------------------------------------------------------------------
-```
-
-!!! note
-
-    UPPMAX does not currently have mpi4py installed, per [their documentation page on parallel programming in Python](https://docs.uppmax.uu.se/software/python_parallel_jobs/#mpi).
-
-Here again, you will typically only know which Python version you need and/or which GCC version to load, not which version of `mpi4py` you need. However, since the previous example showed how to work from a known Python version, this example will show a workflow based on working backwards from the latest version of a module.
-
-In the above output from Cosmos, the latest version is `mpi4py/4.0.1`, so here is how to view its dependencies:
-
-```bash
-$ ml spider mpi4py/4.0.1
-
----------------------------------------------------------------------------------
-  mpi4py: mpi4py/4.0.1
----------------------------------------------------------------------------------
-    Description:
-      MPI for Python (mpi4py) provides bindings of the Message Passing Interface
-      (MPI) standard for the Python programming language, allowing any Python
-      program to exploit multiple processors.
-
-
-    You will need to load all module(s) on any one of the lines below before the "mpi
-4py/4.0.1" module is available to load.
-
-      GCC/13.3.0  OpenMPI/5.0.3
- 
-    Help:
-      
-      Description
-      ===========
-      MPI for Python (mpi4py) provides bindings of the Message Passing Interface (MPI
-) standard for
-       the Python programming language, allowing any Python program to exploit multip
-le processors.
-      
-      
-      More information
-      ================
-       - Homepage: https://github.com/mpi4py/mpi4py
-      
-      
-      Included extensions
-      ===================
-      mpi4py-4.0.1
-```
-
-Now we can just copy and paste the dependencies, and then load the main module, like so: 
-
-```bash
-$ ml GCC/13.3.0  OpenMPI/5.0.3
-$ ml mpi4py/4.0.1
-```
-
-Or you could combine them into one line, as in `ml GCC/13.3.0  OpenMPI/5.0.3  mpi4py/4.0.1`.
-
-Now, if we check what was loaded, we see the following:
-
-```bash
-$ ml
-
-Currently Loaded Modules:
-  1) SoftwareTree/Milan  (S)  10) hwloc/2.10.0      19) bzip2/1.0.8
-  2) GCCcore/13.3.0           11) OpenSSL/3         20) ncurses/6.5
-  3) zlib/1.3.1               12) libevent/2.1.12   21) libreadline/8.2
-  4) binutils/2.42            13) UCX/1.16.0        22) Tcl/8.6.14
-  5) GCC/13.3.0               14) libfabric/1.21.0  23) SQLite/3.45.3
-  6) numactl/2.0.18           15) PMIx/5.0.2        24) libffi/3.4.5
-  7) XZ/5.4.5                 16) PRRTE/3.0.5       25) Python/3.12.3
-  8) libxml2/2.12.7           17) UCC/1.3.0         26) mpi4py/4.0.1
-  9) libpciaccess/0.18.1      18) OpenMPI/5.0.3
-
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-```
-
-As you can see, on the cluster where this code was run, Python was loaded automatically.
-
-However, note that no BLAS or LAPACK libraries are loaded, which might be unexpected given the types of problems MPI is typically used for. These libraries are available through either a `foss` toolchain or a `SciPy-bundle`, and in practice, you will almost always load one or both of those when using `mpi4py`.
-
-### Example 3: Check if a Python extension is loaded
+### Example 2: Check if a Python extension is loaded
 
 Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with `ml avail`, `ml spider`, or `ml show <module>`, you should also check `pip list` and `grep` for the package after loading the rest of your modules. 
 
