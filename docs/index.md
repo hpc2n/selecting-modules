@@ -47,13 +47,13 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 ## Important info
 
 - There is an "important info" page for this course, containing info on the course project, login info for Tetralith, etc. 
-    - It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EX7cOrKbXyhKrUfGvi1QYPIBY9OLYS1ecearjJefFiOhjg" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EX7cOrKbXyhKrUfGvi1QYPIBY9OLYS1ecearjJefFiOhjg</a> 
+    - It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EaZrQ9E1noBCiSA6kmX09J4BoQTkNQTDYi8f9v2p4Jyobg?e=Zi6E8C" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EaZrQ9E1noBCiSA6kmX09J4BoQTkNQTDYi8f9v2p4Jyobg?e=Zi6E8C</a> 
 - There is a Q/A page for use during the lectures. Since the lectures are recorded, you may get recorded if you ask questions in the Zoom, but you can always write questions on the Q/A and get answers there. It also has the advantage that you can go back and look at the answers later. 
-    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EVWzArI3hvpMnOHs17z23lQB-kFXnUaf3_wn_gxVgdUX6w</a>   
+    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EUDMEj8KmYtGkd2KoD-xHUcBFVqlryxHMa774ezkmGomjw?e=wuFaeh" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EUDMEj8KmYtGkd2KoD-xHUcBFVqlryxHMa774ezkmGomjw?e=wuFaeh</a>   
 
 ## Evaluation survey 
 
-- This is the first instance of this course. Please help us by filling an evaluation survey after the course: <a href="https://forms.office.com/e/HvhGtn5XCm" target="_blank">https://forms.office.com/e/HvhGtn5XCm</a> 
+- Please help us making this course better by filling an evaluation survey after the course: <a href="https://forms.office.com/e/6htZfTRg1Z" target="_blank">https://forms.office.com/e/6htZfTRg1Z</a> 
 
 
 ## Preliminary schedule
@@ -133,9 +133,6 @@ In order to type along and do the exercises, please prepare your course environm
                       ``alvis2.c3se.chalmers.se``
             - Username: ``<your-c3se-username>``
             - Password: ``<your-c3se-username>`` 
-        - ThinLinc Webaccess: 
-            - Put ``https://alvis1.c3se.chalmers.se:300`` or ``https://alvis2.c3se.chalmers.se:300`` in browser address bar 
-            - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box that opens and click ``Login`` 
         - OpenOndemand portal: 
             - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
             - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box 
