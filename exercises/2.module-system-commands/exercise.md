@@ -29,7 +29,7 @@ You probably have (some) modules loaded now.
 
 ## module purge
 
-Warning! Do not do this at PDC! 
+**Warning! Do not do this at PDC!**
 
 At some centres, ``module purge`` is recommended and at some it is at least safe: HPC2N, LUNARC, NSC, C3SE 
 
