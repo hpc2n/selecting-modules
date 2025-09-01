@@ -21,13 +21,18 @@ Many of the centres in Sweden are using the <a href="https://lmod.readthedocs.io
 
 Many, but not all, of the centres in Sweden are using the <a href="https://docs.easybuild.io/" target="_blank">EasyBuild</a> framework for building and installing software modules.   
 
+PDC also provides some software as containers, found in  ``/pdc/software/sing_hub`` (or ``$PDC_SHUB``). ``singularity exec -B /cfs/klemming <sandbox folder> <myexe>``
+
+LUMI has no modules and uses containers 
+
+
 !!! warning "Important" 
 
-    Take care not to use any system-installed versions of ``gcc``, ``python``, etc. Always use the module instead, when available! 
-
-    Always check if there is a module instead of just building the software/package yourself!
-
-    If there is a software missing that you need, then ask if it can be installed. 
+    - Take care not to use any system-installed versions of ``gcc``, ``python``, etc. Always use the module instead, when available! 
+    - Always check if there is a module instead of just building the software/package yourself! 
+        - Remember to check with different capitalization! 
+        - If the center you are at have modules installed in a hierarchical fashion (LUNARC, HPC2N, PDC) you must use ``module spider`` to check if a software is installed, since ``module avail`` only lists what is available with what is currently loaded
+    - If there is a software missing that you need, then ask if it can be installed. 
 
 ## Useful commands 
 
@@ -35,10 +40,10 @@ This is a list of some of the most useful commands for the module system. In the
 
 - See which modules exists: ``module spider or ml spider``
 - See which versions exist of a specific module: ``module spider MODULE`` or ``ml spider MODULE``
-    - This way is only recommended at HPC2N, LUNARC, C3SE, and PDC 
+    - This way is only recommended at HPC2N, LUNARC, (C3SE), and PDC 
 - See prerequisites and how to load a specfic version of a module: ``module spider MODULE/VERSION`` or ``ml spider MODULE/VERSION``
 - List modules depending only on what is currently loaded: ``module avail`` or ``ml av``
-    - At UPPMAX and NSC this will list all available modules! 
+    - At UPPMAX and NSC (and C3SE) this will list all available modules! 
 - See which modules are currently loaded: ``module list`` or ``ml``
 - Loading a module: ``module load MODULE`` or ``ml MODULE``
 - Loading a specific version of a module: ``module load MODULE/VERSION`` or ``ml MODULE/VERSION``
@@ -56,12 +61,12 @@ This is a list of some of the most useful commands for the module system. In the
 
     This is mainly to do with whether or not modules in general have prerequisite modules that needs loading before, or not. 
 
-    - ``module spider``: HPC2N, LUNARC, C3SE, PDC  
-    - ``module avail``: UPPMAX, NSC 
+    - ``module spider``: HPC2N, LUNARC, (C3SE), PDC  
+    - ``module avail``: UPPMAX, NSC, C3SE 
 
 ### With ``module spider``
 
-This is the recommended way to find existing software modules at **HPC2N**, **LUNARC**, **C3SE**, and **PDC**. 
+This is the recommended way to find existing software modules at **HPC2N**, **LUNARC**, (**C3SE**), and **PDC**. 
 
 !!! hint 
 
@@ -166,7 +171,7 @@ This is the recommended way to find existing software modules at **HPC2N**, **LU
 
 ### With ``module avail`` 
 
-This is the recommended way to find existing software modules at **UPPMAX** and **NSC**. 
+This is the recommended way to find existing software modules at **UPPMAX** and **NSC**. It also works at **C3SE**.  
 
 !!! hint
 

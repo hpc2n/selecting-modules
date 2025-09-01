@@ -141,6 +141,7 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
         #SBATCH -A naissXXXX-YY-ZZZ # Change to your own
         #SBATCH --time=00:10:00 # Asking for 10 minutes
         #SBATCH -N 1 --gpus-per-node=T4:8  # 1 node with 8 Nvidia T4 GPUs 
+        #SBATCH -p alvis
         # Purge the environment of any modules
         module purge > /dev/null 2>&1
         # Load any modules you need, here for Python/3.11.5-GCCcore-13.2.0 and SciPy-bundle/2023.11-gfbf-2023b 
@@ -303,6 +304,7 @@ Continuing with a Python example
         # Request resources - here for eight MPI tasks
         #SBATCH -n 8
         #SBATCH -N 1 --gpus-per-node=T4:8  # 1 node with 8 Nvidia T4 GPUs
+        #BATCH -p alvis
         # Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum at most centres. Here asking for 15 min.
         #SBATCH --time=00:15:00
 

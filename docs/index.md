@@ -127,12 +127,6 @@ In order to type along and do the exercises, please prepare your course environm
         - SSH: ``ssh <user>@alvis1.c3se.chalmers.se``
                or 
                ``ssh <user>@alvis2.c3se.chalmers.se``
-        - ThinLinc: 
-            - Server: ``alvis1.c3se.chalmers.se`` 
-                      or 
-                      ``alvis2.c3se.chalmers.se``
-            - Username: ``<your-c3se-username>``
-            - Password: ``<your-c3se-username>`` 
         - OpenOndemand portal: 
             - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
             - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box 

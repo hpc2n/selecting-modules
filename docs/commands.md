@@ -31,10 +31,10 @@ So how do you find out which versions are available for a specific software?
 
 !!! note 
 
-    This is again done differently, depending on the center you are at: 
+    This is done differently, depending on the center you are at: 
 
     - HPC2N, LUNARC, C3SE, PDC: ``module spider MODULE`` or ``ml spider MODULE``
-    - UPPMAX, NSC: ``module avail MODULE`` or ``ml avail MODULE`` 
+    - UPPMAX, NSC, /C3SE): ``module avail MODULE`` or ``ml avail MODULE`` 
 
 ### With ``module spider`` 
 
@@ -374,6 +374,47 @@ Finding available versions of Python.
            D:  Default Module
         ```
 
+=== "C3SE" 
+
+    ```bash 
+    module avail Python
+    ``` 
+
+    ??? note "Click to show"
+
+        You will get output that includes what you look for, but also a lot of other output - and only if you use "Python" instead of "python" 
+
+        ```bash 
+        [brydso@alvis1 ~]$ module avail Python
+
+        ------------------------------------------------------------------ /apps/Arch/fmodules/all ------------------------------------------------------------------
+           Biopython/1.79-foss-2021a                              Python/2.7.18-GCCcore-12.2.0-bare                meson-python/0.18.0-GCCcore-14.2.0    (D)
+           Biopython/1.79-foss-2021b                              Python/3.9.5-GCCcore-10.3.0-bare                 netcdf4-python/1.6.4-foss-2023a
+           Biopython/1.79-foss-2022a                              Python/3.9.5-GCCcore-10.3.0                      netcdf4-python/1.6.5-foss-2023b
+           Biopython/1.83-foss-2023a                       (D)    Python/3.9.6-GCCcore-11.2.0-bare                 netcdf4-python/1.7.1.post2-foss-2024a (D)
+           Boost.Python/1.82.0-GCC-12.3.0                         Python/3.9.6-GCCcore-11.2.0                      openslide-python/1.1.2-GCCcore-10.3.0
+           CUDA-Python/12.1.0-gfbf-2023a-CUDA-12.1.1              Python/3.10.4-GCCcore-11.3.0-bare                openslide-python/1.1.2-GCCcore-11.2.0 (D)
+           CUDA-Python/12.6.2.post1-gfbf-2024a-CUDA-12.6.0 (D)    Python/3.10.4-GCCcore-11.3.0                     pkgconfig/1.5.4-GCCcore-10.3.0-python
+           GitPython/3.1.27-GCCcore-11.3.0                        Python/3.10.8-GCCcore-12.2.0-bare                pkgconfig/1.5.5-GCCcore-11.2.0-python
+           GitPython/3.1.40-GCCcore-12.3.0                 (D)    Python/3.10.8-GCCcore-12.2.0                     pkgconfig/1.5.5-GCCcore-11.3.0-python
+           IPython/7.25.0-GCCcore-10.3.0                          Python/3.11.3-GCCcore-12.3.0                     pkgconfig/1.5.5-GCCcore-12.2.0-python
+           IPython/7.26.0-GCCcore-11.2.0                          Python/3.11.5-GCCcore-13.2.0                     pkgconfig/1.5.5-GCCcore-12.3.0-python (D)
+           IPython/8.5.0-GCCcore-11.3.0                           Python/3.12.3-GCCcore-13.3.0                     protobuf-python/3.17.3-GCCcore-10.3.0
+           IPython/8.14.0-GCCcore-12.2.0                          Python/3.13.1-GCCcore-14.2.0                     protobuf-python/3.17.3-GCCcore-11.2.0
+           IPython/8.14.0-GCCcore-12.3.0                          Python/3.13.5-GCCcore-14.3.0              (D)    protobuf-python/3.19.4-GCCcore-11.3.0
+           IPython/8.17.2-GCCcore-13.2.0                          Z3/4.12.2-GCCcore-12.3.0-Python-3.11.3           protobuf-python/4.23.0-GCCcore-12.2.0
+           IPython/8.28.0-GCCcore-13.3.0                          flatbuffers-python/2.0-GCCcore-10.3.0            protobuf-python/4.24.0-GCCcore-12.3.0
+           IPython/9.3.0-GCCcore-14.2.0                    (D)    flatbuffers-python/2.0-GCCcore-11.2.0            protobuf-python/5.28.0-GCCcore-13.3.0 (D)
+           Python-bundle-PyPI/2023.06-GCCcore-12.3.0              flatbuffers-python/2.0-GCCcore-11.3.0            python-mujoco/2.2.2-foss-2022a
+           Python-bundle-PyPI/2023.10-GCCcore-13.2.0              flatbuffers-python/23.1.4-GCCcore-12.2.0         python-mujoco/3.1.4-foss-2023a        (D)
+           Python-bundle-PyPI/2024.06-GCCcore-13.3.0              flatbuffers-python/23.5.26-GCCcore-12.3.0 (D)    python-xxhash/3.4.1-GCCcore-12.3.0
+           Python-bundle-PyPI/2025.04-GCCcore-14.2.0       (D)    meson-python/0.13.2-GCCcore-12.3.0               spglib-python/1.16.1-foss-2021a
+           Python/2.7.18-GCCcore-11.2.0-bare                      meson-python/0.15.0-GCCcore-13.2.0               spglib-python/2.0.0-foss-2022a
+           Python/2.7.18-GCCcore-11.3.0-bare                      meson-python/0.16.0-GCCcore-13.3.0               spglib-python/2.1.0-gfbf-2023a        (D)
+
+        ...
+        ```
+
 !!! note "<img src="../images/shell-logo_small.png"> Exercise" 
 
     1. At your chosen centre, check the different output for ``module avail Python`` and ``module spider Python``
@@ -421,32 +462,151 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
     - **PDC**: most software modules have prerequisites (PDC which is a collection of compilers and libraries), a few do not (MATLAB, cray-modules, ...)
     - **C3SE**: software modules can generally be loaded directly
 
-!!! note "Example, HPC2N" 
+=== "HPC2N" 
 
-    Finding out how to load Python, version 3.12.3 
+    !!! note "Example, finding out how to load Python, version 3.12.3"
+ 
+        ```bash 
+        b-an01 [~]$ module spider Python/3.12.3
+
+        --------------------------------------------------------------------------------------------------------------------
+          Python: Python/3.12.3
+        --------------------------------------------------------------------------------------------------------------------
+            Description:
+              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+
+
+            You will need to load all module(s) on any one of the lines below before the "Python/3.12.3" module is available to load.
+
+              GCCcore/13.3.0
+ 
+            This module provides the following extensions:
+
+               flit_core/3.9.0 (E), packaging/24.0 (E), pip/24.0 (E), setuptools/70.0.0 (E), setuptools_scm/8.1.0 (E), tomli/2.0.1 (E), typing_extensions/4.11.0 (E), wheel/0.43.0 (E)
+
+            Help:
+              Description
+              ===========
+              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+      
+      
+              More information
+              ================
+               - Homepage: https://python.org/
+      
+      
+              Included extensions
+              ===================
+              flit_core-3.9.0, packaging-24.0, pip-24.0, setuptools-70.0.0, setuptools_scm-8.1.0, tomli-2.0.1, typing_extensions-4.11.0, wheel-0.43.0
+        ```
+   
+        There are some things to pay attention to here: 
+
+        - You are told the prerequisites are "GCCcore/13.3.0" (if you need OpenMPI or modules requiring it, it is better to load "GCC/13.3.0" as GCCcore is part of it) 
+        - After loading that, you can load the module itself, "Python/3.12.3" 
+        - You are told about the extensions that are included. Here, this would be the Python packages that are included, which is not very many. HPC2N and some of the other centres use separate modules or *module bundles* (SciPy-bundle for instance) for any extensions/packages that you might need. 
+
+=== "UPPMAX" 
+
+    !!! note "Example, Finding out how to load Python, version 3.11.8" 
+
+        ```bash 
+        [bbrydsoe@rackham1 ~]$ ml avail python/3.11.8
+
+        ----------------------------------- /sw/mf/rackham/compilers -----------------------------------
+           python/3.11.8
+
+        Use "module spider" to find all possible modules and extensions.
+        Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+        ``` 
+
+        This did not tell us much! Let us try ``module spider`` 
+
+        ```bash
+        [bbrydsoe@rackham1 ~]$ module spider python/3.11.8
+
+        --------------------------------------------------------------------------------------------
+          python: python/3.11.8
+        --------------------------------------------------------------------------------------------
+
+            This module can be loaded directly: module load python/3.11.8
+
+            Help:
+      
+              Python - use python/3.11.8
+         
+                  Version 3.11.8
+       
+                  https://python.org
+      
+              This module was built with 
+      
+                   gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11
+      
+      
+              This module provides the executable names 'python' and 'python3'.
+      
+              Several additional python packages are also installed in this module. The complete list of packages in this module, produced using 'pip list', is:
+      
+              Package                   Version
+              ------------------------- ---------------
+              anndata                   0.10.5.post1
+              anyio                     4.2.0
+              argon2-cffi               23.1.0
+              argon2-cffi-bindings      21.2.0
+              array_api_compat          1.4.1
+              arrow                     1.3.0
+              asteval                   0.9.31
+              asttokens                 2.4.1
+              async-lru                 2.0.4
+              ... 
+        ```
+
+        Here we learn: 
+
+        - You can load "python/3.11.8" directly
+        - It was built with "gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11" (might be useful for compatibility with other things). 
+        - It lists all the extensions (here Python packages) loaded with it - and it is a lot, around 250 packages. 
+
+=== "NSC" 
+
+    !!! note "Example, finding out how to load Python, version 3.11.5" 
 
     ```bash 
-    b-an01 [~]$ module spider Python/3.12.3
+    [x_birbr@tetralith3 ~]$ module avail Python/3.11.5
 
-    --------------------------------------------------------------------------------------------------------------------
-      Python: Python/3.12.3
-    --------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------ /software/sse2/tetralith_el9/modules -------------------------------------------
+       Python/3.11.5-bare-hpc1-gcc-2023b-eb    Python/3.11.5-env-hpc1-gcc-2023b-eb
+    ```
+
+    This was not so helpful. Let us try with "module spider": 
+
+    ```bash
+    [x_birbr@tetralith3 ~]$ module spider Python/3.11.5
+    ####################################################################################################################################
+    # NOTE: At NSC the output of 'module spider' is generally not helpful as all relevant software modules are shown by 'module avail' #
+    # Some HPC centers hide software until the necessary dependencies have been loaded. NSC does not do that.                          #
+    ####################################################################################################################################
+
+    -----------------------------------------------------------------------------------------------------------------------
+      Python: Python/3.11.5
+    -----------------------------------------------------------------------------------------------------------------------
         Description:
           Python is a programming language that lets you work more quickly and integrate your systems more effectively.
 
 
-        You will need to load all module(s) on any one of the lines below before the "Python/3.12.3" module is available to load.
+        You will need to load all module(s) on any one of the lines below before the "Python/3.11.5" module is available to load.
 
-          GCCcore/13.3.0
+          buildtool-easybuild/.5.1.1-hpce5ba34320  GCCcore/13.2.0
+          buildtool-easybuild/4.8.0-hpce082752a2  GCCcore/13.2.0
+          buildtool-easybuild/4.9.4-hpc71cbb0050  GCCcore/13.2.0
  
-        This module provides the following extensions:
-
-           flit_core/3.9.0 (E), packaging/24.0 (E), pip/24.0 (E), setuptools/70.0.0 (E), setuptools_scm/8.1.0 (E), tomli/2.0.1 (E), typing_extensions/4.11.0 (E), wheel/0.43.0 (E)
-
         Help:
+      
           Description
           ===========
-          Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+          Python is a programming language that lets you work more quickly and integrate your systems
+           more effectively.
       
       
           More information
@@ -456,76 +616,12 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
       
           Included extensions
           ===================
-          flit_core-3.9.0, packaging-24.0, pip-24.0, setuptools-70.0.0, setuptools_scm-8.1.0, tomli-2.0.1, typing_extensions-4.11.0, wheel-0.43.0
+          flit_core-3.9.0, packaging-23.2, pip-23.2.1, setuptools-68.2.2, setuptools-scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
     ```
-   
-    There are some things to pay attention to here: 
-
-    - You are told the prerequisites are "GCCcore/13.3.0"
-    - After loading that, you can load the module itself, "Python/3.12.3" 
-    - You are told about the extensions that are included. Here, this would be the Python packages that are included, which is not very many. HPC2N and some of the other centres use separate modules or *module bundles* (SciPy-bundle for instance) for any extensions/packages that you might need. 
-
-!!! note "Example, UPPMAX" 
-
-    Finding out how to load Python, version 3.11.8 
-
-    ```bash 
-    [bbrydsoe@rackham1 ~]$ ml avail python/3.11.8
-
-    ----------------------------------- /sw/mf/rackham/compilers -----------------------------------
-       python/3.11.8
-
-    Use "module spider" to find all possible modules and extensions.
-    Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
-    ``` 
-
-    This did not tell us much! Let us try ``module spider`` 
-
-    ```bash
-    [bbrydsoe@rackham1 ~]$ module spider python/3.11.8
-
-    --------------------------------------------------------------------------------------------
-      python: python/3.11.8
-    --------------------------------------------------------------------------------------------
-
-        This module can be loaded directly: module load python/3.11.8
-
-        Help:
-      
-          Python - use python/3.11.8
-        
-              Version 3.11.8
-      
-              https://python.org
-      
-          This module was built with 
-      
-              gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11
-      
-      
-          This module provides the executable names 'python' and 'python3'.
-      
-          Several additional python packages are also installed in this module. The complete list of packages in this module, produced using 'pip list', is:
-      
-          Package                   Version
-          ------------------------- ---------------
-          anndata                   0.10.5.post1
-          anyio                     4.2.0
-          argon2-cffi               23.1.0
-          argon2-cffi-bindings      21.2.0
-          array_api_compat          1.4.1
-          arrow                     1.3.0
-          asteval                   0.9.31
-          asttokens                 2.4.1
-          async-lru                 2.0.4
-          ... 
-    ```
-
-    Here we learn: 
-
-    - You can load "python/3.11.8" directly
-    - It was built with "gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11" (might be useful for compatibility with other things). 
-    - It lists all the extensions (here Python packages) loaded with it - and it is a lot, around 250 packages. 
+    
+    - Here we learn that there is a "bare" Python (like "Python/3.11.5-bare-hpc1-gcc-2023b-eb") that you can load directly
+    - Otherwise, you need to load the prerequisites of a buildtool and a GCCcore first, before loading Python. That is knowledge that can be useful for finding compatibility with other software modules  
+    - You also learn that there is a (small) number of extensions/packages with this Python  
 
 ### Loading 
 
@@ -648,6 +744,31 @@ When you have loaded the module, you can see that your list of loaded modules ha
            S:  Module is Sticky, requires --force to unload or purge
            H:             Hidden Module
         ```
+ 
+    **Or** load one of the Python modules with prerequisites: 
+
+    ??? note "Click to show output!" 
+
+        ```bash 
+        [x_birbr@tetralith3 ~]$ ml buildtool-easybuild/4.8.0-hpce082752a2 GCCcore/13.2.0 Python/3.11.5 
+        [x_birbr@tetralith3 ~]$
+        ``` 
+
+        Let us see the output of "module list" now: 
+
+        ```bash 
+        [x_birbr@tetralith3 ~]$ module list
+
+        Currently Loaded Modules:
+          1) hpc/.1.10.1                            (H,S)   5) binutils/.2.40  (H)   9) Tcl/8.6.13     13) OpenSSL/1.1
+          2) buildtool-easybuild/4.8.0-hpce082752a2         6) bzip2/1.0.8          10) SQLite/3.43.1  14) Python/3.11.5
+          3) GCCcore/13.2.0                                 7) ncurses/6.4          11) XZ/5.4.4
+          4) zlib/.1.2.13                           (H)     8) libreadline/8.2      12) libffi/3.4.4
+
+          Where:
+           S:  Module is Sticky, requires --force to unload or purge
+           H:             Hidden Module
+        ``` 
 
 !!! warning "Important"
 
@@ -723,6 +844,56 @@ There are situations where you need to load several modules, even at centres whe
         [bbrydsoe@rackham1 ~]$ ml spider matlab/R2023b
         [bbrydsoe@rackham1 ~]$ ml Gurobi/11.0.3
         ``` 
+
+    === "NSC" 
+
+        TensorFlow is not installed, so if you need that you would have to install it yourself in a Virtual environment. Let us assume we need "pandas" which is installed. It is included in SciPy-bundle, which pulls in Python and OpenMPI, but does have other prerequisites 
+
+        ```bash
+        [x_birbr@tetralith3 ~]$ ml spider SciPy-bundle/2023.11
+        ####################################################################################################################################
+        # NOTE: At NSC the output of 'module spider' is generally not helpful as all relevant software modules are shown by 'module avail' #
+        # Some HPC centers hide software until the necessary dependencies have been loaded. NSC does not do that.                          #
+        ####################################################################################################################################
+
+        -----------------------------------------------------------------------------------------------------------------------
+          SciPy-bundle: SciPy-bundle/2023.11
+        -----------------------------------------------------------------------------------------------------------------------
+            Description:
+              Bundle of Python packages for scientific software
+
+
+            You will need to load all module(s) on any one of the lines below before the "SciPy-bundle/2023.11" module is available to load.
+
+              buildtool-easybuild/.5.1.1-hpce5ba34320  GCC/13.2.0
+              buildtool-easybuild/4.8.0-hpce082752a2  GCC/13.2.0
+              buildtool-easybuild/4.9.4-hpc71cbb0050  GCC/13.2.0
+ 
+            Help:
+      
+              Description
+              ===========
+              Bundle of Python packages for scientific software
+      
+      
+              More information
+              ================
+              - Homepage: https://python.org/
+      
+      
+              Included extensions
+              ===================
+              beniget-0.4.1, Bottleneck-1.3.7, deap-1.4.1, gast-0.5.4, mpmath-1.3.0,
+              numexpr-2.8.7, numpy-1.26.2, pandas-2.1.3, ply-3.11, pythran-0.14.0,
+              scipy-1.11.4, tzdata-2023.3, versioneer-0.29
+        ``` 
+
+        ```bash 
+        [x_birbr@tetralith3 ~]$ ml buildtool-easybuild/4.8.0-hpce082752a2  GCC/13.2.0 SciPy-bundle/2023.11
+        ```
+
+        Another useful "super" package at NSC is "Python-bundle-PyPI/2023.10". 
+   
 
 ## Unload software modules
 
