@@ -25,7 +25,7 @@ You probably have (some) modules loaded now.
 
 1. Try unload a module that has no prerequisites (like GCC or GCCcore at some centres or Python at others). 
 2. Try unload a module that has prerequisites if there are such at your centre. 
-3. What happens if you try and unload the prerequisite first?
+3. What happens if you try and unload the prerequisite first? (only some centres have prerequisite modules) 
 
 ## module purge
 
