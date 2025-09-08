@@ -151,10 +151,8 @@ any.
 
 === "UPPMAX (Pelle)"
 
-    **GCC Compiler Toolchains for GPU**
-    
-       * **gcccuda**:  GCC, CUDA
-       * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+    - As of today you load GCC and CUDA separately.
+    - New tools are typically build with the latest versions of both.
 
 === "UPPMAX (Rackham)"
 
