@@ -457,7 +457,12 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
 
     - **HPC2N**: most software modules have prerequisites (GCC/Intel, OpenMPI, ...), a few do not (MATLAB, ...)
     - **LUNARC**: most software modules have prerequisites (GCC/Intel, OpenMPI, ...), a few do not (MATLAB, ...)
-    - **UPPMAX**: software modules can generally be loaded directly
+    - **UPPMAX**: software modules can generally be loaded directly unless its is related to bioinformatics (then load ``bioinfo-tools`` first). New cluster Pelle does not require you to load ``bioinfo-tools``
+        !!! note 
+        
+            - **On Pelle things are more like NSC, you may follow the examples for that cluster instead of Rackham**
+            - Though, note that outputdetails will most probably be different on Pelle!
+
     - **NSC**: software modules can generally be loaded directly
     - **PDC**: most software modules have prerequisites (PDC which is a collection of compilers and libraries), a few do not (MATLAB, cray-modules, ...)
     - **C3SE**: software modules can generally be loaded directly
@@ -508,8 +513,10 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
 
 === "UPPMAX" 
 
-    !!! note "Example, Finding out how to load Python, version 3.11.8" 
+    !!! note "Example, Finding out how to load Python, version 3.11.8 (Rackham)" 
 
+        On Pelle things are more like NSC, have a look there!
+        
         ```bash 
         [bbrydsoe@rackham1 ~]$ ml avail python/3.11.8
 
@@ -927,7 +934,7 @@ The command ``module purge`` removes all the loaded modules, except the "sticky"
 
     At PDC, there are a lot of necessary, "system-modules" that are preloaded. When you do ``module purge`` they will also be unloaded and things may not work as it should! 
 
-    At UPPMAX, the system-module "uppmax" will get unloaded with ``module purge``, but can easily be reloaded with ``module load uppmax``. 
+    At UPPMAX (Rackham and Bianca, not Pelle), the system-module "uppmax" will get unloaded with ``module purge``, but can easily be reloaded with ``module load uppmax``. 
 
     - To see what the ``uppmax`` module does, do: ``ml show uppmax``. It sets some environment variables and aliases.
 
@@ -1254,7 +1261,7 @@ What about ``module purge``?
     No modules loaded
     ```
 
-    Warning! You need to reload "uppmax" module! ``module load uppmax``
+    Warning! You need to reload "uppmax" module! ``module load uppmax`` if you are on Rackham/Bianca. New cluster Pelle has (as of today) no ``uppmax`` module
 
 === "PDC"         
 

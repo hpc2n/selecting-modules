@@ -80,8 +80,30 @@ any.
        * **intel**: icc, ifort, Intel MPI, MKL
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
 
-=== "UPPMAX (Rackham)"
+=== "UPPMAX (Pelle)"
 
+    **GCC Compiler Toolchains**
+    
+       * **GCC**: GCC compiler only
+       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
+       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
+       
+    **Intel Compiler Toolchains**
+    
+       * **intel**: icc, ifort, Intel MPI, MKL
+       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
+       * **iimpi**: icc, ifort, Intel MPI
+
+=== "UPPMAX (Rackham/Bianca)"
+
+    - Mostly, toolchains are not visible as at the other clusters. Most software are built manually without the EasyBuild concept.
+    - Instead you load modules individually. Be inspired by the Easybuild toolchains below.
+        - If just compiler: search fo available GCC or intel module.
+        - If math libraries, like OpenBLAS, search for that and GCC or intel  will be a dependency.
+        - If MPI, see UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
+
+    - The **Easybuild toolchains** below may be found for some tools in their names and dependencies.
+    
     **GCC Compiler Toolchains**
     
        * **GCC**: GCC compiler only
@@ -126,6 +148,11 @@ any.
     **GCC Compiler Toolchains for GPU**
     
        * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+
+=== "UPPMAX (Pelle)"
+
+    - As of today you load GCC and CUDA separately.
+    - New tools are typically build with the latest versions of both.
 
 === "UPPMAX (Rackham)"
 
