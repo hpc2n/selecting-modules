@@ -120,9 +120,7 @@ In order to type along and do the exercises, please prepare your course environm
                 - Server: ``pelle-gui.uppmax.uu.se`` 
                 - Username: ``<your-uppmax-username>`` 
                 - Password: ``<your-uppmax-password>`` 
-            - ThinLinc Webaccess (On SUnet or via VPN): 
-                - Put ``https://pelle-gui.uppmax.uu.se`` in browser address bar 
-                - Put ``<your-uppmax-username>`` and ``<your-uppmax-password>`` in the login box that opens and click ``Login`` 
+            - ThinLinc Webaccess not yet available: 
             - Note that you may have to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
             
     - **LUNARC** 
