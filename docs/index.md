@@ -100,15 +100,31 @@ In order to type along and do the exercises, please prepare your course environm
             - Put ``https://kebnekaise-tl.hpc2n.umu.se:300/`` in browser address bar 
             - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in th e login box that opens and click ``Login`` 
     - **UPPMAX** 
-        - SSH: ``ssh <user>@rackham.uppmax.uu.se``
-        - ThinLinc: 
-            - Server: ``rackham-gui.uppmax.uu.se`` 
-            - Username: ``<your-uppmax-username>`` 
-            - Password: ``<your-uppmax-password>`` 
-        - ThinLinc Webaccess: 
-            - Put ``https://rackham-gui.uppmax.uu.se`` in browser address bar 
-            - Put ``<your-uppmax-username>`` and ``<your-uppmax-password>`` in the login box that opens and click ``Login`` 
-        - Note that you may have to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
+    
+        === "Rackham"
+        
+            - SSH: ``ssh <user>@rackham.uppmax.uu.se``
+            - ThinLinc: 
+                - Server: ``rackham-gui.uppmax.uu.se`` 
+                - Username: ``<your-uppmax-username>`` 
+                - Password: ``<your-uppmax-password>`` 
+            - ThinLinc Webaccess: 
+                - Put ``https://rackham-gui.uppmax.uu.se`` in browser address bar 
+                - Put ``<your-uppmax-username>`` and ``<your-uppmax-password>`` in the login box that opens and click ``Login`` 
+            - Note that you may have to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/"
+            
+        === "Pelle"
+        
+            - SSH: ``ssh <user>@pelle.uppmax.uu.se``
+            - ThinLinc: 
+                - Server: ``pelle-gui.uppmax.uu.se`` 
+                - Username: ``<your-uppmax-username>`` 
+                - Password: ``<your-uppmax-password>`` 
+            - ThinLinc Webaccess (On SUnet or via VPN): 
+                - Put ``https://pelle-gui.uppmax.uu.se`` in browser address bar 
+                - Put ``<your-uppmax-username>`` and ``<your-uppmax-password>`` in the login box that opens and click ``Login`` 
+            - Note that you may have to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
+            
     - **LUNARC** 
         - SSH: ``ssh <user>@cosmos.lunarc.lu.se``
         - ThinLinc: 
