@@ -39,7 +39,10 @@ It varies between centres how many packages are installed with the base Python p
     - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but does not incorporate other modules as well unless they are installed in a custom environment.
     - **C3SE:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
     - **NSC:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.8.0-hpc<version>` that must be loaded before anything else.  
+    - **UPPMAX-Pelle:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, Python-bundle-PyPi, Jupyter-lab, ...). No Prerequisites are needed! 
+    - **UPPMAX-Rackham:** Very many packages are installed with the Python module.  
     - **PDC:** most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
+    
 
 ### Example 1: Matplotlib
 
