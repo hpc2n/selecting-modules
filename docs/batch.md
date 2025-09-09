@@ -382,6 +382,10 @@ Here there are two things to pay attention to:
 
     === "UPPMAX (Pelle)"
 
+        !!! warning 
+        
+            Note that the numba installation, as of now, gives a segmentation fault for this exercise. We are troubleshooting until next time!
+
         Pelle has Nvidia L40s and H100 GPUs. Default is L40s and is reached by just stating ``-p gpu --gres=gpu``. To reach one of very few large H100 state ``-p gpu --gpus=h100``.
 
         ```bash 
@@ -400,19 +404,19 @@ Here there are two things to pay attention to:
         # Run your Python script
         python add-list.py
         ``` 
-
+        
     === "UPPMAX (Rackham)"
 
         At UPPMAX the main thing to pay attention to is that the resource "Rackham" does not have GPUs and the batch jobs needing that are therefore submitted to "Snowy" which does have GPUs. 
 
         ```bash 
-        #!/bin/bash
+        #!/bin/bash -l  # -l is needed
         # Remember to change this to your own project ID!
         #SBATCH -A uppmaxXXXX-Y-ZZZ
         # We want to run on Snowy which has GPUs 
         #SBATCH -M snowy
-        # We are asking for 10 minutes
-        #SBATCH --time=00:10:00
+        # We are asking for 70 minutes. <= 60 min introduces as bug
+        #SBATCH --time=01:10:00
         # Asking for one GPU
         #SBATCH --gres=gpu:1
 
@@ -421,7 +425,7 @@ Here there are two things to pay attention to:
         module purge  > /dev/null 2>&1
         module load uppmax
         # The Python package "numba" is included in the python_ML_packages which has both a _cpu and a _gpu version.  
-        module load python_ML_packages/3.11.8-gpu python/3.11.8
+        module load python_ML_packages/3.11.8-gpu
 
         # Run your Python script
         python add-list.py
