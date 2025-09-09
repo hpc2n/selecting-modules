@@ -31,14 +31,13 @@ Most of the examples below use outputs from Cosmos, but the workflows will be si
 
 ## Python-based packages
 
-It varies between centres how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequsites are required (most centers apart from PDC are the same), and the available version numbers. 
+It varies between centres how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequsites are required (most centres apart from PDC are the same), and the available version numbers. 
 
 !!! note 
 
-    - **HPC2N:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
-    - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but does not incorporate other modules as well unless they are installed in a custom environment.
-    - **C3SE:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, Horovod) 
-    - **NSC:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.8.0-hpc<version>` that must be loaded before anything else.  
+    - **HPC2N** and **C3SE:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
+    - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but other modules loaded alongside it are typically not recognised. Additional modules must be installed in a custom environment.
+    - **NSC:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, PyTorch, Python-bundle-PyPi, Jupyter, ...). Most programs on Tetralith also have an extra prerequisite, `buildtool-easybuild/4.X.X-hpc<version>` that must be loaded before anything else.  
     - **UPPMAX-Pelle:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, matplotlib, mpi4py, Python-bundle-PyPi, Jupyter-lab, ...). No Prerequisites are needed! 
     - **UPPMAX-Rackham:** Very many packages are installed with the Python module.  
     - **PDC:** most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
@@ -46,7 +45,9 @@ It varies between centres how many packages are installed with the base Python p
 
 ### Example 1: Matplotlib
 
-Matplotlib prerequisites vary significantly across HPC centers: some require none, some need one, some need two, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centers here](https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run)). A good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
+Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run)). 
+
+If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
 All of the following code blocks in this example are taken from Cosmos.
 
@@ -77,7 +78,7 @@ $ ml spider matplotlib
 ----------------------------------------------------------------------------
 ```
 
-If you try the above command at your local HPC center and get a "not found" error, that probably means Matplotlib is an extension of another module (e.g. on Rackham, it is part of the base Python module).
+If you try the above command at your local HPC centre and get a "not found" error, that probably means Matplotlib is an extension of another module (e.g. on Rackham, there are versions that are part of the base Python module and versions that are part of `python_ML_packages`).
 
 Let us look at `matplotlib/3.8.2`, for example:
 
@@ -103,11 +104,11 @@ plotlib/3.8.2" module is available to load.
 
 This means that, on Cosmos at least, only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. At most facilities, that means SciPy-bundle is required.
 
-Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. However, once `GCC` is loaded, you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load. Usually there is only 1 version of each per GCC version, but if there are more, the version that loads if you do not specify a version number will be the one with "(D)" next to it. 
+Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. If `GCC` is loaded, then you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load.
 
-If you want to move code developed on a personal laptop to the cluster, you will typically only be constrained to a Python version (use `python --version` to check), or more practically, a *range* of versions Python/X.Y.Z in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or two versions, and Z is usually not important.
+The more typical scenario is that you want to move code developed on a personal laptop to the cluster. Then you will mainly be constrained to a range of Python versions `Python/X.Y.Z`, in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or two versions, and Z is usually not that important. In a bash terminal, you can check your Python version with `python --version`.
 
-Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to filter `ml spider` or `ml avail`, so one must view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
+Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to select subsets of `ml spider` or `ml avail` outputs, so one must view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
 
 ```bash
 $ ml spider Python
@@ -263,11 +264,11 @@ The `pip list | grep` approach is also helpful if you want to see the version of
 
 !!! tip
 
-    The same list (and grep) approach works for Anaconda3. The only difference is that you use `conda list` instead of `pip list`. The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
+    The same list (and grep) approach works for Anaconda3. The only difference is that you should use `conda list` instead of `pip list` (although `pip list` usually still works). The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
 
 ## R-based packages
 
-At most HPC centers, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like `R-bundle-CRAN` and `R-bundle-Bioconductor`. Most HPC centers have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
+At most HPC centres, the base R module usually contains relatively few extensions. Most of the popular packages are in additional bundles like `R-bundle-CRAN` and `R-bundle-Bioconductor`. Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
 
 !!! note
 
@@ -275,7 +276,7 @@ At most HPC centers, the base R module usually contains relatively few extension
     - **LUNARC:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
     - **UPPMAX (Pelle):** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio installed soon.
     - **UPPMAX (Rackham) and C3SE (Alvis):** R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
-    - **NSC (Tetralith):** R can be loaded directly, but contains few installed packages, and there are no bundles to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
+    - **NSC (Tetralith):** R can be loaded directly, but **contains few installed packages, and there are no bundles** to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
     - **PDC (Dardel):** Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
 
 !!! important
@@ -366,13 +367,11 @@ The above prerequisites and the main package can be loaded either one at a time 
 $ ml GCC/12.3.0  OpenMPI/4.1.5  R-bundle-Bioconductor/3.18-R-4.4.1
 ```
 
-In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centers, so pay attention to the prerequisites.
+In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centres, so pay attention to the prerequisites.
 
 ## Matlab
 
-At most HPC centers, Matlab can be loaded directly, but a couple of centers require a basic software tree as a prerequisite. On Dardel (PDC), all Matlab versions, like nearly every other module, have a module called something like `PDC/xx.xx` or `PDCOLD/xx.xx` as a prerequisite. The example further down in this section shows how finding and determining the prerequisites for Matlab works at another such facility.
-
-Capitalization and other naming conventions also vary between HPC centers; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions).
+At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions).
 
 **All Add-Ons and Toolboxes should be available through the Matlab GUI.**
 
@@ -382,14 +381,15 @@ Capitalization and other naming conventions also vary between HPC centers; for m
 
 ### Example: Matlab on Tetralith (NSC)
 
-At most centers, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centers where all modules are searchable without loading prerequisites, it may be better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
+At most centres, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
 
 ```bash
 $ ml avail matlab
 
 --------------------- /software/sse2/tetralith_el9/modules ---------------------
-   MATLAB/recommendation (D)    MATLAB/2023b-bdist
-   MATLAB/2023a-bdist           MATLAB/2024a-hpc1-bdist
+   MATLAB/recommendation (D)    MATLAB/2024a-hpc1-bdist
+   MATLAB/2023a-bdist           MATLAB/2025a-hpc1-bdist
+   MATLAB/2023b-bdist
 
   Where:
    D:  Default Module
@@ -401,7 +401,7 @@ Once you have chosen a specific version, use `ml spider` to check if there are p
 $ ml spider MATLAB/2024a-hpc1-bdist
 ```
 
-The full output was too verbose to reprint in full here, but the one important line reads: 
+The full output is too verbose to reprint in full here, but the one important line reads: 
 
 ```bash
     This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
@@ -413,13 +413,13 @@ The command after the colon (:) can be copied, pasted, and entered directly into
 $ ml MATLAB/2024a-hpc1-bdist
 ```
 
-## Specialized Applications
+## Specialised Applications
 
-For most specialized packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically, without the need to choose a CUDA-containing toolchain.
+For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically, without the need to choose a CUDA-containing toolchain.
 
 !!! important
 
-    Some specialized modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, and may not load, or may load but refuse to run, if you are not part of the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialized software packages.
+    Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialised software packages.
 
 ### Example: OpenFOAM
 
@@ -501,4 +501,4 @@ Now we can load everything all at once like so:
 $ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
 ```
 
-or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualization libraries, all of which can be viewed by entering `ml`.
+or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
