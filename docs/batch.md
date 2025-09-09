@@ -380,7 +380,35 @@ Here there are two things to pay attention to:
         python add-list.py
         ```
 
-    === "UPPMAX"
+    === "UPPMAX (Pelle)"
+
+        !!! warning 
+        
+            For this example ``numba`` may not yet be installed as of the course moment.
+
+        Pelle has Nvidia L40s and H100 GPUs. Default is L40s and is reached by just stating ``-p gpu --gres=gpu``. To reach one of very few large H100 state ``-p gpu --gpus=h100``.
+
+        
+        ```bash 
+        #!/bin/bash
+        # Remember to change this to your own project ID!
+        #SBATCH -A uppmaxXXXX-Y-ZZZ
+        # We want to run on Snowy which has GPUs 
+        #SBATCH -M snowy
+        # We are asking for 10 minutes
+        #SBATCH --time=00:10:00
+        # Asking for one GPU
+        #SBATCH -p gpu
+        #SBATCH --gres=gpu
+
+        module purge  > /dev/null 2>&1
+        module load numba
+
+        # Run your Python script
+        python add-list.py
+        ``` 
+
+    === "UPPMAX (Rackham)"
 
         At UPPMAX the main thing to pay attention to is that the resource "Rackham" does not have GPUs and the batch jobs needing that are therefore submitted to "Snowy" which does have GPUs. 
 
