@@ -286,11 +286,11 @@ based on your coding language and toolchain choice. Note that there are 2 Intel
 versions per language; versions ending with x are newer OneAPI versions supported
 from 2023 onward.
 
-| Coding Language | GCC Toolchain | Intel Toolchain |
-| :-------------- | :------------ | :-------------- |
-| C               | gcc           | icc, icx        |
-| C++             | g++           | icpc, icpx      |
-| Fortran         | gfortran      | ifort, ifx      |
+| Coding Language | If GCC Toolchain | If Intel Toolchain |
+| :-------------- | :--------------- | :----------------- |
+| C               | gcc              | icc, icx           |
+| C++             | g++              | icpc, icpx         |
+| Fortran         | gfortran         | ifort, ifx         |
 
 For some open-source toolchains, there may be no difference between compiling
 serial code with a toolchain and using a built-in compiler. The differences are
@@ -301,11 +301,11 @@ more visible when using an Intel toolchain or when using MPI.
 The table below shows which MPI compiler to use given your choices of toolchain
 and coding language:
 
-| Coding Language | Toolchain with OpenMPI | Intel Toolchain |
-| :-------------- | :--------------------- | :-------------- |
-| C               | mpicc                  | mpiicc          |
-| C++             | mpicxx                 | mpiicpc         |
-| Fortran         | mpifort                | mpiifort        |
+| Coding Language | If Toolchain with OpenMPI | If Intel Toolchain |
+| :-------------- | :------------------------ | :----------------- |
+| C               | mpicc                     | mpiicc             |
+| C++             | mpicxx                    | mpiicpc            |
+| Fortran         | mpifort                   | mpiifort           |
  
 Inside your job script, executables built with OpenMPI need to be run using the
 `mpirun` command. For OpenMPI jobs not using threads, we recommend task binding
