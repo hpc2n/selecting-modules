@@ -65,7 +65,9 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
 
         # module purge is not recommended - if you do it you need to "module load uppmax" after 
         # Load any modules you need, here Python 3.11.8.
-        module load python/3.11.8
+        module load python/3.11.8  # On Rackham
+        module load Python/3.12.3-GCCcore-13.3.0  # On Pelle
+        
 
         # Run your Python script
         python mmmult.py
@@ -189,7 +191,31 @@ Continuing with a Python example
         srun ./integration2d_mpi.py
         ```
 
-    === "UPPMAX"
+    === "UPPMAX (Pelle)"
+
+        ```bash
+        #!/bin/bash
+        # The name of the account you are running in, mandatory.
+        #SBATCH -A uppmaxXXXX-Y-ZZZ
+        # Request resources - here for eight MPI tasks
+        #SBATCH -n 8
+        # Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum at most centres. Here asking for 15 min.
+        #SBATCH --time=00:15:00
+
+        ml purge
+
+        # Load the module environment suitable for the job, it could be more or
+        # less, depending on other package needs. This is for a simple job needing
+        # mpi4py. 
+
+        module load mpi4py/3.1.5-gompi-2023b   # You get GCC/13.2.0, OpenMPI/4.1.6-GCC-13.2.0 and Python/3.11.5-GCCcore-13.2.0 on the fly.
+
+        
+        # And finally run the job - use srun for MPI jobs, but not for serial jobs
+        srun ./integration2d_mpi.py
+        ```
+
+    === "UPPMAX (Rackham)"
 
         ```bash
         #!/bin/bash
@@ -354,7 +380,35 @@ Here there are two things to pay attention to:
         python add-list.py
         ```
 
-    === "UPPMAX"
+    === "UPPMAX (Pelle)"
+
+        !!! warning 
+        
+            For this example ``numba`` may not yet be installed as of the course moment.
+
+        Pelle has Nvidia L40s and H100 GPUs. Default is L40s and is reached by just stating ``-p gpu --gres=gpu``. To reach one of very few large H100 state ``-p gpu --gpus=h100``.
+
+        
+        ```bash 
+        #!/bin/bash
+        # Remember to change this to your own project ID!
+        #SBATCH -A uppmaxXXXX-Y-ZZZ
+        # We want to run on Snowy which has GPUs 
+        #SBATCH -M snowy
+        # We are asking for 10 minutes
+        #SBATCH --time=00:10:00
+        # Asking for one GPU
+        #SBATCH -p gpu
+        #SBATCH --gres=gpu
+
+        module purge  > /dev/null 2>&1
+        module load numba
+
+        # Run your Python script
+        python add-list.py
+        ``` 
+
+    === "UPPMAX (Rackham)"
 
         At UPPMAX the main thing to pay attention to is that the resource "Rackham" does not have GPUs and the batch jobs needing that are therefore submitted to "Snowy" which does have GPUs. 
 
