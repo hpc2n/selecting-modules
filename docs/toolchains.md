@@ -20,7 +20,7 @@ suspensions, and floorpans the same manufacturer.
 
 Most HPC centers recommend using toolchains to build and compile software, whether
 you use the EasyBuild framework or not, to keep software versions consistent and
-reproducible. If you chose to compile software yourself 
+reproducible.
 
 ## Available Toolchains by HPC Center
 
