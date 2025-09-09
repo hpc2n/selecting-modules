@@ -6,21 +6,19 @@
     - Be able to find which compiler toolchains are installed
     - Be able load the compiler toolchain you want
 
-A large proportion of the software at Swedish HPC centers is built using the
-EasyBuild software deployment framework. Under this framework, software is built
-around so-called "toolchains": mutually compatible groups of C and Fortran compilers,
-linear algebra libraries, MPI libraries, and other fundamental packages that are
-used internally by more familiar packages that users typically work with (e.g.,
-Python, R, GROMACS, etc.).
+At many Swedish (and other European) HPC centres, software is built using the
+EasyBuild deployment framework. Under this framework, software is built around
+"**toolchains**": compatible groups of C and Fortran compilers, MPI libraries,
+linear algebra libraries, and other fundamental programs used internally by more
+familiar packages that users work with directly (e.g., Python, R, GROMACS, etc.).
 
 If you can think of familiar software packages like cars, then toolchains can be
-thought of like car *platforms*: it is common for similarly-sized cars from several
-brands to share standardized engine components, power steering systems, wheel axles,
-suspensions, and floorpans the same manufacturer.
+thought of like car *platforms*: similarly-sized cars from several brands often
+use standardized engine components, power steering systems, wheel axles, and other
+parts from the same manufacturer.
 
 Most HPC centers recommend using toolchains to build and compile software, whether
-you use the EasyBuild framework or not, to keep software versions consistent and
-reproducible.
+you use EasyBuild not, to keep software versions consistent and reproducible.
 
 ## Available Toolchains by HPC Center
 
@@ -66,9 +64,10 @@ any.
 === "NSC (Tetralith)"
       
     Note that unlike most clusters, on Tetralith, users must load a module of the form
-    `buildtool-easybuild/X.X.X-hpcXXXXXXXXX` before loading any of the toolchains below.
-    (putting this up here temporarily to see if compilation is affected)
-
+    `buildtool-easybuild/<version>` before loading any of the toolchains below.
+    After loading that prerequisite, users should check the available toolchains with
+    `ml avail <toolchain>` instead of `ml spider <toolchain>`.
+    
     **GCC Compiler Toolchains**
     
        * **GCC**: GCC compiler only
@@ -96,13 +95,13 @@ any.
 
 === "UPPMAX (Rackham/Bianca)"
 
-    Toolchains less visible than on other clusters. Most software are built manually without EasyBuild. Instead, you load compilers, MPI libraries, math libraries, and other modules individually. *The Easybuild toolchains below are provided to demonstrate common combinations of packages.*
+    Toolchains are less visible than on other clusters. Most software was built manually without EasyBuild. Expect to load compilers, MPI libraries, math libraries, and other modules individually, taking common EasyBuild toolchains as inspiration. 
     
        * Need only a compiler? Search for available GCC or intel modules.
        * Need math libraries, like OpenBLAS? Search for that and GCC or intel will be a dependency.
        * Need MPI? See UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
 
-    The **Easybuild toolchains** below may be found for *some* tools in their names and dependencies:
+    The **EasyBuild toolchains** below may be found for *some* tools in their names and dependencies, but are mainly intended to show which libraries go together. Use `ml avail <toolchain>` instead of `ml spider <toolchain>` to see if they are available:
     
     **GCC Compiler Toolchains**
     
