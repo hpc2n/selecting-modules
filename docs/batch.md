@@ -396,7 +396,7 @@ Here there are two things to pay attention to:
         #SBATCH --time=00:10:00
         # Asking for one GPU
         #SBATCH -p gpu
-        #SBATCH --gres=gpu
+        #SBATCH --gres=gpu:1
 
         module purge  > /dev/null 2>&1
         module load numba/0.60.0-foss-2024a  # You get GCC/13.3.0 OpenMPI/5.0.3-GCC-13.3.0 Python/3.12.3-GCCcore-13.3.0 Python-bundle-PyPI/2024.06-GCCcore-13.3.0 and SciPy-bundle/2024.05-gfbf-2024a and more on the fly!
