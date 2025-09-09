@@ -66,7 +66,7 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
         # module purge is not recommended - if you do it you need to "module load uppmax" after 
         # Load any modules you need, here Python 3.11.8.
         module load python/3.11.8  # On Rackham
-        module load Python/3.12.3-GCCcore-13.3.0  # On Pelle
+        # module load Python/3.12.3-GCCcore-13.3.0  # On Pelle
         
 
         # Run your Python script
@@ -382,19 +382,12 @@ Here there are two things to pay attention to:
 
     === "UPPMAX (Pelle)"
 
-        !!! warning 
-        
-            For this example ``numba`` may not yet be installed as of the course moment.
-
         Pelle has Nvidia L40s and H100 GPUs. Default is L40s and is reached by just stating ``-p gpu --gres=gpu``. To reach one of very few large H100 state ``-p gpu --gpus=h100``.
 
-        
         ```bash 
         #!/bin/bash
         # Remember to change this to your own project ID!
         #SBATCH -A uppmaxXXXX-Y-ZZZ
-        # We want to run on Snowy which has GPUs 
-        #SBATCH -M snowy
         # We are asking for 10 minutes
         #SBATCH --time=00:10:00
         # Asking for one GPU
@@ -402,7 +395,7 @@ Here there are two things to pay attention to:
         #SBATCH --gres=gpu
 
         module purge  > /dev/null 2>&1
-        module load numba
+        module load numba/0.60.0-foss-2024a  # You get GCC/13.3.0 OpenMPI/5.0.3-GCC-13.3.0 Python/3.12.3-GCCcore-13.3.0 Python-bundle-PyPI/2024.06-GCCcore-13.3.0 and SciPy-bundle/2024.05-gfbf-2024a and more on the fly!
 
         # Run your Python script
         python add-list.py
