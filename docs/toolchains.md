@@ -270,14 +270,14 @@ subject to change, so it is recommended to always provide version numbers.
 Not all modules have a version associated with your choice of toolchain. If you
 switch toolchains, keep the following in mind:
 
-    * The module system will attempt to upgrade or downgrade any previously
-    loaded modules to match the new choice of toolchain.
-    * If one or more modules loaded with the previous choice of toolchain do
-    not have a version installed that is compatible with the new toolchain,
-    then the module system will raise an error.
-    * For some packages (e.g., Python, Perl, etc.) there is a system version
-    built into the operating system that runs without loading any module or
-    toolchain. These should be avoided since they are subject to change.
+* The module system will attempt to upgrade or downgrade any previously
+loaded modules to match the new choice of toolchain.
+* If one or more modules loaded with the previous choice of toolchain do
+not have a version installed that is compatible with the new toolchain,
+then the module system will raise an error.
+* For some packages (e.g., Python, Perl, etc.) there is a system version
+built into the operating system that runs without loading any module or
+toolchain. These should be avoided since they are subject to change.
     
 ## Compiling serial code using a toolchain
 
