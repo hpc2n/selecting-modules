@@ -261,25 +261,24 @@ After loading a toolchain, many new modules become available, each reliant on
 the specific versions of the modules included in the toolchain. Use `ml avail`
 to see what modules you can load given the toolchain you've loaded.
 
-Most modules have a specific default version for each toolchain that you can
-load without explicitly typing the version number. Not all modules have a
-version associated with your choice of toolchain. In rare cases, there may be
-two or more versions of a software package available for your chosen toolchain,
-and in that case you need to specify the version you want.
+For some packages with very long or very short release intervals, there may be
+multiple versions of a software package available for your chosen toolchain.
+The version that loads by default if no version number is given will have a
+`(D)` to the right of it when listed using `ml avail`. This default version is
+subject to change, so it is recommended to always provide version numbers.
 
-Please note that if you switch toolchains, the module system will attempt to
-upgrade or downgrade any associated modules to match. If one or more modules
-that were loaded for the previous choice of toolchain do not have a version
-installed that is compatible with the new toolchain, the module system will
-raise an error. 
+Not all modules have a version associated with your choice of toolchain. If you
+switch toolchains, keep the following in mind:
 
-If there is a built-in system version of a package and one or more modules
-provide alternative versions, loading any module version will override the
-system version. This is good: the system version of a package is subject to
-change and should generally be avoided if you want your programming to be
-reproducible. A prime example is Python; at most HPC centers, the system version
-of Python will be older than most of the module versions.
-
+    * The module system will attempt to upgrade or downgrade any previously
+    loaded modules to match the new choice of toolchain.
+    * If one or more modules loaded with the previous choice of toolchain do
+    not have a version installed that is compatible with the new toolchain,
+    then the module system will raise an error.
+    * For some packages (e.g., Python, Perl, etc.) there is a system version
+    built into the operating system that runs without loading any module or
+    toolchain. These should be avoided since they are subject to change.
+    
 ## Compiling serial code using a toolchain
 
 If you have loaded a toolchain, choose your compiler from the following table
