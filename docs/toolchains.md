@@ -97,9 +97,10 @@ any.
 === "UPPMAX (Rackham/Bianca)"
 
     Toolchains less visible than on other clusters. Most software are built manually without EasyBuild. Instead, you load compilers, MPI libraries, math libraries, and other modules individually. *The Easybuild toolchains below are provided to demonstrate common combinations of packages.*
-    - Need only a compiler? Search for available GCC or intel modules.
-    - Need math libraries, like OpenBLAS? Search for that and GCC or intel will be a dependency.
-    - Need MPI? See UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
+    
+       * Need only a compiler? Search for available GCC or intel modules.
+       * Need math libraries, like OpenBLAS? Search for that and GCC or intel will be a dependency.
+       * Need MPI? See UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
 
     The **Easybuild toolchains** below may be found for *some* tools in their names and dependencies:
     
@@ -116,7 +117,7 @@ any.
 
 === "PDC (Dardel)"
 
-    On Dardel, nearly all software packages have a prerequisite called something like PDC/xx.xx or PDCOLD/xx.xx that will have to be loaded first. *If you load the wrong one, use `ml unload`!* **Do not purge!**
+    On Dardel, nearly all software packages have a prerequisite called something like PDC/xx.xx or PDCOLD/xx.xx that will have to be loaded first. If you load the wrong one, use `ml unload`! **Do not purge!**
     
     Toolchains at PDC bear little resemblance to any other cluster covered here because PDC uses different hardware architecture and the Cray Programming Environment (CPE).
     
