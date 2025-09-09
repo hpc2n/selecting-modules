@@ -96,13 +96,12 @@ any.
 
 === "UPPMAX (Rackham/Bianca)"
 
-    - Mostly, toolchains are not visible as at the other clusters. Most software are built manually without the EasyBuild concept.
-    - Instead you load modules individually. Be inspired by the Easybuild toolchains below.
-        - If just compiler: search fo available GCC or intel module.
-        - If math libraries, like OpenBLAS, search for that and GCC or intel  will be a dependency.
-        - If MPI, see UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
+    Toolchains less visible than on other clusters. Most software are built manually without EasyBuild. Instead, you load compilers, MPI libraries, math libraries, and other modules individually. *The Easybuild toolchains below are provided to demonstrate common combinations of packages.*
+    - Need only a compiler? Search for available GCC or intel modules.
+    - Need math libraries, like OpenBLAS? Search for that and GCC or intel will be a dependency.
+    - Need MPI? See UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
 
-    - The **Easybuild toolchains** below may be found for some tools in their names and dependencies.
+    The **Easybuild toolchains** below may be found for *some* tools in their names and dependencies:
     
     **GCC Compiler Toolchains**
     
@@ -114,6 +113,26 @@ any.
     
        * **intel**: icc, ifort, Intel MPI, MKL
        * **iimpi**: icc, ifort, Intel MPI
+
+=== "PDC (Dardel)"
+
+    On Dardel, nearly all software packages have a prerequisite called something like PDC/xx.xx or PDCOLD/xx.xx that will have to be loaded first. *If you load the wrong one, use `ml unload`!* **Do not purge!**
+    
+    Toolchains at PDC bear little resemblance to any other cluster covered here because PDC uses different hardware architecture and the Cray Programming Environment (CPE).
+    
+    - On Dardel, `PrgEnv-cray` and `cray-libsci` are loaded by default, and provide the compiler and linear algebra libraries, respectively.
+    - Loading `cpe/YY.XX` adds `cray-mpich` as the MPI library, and modifies `PrgEnv-cray` and `cray-libsci` if needed to maintain compatibility.
+    - The FFT library, `cray-fftw`, must be loaded separately.
+    - Alternative compilers are provided by `PrgEnv-gnu` (loads the GNU compiler suite) and `PrgEnv-aocc` (loads the AMD AOCC compilers).
+    
+    For software built or intended to be built with EasyBuild, there are 3 toolchains that help to assemble the appropriate combinations of the modules mentioned above, among other tools to support parallel programming.
+
+    - cpeCRAY: based on `PrgEnv-cray`
+    - cpeAMD: based on `PrgEnv-gnu`
+    - cpeGNU: based on `PrgEnv-aocc`
+    
+    In the interest of time, we refer readers to [this page on the CPE](https://support.pdc.kth.se/doc/software_development/development/#the-cray-programming-environment) and [this page on CPE-based toolchains](https://support.pdc.kth.se/doc/software_development/easybuild/#toolchains).
+
 
 ### CUDA based toolchains for GPU nodes
 
