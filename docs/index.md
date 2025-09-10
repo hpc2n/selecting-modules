@@ -1,6 +1,6 @@
 # Welcome to the course: Selecting software modules 
 
-This NAISS course is given under under NAISS, by staff working at the branches located at UPPMAX, LUNARC, and HPC2N.
+This NAISS course is given under under NAISS, by staff working at the branches located at UPPMAX, LUNARC, HPC2N, and Chalmers, and will cover clusters at those facilities as well as at NSC (Tetralith) and PDC (Dardel).
 
 !!! note "This material" 
 
