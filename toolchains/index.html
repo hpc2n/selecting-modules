@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://hpc2n.github.io/selecting-modules/toolchains/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Compiler toolchains - Selecting software modules</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_markdown_exec_pyodide.css" rel="stylesheet" />
+        <link href="../assets/_markdown_exec_ansi.css" rel="stylesheet" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Compiler toolchains";
+        var mkdocs_page_input_path = "toolchains.md";
+        var mkdocs_page_url = "/selecting-modules/toolchains/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../images/logo-modules-course_v2.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">The module system</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commands/">Module system commands</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Compiler toolchains</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#available__toolchains__by__hpc__center">Available Toolchains by HPC Center</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#toolchains__for__regular__cpu__nodes">Toolchains for regular CPU nodes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cuda__based__toolchains__for__gpu__nodes">CUDA based toolchains for GPU nodes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#selecting__a__toolchain">Selecting a toolchain</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compiling__serial__code__using__a__toolchain">Compiling serial code using a toolchain</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#toolchains__using__mpi">Toolchains using MPI</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../programs/">Software module examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../batch/">Modules in batch scripts</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../summary/">Summary</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Extra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced_module/">Advanced module commands</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Selecting software modules</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Compiler toolchains</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="compiler__toolchains">Compiler toolchains<a class="headerlink" href="#compiler__toolchains" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Learn what compiler toolchains are and why they are used</li>
+<li>Be able to find which compiler toolchains are installed</li>
+<li>Be able load the compiler toolchain you want</li>
+</ul>
+</div>
+<p>At many Swedish (and other European) HPC centres, software is built using the
+EasyBuild deployment framework. Under this framework, software is built around
+&ldquo;<strong>toolchains</strong>&rdquo;: compatible groups of C and Fortran compilers, MPI libraries,
+linear algebra libraries, and other fundamental programs used internally by more
+familiar packages that users work with directly (e.g., Python, R, GROMACS, etc.).</p>
+<p>If you can think of familiar software packages like cars, then toolchains can be
+thought of like car <em>platforms</em>: similarly-sized cars from several brands often
+use standardized engine components, power steering systems, wheel axles, and other
+parts from the same manufacturer.</p>
+<p>Most HPC centers recommend using toolchains to build and compile software, whether
+you use EasyBuild not, to keep software versions consistent and reproducible.</p>
+<h2 id="available__toolchains__by__hpc__center">Available Toolchains by HPC Center<a class="headerlink" href="#available__toolchains__by__hpc__center" title="Permanent link">&para;</a></h2>
+<h3 id="toolchains__for__regular__cpu__nodes">Toolchains for regular CPU nodes<a class="headerlink" href="#toolchains__for__regular__cpu__nodes" title="Permanent link">&para;</a></h3>
+<p>For most of the following toolchains, multiple versions are available on each of
+the specified clusters. Use <code>ml spider &lt;toolchain&gt;</code> to determine which versions
+are available and what modules are required as prerequisites to load them, if
+any.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">HPC2N (Kebnekaise)</label><label for="__tabbed_1_2">LUNARC (Cosmos)</label><label for="__tabbed_1_3">NSC (Tetralith)</label><label for="__tabbed_1_4">UPPMAX (Pelle)</label><label for="__tabbed_1_5">UPPMAX (Rackham/Bianca)</label><label for="__tabbed_1_6">PDC (Dardel)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>GCC Compiler Toolchains</strong></p>
+<ul>
+<li><strong>GCC</strong>: GCC compiler only</li>
+<li><strong>foss</strong>: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK</li>
+<li><strong>gompi</strong>: GCC, OpenMPI</li>
+<li><strong>gomkl</strong>: GCC, OpenMPI, MKL</li>
+<li><strong>gfbf</strong>: GCC, FlexiBLAS, FFTW  (no MPI)</li>
+</ul>
+<p><strong>Intel Compiler Toolchains</strong></p>
+<ul>
+<li><strong>intel</strong>: icc, ifort, Intel MPI, MKL</li>
+<li><strong>intel-compilers</strong>: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)</li>
+<li><strong>iimpi</strong>: icc, ifort, Intel MPI</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>GCC Compiler Toolchains</strong></p>
+<ul>
+<li><strong>GCC</strong>: GCC compiler only</li>
+<li><strong>foss</strong>: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK</li>
+<li><strong>gompi</strong>: GCC, OpenMPI</li>
+<li><strong>gomkl</strong>: GCC, OpenMPI, MKL</li>
+<li><strong>gfbf</strong>: GCC, FlexiBLAS, FFTW  (no MPI)</li>
+</ul>
+<p><strong>Intel Compiler Toolchains</strong></p>
+<ul>
+<li><strong>intel</strong>: icc, ifort, Intel MPI, MKL</li>
+<li><strong>intel-compilers</strong>: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)</li>
+<li><strong>iimpi</strong>: icc, ifort, Intel MPI</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Note that unlike most clusters, on Tetralith, users must load a module of the form
+<code>buildtool-easybuild/&lt;version&gt;</code> before loading any of the toolchains below.
+After loading that prerequisite, users should check the available toolchains with
+<code>ml avail &lt;toolchain&gt;</code> instead of <code>ml spider &lt;toolchain&gt;</code>.</p>
+<p><strong>GCC Compiler Toolchains</strong></p>
+<ul>
+<li><strong>GCC</strong>: GCC compiler only</li>
+<li><strong>foss</strong>: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK</li>
+<li><strong>gfbf</strong>: GCC, FlexiBLAS, FFTW  (no MPI)</li>
+</ul>
+<p><strong>Intel Compiler Toolchains</strong></p>
+<ul>
+<li><strong>intel</strong>: icc, ifort, Intel MPI, MKL</li>
+<li><strong>intel-compilers</strong>: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>GCC Compiler Toolchains</strong></p>
+<ul>
+<li><strong>GCC</strong>: GCC compiler only</li>
+<li><strong>foss</strong>: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK</li>
+<li><strong>gfbf</strong>: GCC, FlexiBLAS, FFTW  (no MPI)</li>
+</ul>
+<p><strong>Intel Compiler Toolchains</strong></p>
+<ul>
+<li><strong>intel</strong>: icc, ifort, Intel MPI, MKL</li>
+<li><strong>intel-compilers</strong>: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)</li>
+<li><strong>iimpi</strong>: icc, ifort, Intel MPI</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Toolchains are less visible than on other clusters. Most software was built manually without EasyBuild. Expect to load compilers, MPI libraries, math libraries, and other modules individually, taking common EasyBuild toolchains as inspiration. </p>
+<ul>
+<li>Need only a compiler? Search for available GCC or intel modules.</li>
+<li>Need math libraries, like OpenBLAS? Search for that and GCC or intel will be a dependency.</li>
+<li>Need MPI? See UPPMAX documentation about <a href="https://docs.uppmax.uu.se/software/parallel_comb/">combinations of compilers and MPI libraries</a></li>
+</ul>
+<p>The <strong>EasyBuild toolchains</strong> below may be found for <em>some</em> tools in their names and dependencies, but are mainly intended to show which libraries go together. Use <code>ml avail &lt;toolchain&gt;</code> instead of <code>ml spider &lt;toolchain&gt;</code> to see if they are available:</p>
+<p><strong>GCC Compiler Toolchains</strong></p>
+<ul>
+<li><strong>GCC</strong>: GCC compiler only</li>
+<li><strong>foss</strong>: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK</li>
+<li><strong>gompi</strong>: GCC, OpenMPI</li>
+</ul>
+<p><strong>Intel Compiler Toolchains</strong></p>
+<ul>
+<li><strong>intel</strong>: icc, ifort, Intel MPI, MKL</li>
+<li><strong>iimpi</strong>: icc, ifort, Intel MPI</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>On Dardel, nearly all software packages have a prerequisite called something like PDC/xx.xx or PDCOLD/xx.xx that will have to be loaded first. If you load the wrong one, use <code>ml unload</code>! <strong>Do not purge!</strong></p>
+<p>Toolchains at PDC bear little resemblance to any other cluster covered here because PDC uses different hardware architecture and the Cray Programming Environment (CPE).</p>
+<ul>
+<li>On Dardel, <code>PrgEnv-cray</code> and <code>cray-libsci</code> are loaded by default, and provide the compiler and linear algebra libraries, respectively.</li>
+<li>Loading <code>cpe/YY.XX</code> adds <code>cray-mpich</code> as the MPI library, and modifies <code>PrgEnv-cray</code> and <code>cray-libsci</code> if needed to maintain compatibility.</li>
+<li>The FFT library, <code>cray-fftw</code>, must be loaded separately.</li>
+<li>Alternative compilers are provided by <code>PrgEnv-gnu</code> (loads the GNU compiler suite) and <code>PrgEnv-aocc</code> (loads the AMD AOCC compilers).</li>
+</ul>
+<p>For software built or intended to be built with EasyBuild, there are 3 toolchains that help to assemble the appropriate combinations of the modules mentioned above, among other tools to support parallel programming.</p>
+<ul>
+<li>cpeCRAY: based on <code>PrgEnv-cray</code></li>
+<li>cpeAMD: based on <code>PrgEnv-gnu</code></li>
+<li>cpeGNU: based on <code>PrgEnv-aocc</code></li>
+</ul>
+<p>In the interest of time, we refer readers to <a href="https://support.pdc.kth.se/doc/software_development/development/#the-cray-programming-environment">this page on the CPE</a> and <a href="https://support.pdc.kth.se/doc/software_development/easybuild/#toolchains">this page on CPE-based toolchains</a>.</p>
+</div>
+</div>
+</div>
+<h3 id="cuda__based__toolchains__for__gpu__nodes">CUDA based toolchains for GPU nodes<a class="headerlink" href="#cuda__based__toolchains__for__gpu__nodes" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">HPC2N (Kebnekaise)</label><label for="__tabbed_2_2">LUNARC (Cosmos)</label><label for="__tabbed_2_3">NSC (Tetralith)</label><label for="__tabbed_2_4">UPPMAX (Pelle)</label><label for="__tabbed_2_5">UPPMAX (Rackham)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>GCC Compiler Toolchains for GPU</strong></p>
+<ul>
+<li><strong>gcccuda</strong>:  GCC, CUDA</li>
+<li><strong>fosscuda</strong>: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK</li>
+</ul>
+<p><strong>Intel Compiler Toolchains for GPU</strong></p>
+<ul>
+<li><strong>iccifortcuda</strong>: icc, ifort, CUDA (2019 releases only)</li>
+<li><strong>iimpic</strong>: icc, ifort, CUDA, Intel MPI (2019 releases only)</li>
+<li><strong>intelcuda</strong>: icc, ifort, CUDA, Intel MPI, MKL</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>GCC Compiler Toolchains for GPU</strong></p>
+<ul>
+<li><strong>gcccuda</strong>:  GCC, CUDA</li>
+<li><strong>fosscuda</strong>: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK</li>
+</ul>
+<p><strong>Intel Compiler Toolchains for GPU</strong></p>
+<ul>
+<li><strong>iccifortcuda</strong>: icc, ifort, CUDA</li>
+<li><strong>iimpic</strong>: icc, ifort, CUDA, Intel MPI</li>
+<li><strong>intelcuda</strong>: icc, ifort, CUDA, Intel MPI, MKL</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>GCC Compiler Toolchains for GPU</strong></p>
+<ul>
+<li><strong>buildenv-gcccuda</strong>: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>As of today you load GCC and CUDA separately.</li>
+<li>New tools are typically build with the latest versions of both.</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Rackham only has GPUs on the login nodes. You will need an account on Snowy to use GPUs intensively.</p>
+</div>
+<p><strong>GCC Compiler Toolchains for GPU</strong></p>
+<ul>
+<li><strong>gcccuda</strong>:  GCC, CUDA</li>
+<li><strong>fosscuda</strong>: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="selecting__a__toolchain">Selecting a toolchain<a class="headerlink" href="#selecting__a__toolchain" title="Permanent link">&para;</a></h2>
+<p>The above toolchain choices can be a bit overwhelming, especially for new users. 
+Good choices for general use are the toolchains:</p>
+<ul>
+<li><strong>foss</strong>, to use the GCC compiler suite</li>
+<li><strong>intel</strong>, to use the Intel compiler suite</li>
+<li><strong>gomkl</strong>, to use the GCC compiler suite with Intel&rsquo;s Math Kernel Library (MKL)</li>
+</ul>
+<p><strong>Example:</strong> To check the foss versions available, use</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span>module<span class="w"> </span>avail<span class="w"> </span>foss
+</span></code></pre></div>
+<p>and you will get an output similar to this example on COSMOS:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>-----------------<span class="w"> </span>/sw/easybuild_milan/modules/all/Core<span class="w"> </span>------------------
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">   </span>foss/2020b<span class="w">    </span>foss/2022a<span class="w">    </span>foss/2023b<span class="w">          </span>fosscuda/2020b
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">   </span>foss/2021a<span class="w">    </span>foss/2022b<span class="w">    </span>foss/2024a
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">   </span>foss/2021b<span class="w">    </span>foss/2023a<span class="w">    </span>foss/2024.05<span class="w"> </span><span class="o">(</span>D<span class="o">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>Where:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">   </span>D:<span class="w">  </span>Default<span class="w"> </span>Module
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>If<span class="w"> </span>the<span class="w"> </span>avail<span class="w"> </span>list<span class="w"> </span>is<span class="w"> </span>too<span class="w"> </span>long<span class="w"> </span>consider<span class="w"> </span>trying:
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="s2">&quot;module --default avail&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;ml -d av&quot;</span><span class="w"> </span>to<span class="w"> </span>just<span class="w"> </span>list<span class="w"> </span>the<span class="w"> </span>default<span class="w"> </span>modules.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="s2">&quot;module overview&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;ml ov&quot;</span><span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>modules<span class="w"> </span><span class="k">for</span><span class="w"> </span>each
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>name.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>Use<span class="w"> </span><span class="s2">&quot;module spider&quot;</span><span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules<span class="w"> </span>and<span class="w"> </span>extensions.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>Use<span class="w"> </span><span class="s2">&quot;module keyword key1 key2 ...&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>possible<span class="w"> </span>modules
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>matching<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;keys&quot;</span>.
+</span></code></pre></div>
+<p>The version numbers indicate roughly when each version was released. Version
+2023a was released at the beginning of 2023, 2023b in the middle of 2023, and
+2024a at the start of 2024. If you load e.g. the <code>foss/2024a</code> module as shown
+below,</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>foss/2024a
+</span></code></pre></div>
+<p>It will load several modules for you, including the compiler, libraries, and
+other utilities. The command <code>module list</code>, or <code>ml</code> for short, can then show you
+what modules are now loaded and available for use. Below is the output of <code>ml</code>
+after loading <code>foss/2024a</code> on COSMOS:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Currently<span class="w"> </span>Loaded<span class="w"> </span>Modules:
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="m">1</span><span class="o">)</span><span class="w"> </span>SoftwareTree/Milan<span class="w">  </span><span class="o">(</span>S<span class="o">)</span><span class="w">  </span><span class="m">13</span><span class="o">)</span><span class="w"> </span>UCX/1.16.0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="m">2</span><span class="o">)</span><span class="w"> </span>GCCcore/13.3.0<span class="w">           </span><span class="m">14</span><span class="o">)</span><span class="w"> </span>libfabric/1.21.0
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="m">3</span><span class="o">)</span><span class="w"> </span>zlib/1.3.1<span class="w">               </span><span class="m">15</span><span class="o">)</span><span class="w"> </span>PMIx/5.0.2
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="m">4</span><span class="o">)</span><span class="w"> </span>binutils/2.42<span class="w">            </span><span class="m">16</span><span class="o">)</span><span class="w"> </span>PRRTE/3.0.5
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="m">5</span><span class="o">)</span><span class="w"> </span>GCC/13.3.0<span class="w">               </span><span class="m">17</span><span class="o">)</span><span class="w"> </span>UCC/1.3.0
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="m">6</span><span class="o">)</span><span class="w"> </span>numactl/2.0.18<span class="w">           </span><span class="m">18</span><span class="o">)</span><span class="w"> </span>OpenMPI/5.0.3
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="m">7</span><span class="o">)</span><span class="w"> </span>XZ/5.4.5<span class="w">                 </span><span class="m">19</span><span class="o">)</span><span class="w"> </span>OpenBLAS/0.3.27
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="m">8</span><span class="o">)</span><span class="w"> </span>libxml2/2.12.7<span class="w">           </span><span class="m">20</span><span class="o">)</span><span class="w"> </span>FlexiBLAS/3.4.4
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="m">9</span><span class="o">)</span><span class="w"> </span>libpciaccess/0.18.1<span class="w">      </span><span class="m">21</span><span class="o">)</span><span class="w"> </span>FFTW/3.3.10
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w"> </span><span class="m">10</span><span class="o">)</span><span class="w"> </span>hwloc/2.10.0<span class="w">             </span><span class="m">22</span><span class="o">)</span><span class="w"> </span>FFTW.MPI/3.3.10
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w"> </span><span class="m">11</span><span class="o">)</span><span class="w"> </span>OpenSSL/3<span class="w">                </span><span class="m">23</span><span class="o">)</span><span class="w"> </span>ScaLAPACK/2.2.0-fb
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w"> </span><span class="m">12</span><span class="o">)</span><span class="w"> </span>libevent/2.1.12<span class="w">          </span><span class="m">24</span><span class="o">)</span><span class="w"> </span>foss/2024a
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span>Where:
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">   </span>S:<span class="w">  </span>Module<span class="w"> </span>is<span class="w"> </span>Sticky,<span class="w"> </span>requires<span class="w"> </span>--force<span class="w"> </span>to<span class="w"> </span>unload<span class="w"> </span>or<span class="w"> </span>purge
+</span></code></pre></div>
+<p>After loading a toolchain, many new modules become available, each reliant on
+the specific versions of the modules included in the toolchain. Use <code>ml avail</code>
+to see what modules you can load given the toolchain you&rsquo;ve loaded.</p>
+<p>For some packages with very long or very short release intervals, there may be
+multiple versions of a software package available for your chosen toolchain.
+The version that loads by default if no version number is given will have a
+<code>(D)</code> to the right of it when listed using <code>ml avail</code>. This default version is
+subject to change, so it is recommended to always provide version numbers.</p>
+<p>Not all modules have a version associated with your choice of toolchain. If you
+switch toolchains, keep the following in mind:</p>
+<ul>
+<li>The module system will attempt to upgrade or downgrade any previously
+loaded modules to match the new choice of toolchain.</li>
+<li>If one or more modules loaded with the previous choice of toolchain do
+not have a version installed that is compatible with the new toolchain,
+then the module system will raise an error.</li>
+<li>For some packages (e.g., Python, Perl, etc.) there is a system version
+built into the operating system that runs without loading any module or
+toolchain. These should be avoided since they are subject to change.</li>
+</ul>
+<h2 id="compiling__serial__code__using__a__toolchain">Compiling serial code using a toolchain<a class="headerlink" href="#compiling__serial__code__using__a__toolchain" title="Permanent link">&para;</a></h2>
+<p>If you have loaded a toolchain, choose your compiler from the following table
+based on your coding language and toolchain choice. Note that there are 2 Intel
+versions per language; versions ending with x are newer OneAPI versions supported
+from 2023 onward.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Coding Language</th>
+<th style="text-align: left;">If GCC Toolchain</th>
+<th style="text-align: left;">If Intel Toolchain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">gcc</td>
+<td style="text-align: left;">icc, icx</td>
+</tr>
+<tr>
+<td style="text-align: left;">C++</td>
+<td style="text-align: left;">g++</td>
+<td style="text-align: left;">icpc, icpx</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fortran</td>
+<td style="text-align: left;">gfortran</td>
+<td style="text-align: left;">ifort, ifx</td>
+</tr>
+</tbody>
+</table>
+<p>For some open-source toolchains, there may be no difference between compiling
+serial code with a toolchain and using a built-in compiler. The differences are
+more visible when using an Intel toolchain or when using MPI.</p>
+<h3 id="toolchains__using__mpi">Toolchains using MPI<a class="headerlink" href="#toolchains__using__mpi" title="Permanent link">&para;</a></h3>
+<p>The table below shows which MPI compiler to use given your choices of toolchain
+and coding language:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Coding Language</th>
+<th style="text-align: left;">If Toolchain with OpenMPI</th>
+<th style="text-align: left;">If Intel Toolchain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">mpicc</td>
+<td style="text-align: left;">mpiicc</td>
+</tr>
+<tr>
+<td style="text-align: left;">C++</td>
+<td style="text-align: left;">mpicxx</td>
+<td style="text-align: left;">mpiicpc</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fortran</td>
+<td style="text-align: left;">mpifort</td>
+<td style="text-align: left;">mpiifort</td>
+</tr>
+</tbody>
+</table>
+<p>Inside your job script, executables built with OpenMPI need to be run using the
+<code>mpirun</code> command. For OpenMPI jobs not using threads, we recommend task binding
+(i.e., use the <code>mpirun</code> option <code>--bind-to core</code>)</p>
+<p>For Intel-based MPI scripts, the script should be run with <code>srun</code> command.</p>
+<p>Here is a template for a script using OpenMPI (adapted from LUNARC
+documentation):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="ch">#!/bin/sh</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">#SBATCH -N 3                 # number of nodes (arbitrary number &gt;1)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">#SBATCH --ntasks-per-node=16 # adapt for your needs</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">#SBATCH --exclusive          # reserve whole nodes</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">#SBATCH -t 0:60:0            # run time</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#SBATCH -J my_mpi_job        # job name in queue</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">#SBATCH -o result_%j.out     # output file</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1">#SBATCH -e result_%j.err     # error file</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1">#SBATCH -A &lt;project-ID&gt;      # replace with your project ID</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>cat<span class="w"> </span><span class="nv">$0</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># module load statement(s) - adapt for your package(s)</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>module<span class="w"> </span>load<span class="w"> </span>foss/2023a
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># run the jobs - here we assume an executable name: my_program</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>mpirun<span class="w"> </span>--bind-to<span class="w"> </span>core<span class="w"> </span>my_program
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># for intel toolchains, the command is srun</span>
+</span></code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../commands/" class="btn btn-neutral float-left" title="Module system commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../programs/" class="btn btn-neutral float-right" title="Software module examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../commands/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../programs/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../assets/_markdown_exec_pyodide.js"></script>
+      <script src="../search/main.js"></script>
+      <script src="../js/open_in_new_tab.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
