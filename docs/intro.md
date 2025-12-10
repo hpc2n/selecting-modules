@@ -290,7 +290,7 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
     2. Try checking for a specific software module to see if it is installed: 
         - GROMACS
         - Python
-        - VASP
+        - OpenFOAM
         - R 
     3. What happens if you change the capitalization when you search for a module? Do you still find it? (Centre-dependent!) 
 
