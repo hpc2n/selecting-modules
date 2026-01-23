@@ -23,7 +23,7 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 
     This is from a recent NAISS course about basic Linux: 
   
-    - Material: <a href="https://hpc2n.github.io/intro-linux/" target="_blank">https://hpc2n.github.io/intro-linux/</a>
+    - Material: <a href="https://hpc2n.github.io/linux-command-line-101/" target="_blank">https://hpc2n.github.io/linux-command-line-101/</a>
     - Recordings from the course, on YouTube: <a href="https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq" target="_blank">https://www.youtube.com/playlist?list=PL6jMHLEmPVLzLr4i8ME2A-PUtawhkilbq</a> 
 
 !!! note "Learning outcome"   
