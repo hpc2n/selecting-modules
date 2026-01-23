@@ -8,7 +8,8 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 
     - Documentation about selecting modules at some of the Swedish HPC centres 
         - HPC2N: <a href="https://docs.hpc2n.umu.se/software/modules/" target="_blank">https://docs.hpc2n.umu.se/software/modules/</a> 
-        - UPPMAX: <a href="https://docs.uppmax.uu.se/cluster_guides/modules/" target="_blank">https://docs.uppmax.uu.se/cluster_guides/modules/</a>  
+        - UPPMAX (Pelle): <a href="https://docs.uppmax.uu.se/cluster_guides/pelle_modules/" target="_blank"https://docs.uppmax.uu.se/cluster_guides/pelle_modules//</a>  
+        - UPPMAX (Bianca): <a href="https://docs.uppmax.uu.se/cluster_guides/modules/" target="_blank">https://docs.uppmax.uu.se/cluster_guides/modules/</a>  
         - LUNARC: <a href="https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/" target="_blank">https://lunarc-documentation.readthedocs.io/en/latest/manual/manual_modules/</a>  
         - PDC: <a href="https://support.pdc.kth.se/doc/basics/quickstart/#the-lmod-module-system" target="_blank">https://support.pdc.kth.se/doc/basics/quickstart/#the-lmod-module-system</a>   
         - NSC: <a href="https://www.nsc.liu.se/software/modules/" target="_blank">https://www.nsc.liu.se/software/modules/</a>  
@@ -99,7 +100,7 @@ In order to type along and do the exercises, please prepare your course environm
             - Password: ``<yout-hpc2n-password>``
         - ThinLinc Webaccess: 
             - Put ``https://kebnekaise-tl.hpc2n.umu.se:300/`` in browser address bar 
-            - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in th e login box that opens and click ``Login`` 
+            - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in the login box that opens and click ``Login`` 
     - **UPPMAX** 
     
         === "Pelle"
@@ -120,7 +121,7 @@ In order to type along and do the exercises, please prepare your course environm
             - ThinLinc Webaccess: 
                 - Put ``https://bianca.uppmax.uu.se`` in browser address bar 
                 - Follow the instructions!
-            - Note that you need have to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/"
+            - Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
             
     - **LUNARC** 
         - SSH: ``ssh <user>@cosmos.lunarc.lu.se``
@@ -155,6 +156,10 @@ In order to type along and do the exercises, please prepare your course environm
 !!! note "3. Download the exercises" 
 
     - ``wget https://github.com/hpc2n/selecting-modules/raw/refs/heads/main/exercises.tar.gz`` 
+
+    ??? question "Bianca user **FIX**"
+
+        - Find the tar ball in the project folder: ````
 
 !!! note "4. Extract the exercises" 
 
