@@ -43,7 +43,8 @@ This is a list of some of the most useful commands for the module system. In the
     - This way is only recommended at HPC2N, LUNARC, (C3SE), and PDC 
 - See prerequisites and how to load a specfic version of a module: ``module spider MODULE/VERSION`` or ``ml spider MODULE/VERSION``
 - List modules depending only on what is currently loaded: ``module avail`` or ``ml av``
-    - At UPPMAX and NSC (and C3SE) this will list all available modules! 
+    - At UPPMAX and NSC (and C3SE) this will list all available modules!
+    - On Bianca, bioinfo tools are seen after loading ``bioinfo-tools``
 - See which modules are currently loaded: ``module list`` or ``ml``
 - Loading a module: ``module load MODULE`` or ``ml MODULE``
 - Loading a specific version of a module: ``module load MODULE/VERSION`` or ``ml MODULE/VERSION``
@@ -71,6 +72,10 @@ This is the recommended way to find existing software modules at **HPC2N**, **LU
 !!! hint 
 
     ``module spider`` can be written in short form as ``ml spider``
+
+??? question "Why is `ml spider` slow at the UPPMAX clusters? 
+
+    The reason is the large software stack at UPPMAX (1000s of modules, inclusing different versions). It takes time to go through everything!
 
 ??? note "Example, HPC2N" 
 
@@ -293,6 +298,7 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
         - OpenFOAM
         - R 
     3. What happens if you change the capitalization when you search for a module? Do you still find it? (Centre-dependent!) 
+
 
 ## Summary 
 
