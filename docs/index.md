@@ -155,11 +155,16 @@ In order to type along and do the exercises, please prepare your course environm
 
 !!! note "3. Download the exercises" 
 
+    ??? question "Bianca user"
+
+        - Stay in the created folder (``cd $HOME/selecting-modules``)
+        - Copy the tar ball from the project's folder to your created folder: 
+        
+            cp /proj/sens2025560/selecting_modules/exercises.tar.gz .
+
+        - Let the teacher know if it is missing.
+
     - ``wget https://github.com/hpc2n/selecting-modules/raw/refs/heads/main/exercises.tar.gz`` 
-
-    ??? question "Bianca user **FIX**"
-
-        - Find the tar ball in the project folder: ````
 
 !!! note "4. Extract the exercises" 
 
