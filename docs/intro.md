@@ -182,12 +182,12 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
 
     ``module avail`` can be written in short form as ``ml av`` 
 
-??? note "Example, UPPMAX (NSC works the same)" 
+??? note "Example, Bianca (NSC works the same)" 
 
     ```bash
-    [bbrydsoe@rackham1 ~]$ module avail
+    [bjornc@sens2025560-bianca ~]$ module avail
 
-    --------------------------------- /sw/mf/rackham/applications ----------------------------------
+    --------------------------------- /sw/mf/bianca/applications ----------------------------------
       ABINIT/8.10.3                          comsol/6.1
       ALPS/2.3.0                             comsol/6.2                       (D)
       Amber/20                               comsol/6.3
