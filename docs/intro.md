@@ -69,13 +69,13 @@ This is a list of some of the most useful commands for the module system. In the
 
 This is the recommended way to find existing software modules at **HPC2N**, **LUNARC**, (**C3SE**), and **PDC**. 
 
-!!! hint 
-
-    ``module spider`` can be written in short form as ``ml spider``
-
 ??? question "Why is `ml spider` slow at the UPPMAX clusters? 
 
     The reason is the large software stack at UPPMAX (1000s of modules, inclusing different versions). It takes time to go through everything!
+
+!!! hint 
+
+    ``module spider`` can be written in short form as ``ml spider``
 
 ??? note "Example, HPC2N" 
 
