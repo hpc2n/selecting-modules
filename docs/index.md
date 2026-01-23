@@ -160,7 +160,7 @@ In order to type along and do the exercises, please prepare your course environm
         - Stay in the created folder (``cd $HOME/selecting-modules``)
         - Copy the tar ball from the project's folder to your created folder: 
         
-            cp /proj/sens2025560/selecting_modules/exercises.tar.gz .
+            - ``cp /proj/sens2025560/selecting_modules/exercises.tar.gz . ``
 
         - Let the teacher know if it is missing.
 
