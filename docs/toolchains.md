@@ -29,7 +29,7 @@ the specified clusters. Use `ml spider <toolchain>` to determine which versions
 are available and what modules are required as prerequisites to load them, if
 any.
 
-=== "HPC2N (Kebnekaise)"
+=== "Kebnekaise"
 
     **GCC Compiler Toolchains**
     
@@ -45,7 +45,7 @@ any.
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "LUNARC (Cosmos)"
+=== "Cosmos"
 
     **GCC Compiler Toolchains**
     
@@ -61,7 +61,7 @@ any.
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "NSC (Tetralith)"
+=== "Tetralith"
       
     Note that unlike most clusters, on Tetralith, users must load a module of the form
     `buildtool-easybuild/<version>` before loading any of the toolchains below.
@@ -79,7 +79,7 @@ any.
        * **intel**: icc, ifort, Intel MPI, MKL
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
 
-=== "UPPMAX (Pelle)"
+=== "Pelle"
 
     **GCC Compiler Toolchains**
     
@@ -93,7 +93,7 @@ any.
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "UPPMAX (Rackham/Bianca)"
+=== "Bianca"
 
     Toolchains are less visible than on other clusters. Most software was built manually without EasyBuild. Expect to load compilers, MPI libraries, math libraries, and other modules individually, taking common EasyBuild toolchains as inspiration. 
     
@@ -114,7 +114,7 @@ any.
        * **intel**: icc, ifort, Intel MPI, MKL
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "PDC (Dardel)"
+=== "Dardel"
 
     On Dardel, nearly all software packages have a prerequisite called something like PDC/xx.xx or PDCOLD/xx.xx that will have to be loaded first. If you load the wrong one, use `ml unload`! **Do not purge!**
     
@@ -136,20 +136,15 @@ any.
 
 ### CUDA based toolchains for GPU nodes
 
-=== "HPC2N (Kebnekaise)"
+=== "Kebnekaise"
 
-    **GCC Compiler Toolchains for GPU**
-    
-       * **gcccuda**:  GCC, CUDA
-       * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+    - As of today you load GCC and CUDA separately.
+    - New tools are typically build with the latest versions of both.
 
-    **Intel Compiler Toolchains for GPU**
-    
-       * **iccifortcuda**: icc, ifort, CUDA (2019 releases only)
-       * **iimpic**: icc, ifort, CUDA, Intel MPI (2019 releases only)
-       * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
+    * foss, GCC, CUDA
+    * intel, CUDA 
 
-=== "LUNARC (Cosmos)"
+=== "Cosmos"
 
     **GCC Compiler Toolchains for GPU**
     
@@ -162,28 +157,16 @@ any.
        * **iimpic**: icc, ifort, CUDA, Intel MPI
        * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
 
-=== "NSC (Tetralith)"
+=== "Tetralith"
 
     **GCC Compiler Toolchains for GPU**
     
        * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
-=== "UPPMAX (Pelle)"
+=== "Pelle"
 
     - As of today you load GCC and CUDA separately.
     - New tools are typically build with the latest versions of both.
-
-=== "UPPMAX (Rackham)"
-
-    !!! important
-
-        Rackham only has GPUs on the login nodes. You will need an account on Snowy to use GPUs intensively.
-
-    **GCC Compiler Toolchains for GPU**
-    
-       * **gcccuda**:  GCC, CUDA
-       * **fosscuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
-
 
 ## Selecting a toolchain
 
