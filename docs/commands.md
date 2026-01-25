@@ -871,7 +871,7 @@ There are situations where you need to load several modules, even at centres whe
 
 !!! note "Example" 
 
-    You need some Python packages not included in the base Python you loaded, for instance TensorFlow or maybe AlphaFold. 
+    You need some Python packages not included in the base Python you loaded, for instance PyTorch, or TensorFlow, or maybe AlphaFold. 
 
     You now need to load a version of that module which is compatible with the Python you want. 
    
@@ -905,31 +905,43 @@ There are situations where you need to load several modules, even at centres whe
 
     === "UPPMAX" 
 
-        TensorFlow is included in the Python_ML_packages. Python gets loaded with the Python_ML_packages so nothing extra needs loading here 
+        TensorFlow is not installed, so let us look at an example with PyTorch instead. 
 
         ```bash
-        [bbrydsoe@rackham1 ~]$ ml spider python_ML_packages/3.11.8-cpu
+        [bbrydsoe@pelle2 ~]$ ml spider PyTorch
 
         --------------------------------------------------------------------------------------------
-          python_ML_packages: python_ML_packages/3.11.8-cpu
+          PyTorch: PyTorch/2.6.0-foss-2024a
         --------------------------------------------------------------------------------------------
 
-            This module can be loaded directly: module load python_ML_packages/3.11.8-cpu
+            Description:
+              Tensors and Dynamic neural networks in Python with strong GPU acceleration. PyTorch is
+      a deep learning framework that puts Python first.
+
+            This module can be loaded directly: module load PyTorch/2.6.0-foss-2024a
 
             Help:
-              python_ML_packages version 3.11.8-cpu
+              Description
+              ===========
+              Tensors and Dynamic neural networks in Python with strong GPU acceleration.
+              PyTorch is a deep learning framework that puts Python first.
+      
+      
+              More information
+              ================
+              - Homepage: https://pytorch.org/
         ```    
         
         ```bash 
-        [bbrydsoe@rackham1 ~]$ ml python_ML_packages/3.11.8-cpu
-        [bbrydsoe@rackham1 ~]$
+        [bbrydsoe@pelle2 ~]$ ml PyTorch/2.6.0-foss-2024a
+        [bbrydsoe@pelle2 ~]$
         ``` 
 
         However, if you for instance need Matlab together with Gurobi, then you need to load both modules: 
 
         ```bash 
-        [bbrydsoe@rackham1 ~]$ ml spider matlab/R2023b
-        [bbrydsoe@rackham1 ~]$ ml Gurobi/11.0.3
+        [bbrydsoe@pelle2 ~]$ ml MATLAB/2024a
+        [bbrydsoe@pelle2 ~]$ ml Gurobi/12.0.1-GCCcore-13.3.0
         ``` 
 
     === "NSC" 
@@ -980,8 +992,25 @@ There are situations where you need to load several modules, even at centres whe
         ```
 
         Another useful "super" package at NSC is "Python-bundle-PyPI/2023.10". 
-   
 
+    === "PDC" 
+
+        To access TensorFlow and/or PyTorch, you need to use Singularity. First load these modules: 
+
+        ```bash
+        bbrydsoe@login1:~> ml PDC/24.11 singularity/4.2.0-cpeGNU-24.11
+        bbrydsoe@login1:~>
+        ```
+        
+        Then you can open a shell session within the container with: 
+
+        ```bash
+        bbrydsoe@login1:~> singularity shell --rocm -B /cfs/klemming /pdc/software/resources/sing_hub/rocm5.7-tf2.13-dev
+        Singularity> 
+        ```
+
+        For more information, look on this documentation page: https://support.pdc.kth.se/doc/applications/tensorflow/ 
+     
 ## Unload software modules
 
 Aside from ``module unload`` this section will also cover ``module purge``! 
@@ -1031,7 +1060,7 @@ Unloading one module, with no prerequisites (for clarity, we also do ``module li
     First load a suitable module for your center (with no prerequisites). Suggestions: 
 
     - HPC2N, LUNARC: GCC/12.3.0
-    - UPPMAX: python/3.11.8 
+    - UPPMAX: Python/3.12.3-GCCcore-13.3.0
     - C3SE: Python/3.12.3-GCCcore-13.3.0
     - NSC: Python/3.11.5-env-hpc1-gcc-2023b-eb
     - PDC: cray-python/3.11.5
@@ -1328,20 +1357,26 @@ What about ``module purge``?
 === "UPPMAX"
 
     ```bash
-    [bbrydsoe@rackham1 ~]$ ml python/3.11.8
-    [bbrydsoe@rackham1 ~]$ ml
+    [bbrydsoe@pelle2 ~]$ ml Python/3.12.3-GCCcore-13.3.0
+    [bbrydsoe@pelle2 ~]$ ml
 
     Currently Loaded Modules:
-      1) uppmax   2) python/3.11.8
+      1) GCCcore/13.3.0                   7) Tcl/8.6.14-GCCcore-13.3.0
+      2) zlib/1.3.1-GCCcore-13.3.0        8) SQLite/3.45.3-GCCcore-13.3.0
+      3) binutils/2.42-GCCcore-13.3.0     9) XZ/5.4.5-GCCcore-13.3.0
+      4) bzip2/1.0.8-GCCcore-13.3.0      10) libffi/3.4.5-GCCcore-13.3.0
+      5) ncurses/6.5-GCCcore-13.3.0      11) OpenSSL/3
+      6) libreadline/8.2-GCCcore-13.3.0  12) Python/3.12.3-GCCcore-13.3.0
 
-
-
-    [bbrydsoe@rackham1 ~]$ ml purge
-    [bbrydsoe@rackham1 ~]$ ml
+    ```
+       
+    ```bash 
+    [bbrydsoe@pelle2 ~]$ ml purge
+    [bbrydsoe@pelle2 ~]$ ml
     No modules loaded
     ```
 
-    Warning! You need to reload "uppmax" module! ``module load uppmax`` if you are on Rackham/Bianca. New cluster Pelle has (as of today) no ``uppmax`` module
+    Warning! You need to reload "uppmax" module! ``module load uppmax`` if you are on Bianca. New cluster Pelle has (as of today) no ``uppmax`` module
 
 === "PDC"         
 
