@@ -915,8 +915,7 @@ There are situations where you need to load several modules, even at centres whe
         --------------------------------------------------------------------------------------------
 
             Description:
-              Tensors and Dynamic neural networks in Python with strong GPU acceleration. PyTorch is
-      a deep learning framework that puts Python first.
+              Tensors and Dynamic neural networks in Python with strong GPU acceleration. PyTorch is a deep learning framework that puts Python first.
 
             This module can be loaded directly: module load PyTorch/2.6.0-foss-2024a
 
