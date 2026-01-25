@@ -41,6 +41,6 @@
 
 !!! note "Evaluation survey" 
 
-    - Please help us improve this course by filling the evaluation survey: <a href="https://forms.office.com/e/HvhGtn5XCm" target="_blank">https://forms.office.com/e/HvhGtn5XCm</a> 
+    - Please help us improve this course by filling the evaluation survey: <a href="https://forms.office.com/e/32FBAC6dJW" target="_blank">https://forms.office.com/e/32FBAC6dJW</a> 
 
 
