@@ -43,18 +43,18 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 
     The course will show you how to find and load modules. While the modules may be somewhat differently named and have somewhat different versions depending on the system, the procedure and commands are the same. 
 
-    We will use Tetralith for those who do not have other access to a Swedish HPC system, and some examples will be shown for other centres. You should be able to code-along - with minor adjustments - regardless of which center you are at. 
+    We will use Tetralith or Dardel for those who do not have other access to a Swedish HPC system, and some examples will be shown for other centres. You should be able to code-along - with minor adjustments - regardless of which center you are at. 
 
 ## Important info
 
 - There is an "important info" page for this course, containing info on the course project, login info for Tetralith, etc. 
-    - It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EaZrQ9E1noBCiSA6kmX09J4BoQTkNQTDYi8f9v2p4Jyobg?e=Zi6E8C" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EaZrQ9E1noBCiSA6kmX09J4BoQTkNQTDYi8f9v2p4Jyobg?e=Zi6E8C</a> 
+    - It can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQCIuKfFeZ0LQaYcbBxLDbJuAXjnS1L2alDFAuVZeZ5x5q4" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQCIuKfFeZ0LQaYcbBxLDbJuAXjnS1L2alDFAuVZeZ5x5q4</a> 
 - There is a Q/A page for use during the lectures. Since the lectures are recorded, you may get recorded if you ask questions in the Zoom, but you can always write questions on the Q/A and get answers there. It also has the advantage that you can go back and look at the answers later. 
-    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EUDMEj8KmYtGkd2KoD-xHUcBFVqlryxHMa774ezkmGomjw?e=wuFaeh" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/EUDMEj8KmYtGkd2KoD-xHUcBFVqlryxHMa774ezkmGomjw?e=wuFaeh</a>   
+    - The Q/A page can be found here: <a href="https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQDq6IoVBUkRSb20kEV-jyY3AfzZn0crN5hUQisNRDA6H8I" target="_blank">https://umeauniversity.sharepoint.com/:w:/s/HPC2N630/IQDq6IoVBUkRSb20kEV-jyY3AfzZn0crN5hUQisNRDA6H8I</a>   
 
 ## Evaluation survey 
 
-- Please help us making this course better by filling an evaluation survey after the course: <a href="https://forms.office.com/e/6htZfTRg1Z" target="_blank">https://forms.office.com/e/6htZfTRg1Z</a> 
+- Please help us making this course better by filling an evaluation survey after the course: <a href="https://forms.office.com/e/32FBAC6dJW" target="_blank">https://forms.office.com/e/32FBAC6dJW</a> 
 
 
 ## Preliminary schedule
@@ -85,65 +85,73 @@ In order to type along and do the exercises, please prepare your course environm
     
     Connection info for some Swedish HPC systems - use the one you have access to: 
 
-    - **NSC**
-        - SSH: ``ssh <user>@tetralith.nsc.liu.se``
-        - ThinLinc:
-            - Server: ``tetralith.nsc.liu.se``
-            - Username: ``<your-nsc-username>``
-            - Password: ``<your-nsc-password>``
+=== "Tetralith"
+
+    - SSH: ``ssh <user>@tetralith.nsc.liu.se``
+    - ThinLinc:
+        - Server: ``tetralith.nsc.liu.se``
+        - Username: ``<your-nsc-username>``
+        - Password: ``<your-nsc-password>``
         - Note that you need to setup <a href="https://www.nsc.liu.se/support/2fa/" target="_blank">TFA</a> to use NSC!
-    - **HPC2N**
-        - SSH: ``ssh <user>@kebnekaise.hpc2n.umu.se`` 
-        - ThinLinc: 
-            - Server: ``kebnekaise-tl.hpc2n.umu.se``
-            - Username: ``<your-hpc2n-username>``
-            - Password: ``<yout-hpc2n-password>``
-        - ThinLinc Webaccess: 
-            - Put ``https://kebnekaise-tl.hpc2n.umu.se:300/`` in browser address bar 
-            - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in the login box that opens and click ``Login`` 
-    - **UPPMAX** 
-    
-        === "Pelle"
+
+=== "Kebnekaise"
+
+    - SSH: ``ssh <user>@kebnekaise.hpc2n.umu.se`` 
+    - ThinLinc: 
+        - Server: ``kebnekaise-tl.hpc2n.umu.se``
+        - Username: ``<your-hpc2n-username>``
+        - Password: ``<yout-hpc2n-password>``
+    - ThinLinc Webaccess: 
+        - Put ``https://kebnekaise-tl.hpc2n.umu.se:300/`` in browser address bar 
+        - Put ``<your-hpc2n-username>`` and ``<your-hpc2n-password>`` in the login box that opens and click ``Login`` 
+
+=== "Pelle"
         
-            - SSH: ``ssh <user>@pelle.uppmax.uu.se``
-            - ThinLinc: 
-                - Server: ``pelle-gui.uppmax.uu.se`` 
-                - Username: ``<your-uppmax-username>`` 
-                - Password: ``<your-uppmax-password>`` 
-            - ThinLinc Webaccess: 
-                - Put ``https://pelle-gui.uppmax.uu.se`` in browser address bar 
-                - Put ``<your-uppmax-username>`` and ``<your-uppmax-password>`` in the login box that opens and click ``Login`` 
-            - Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
+    - SSH: ``ssh <user>@pelle.uppmax.uu.se``
+    - ThinLinc: 
+        - Server: ``pelle-gui.uppmax.uu.se`` 
+        - Username: ``<your-uppmax-username>`` 
+        - Password: ``<your-uppmax-password>`` 
+    - ThinLinc Webaccess: 
+        - Put ``https://pelle-gui.uppmax.uu.se`` in browser address bar 
+        - Put ``<your-uppmax-username>`` and ``<your-uppmax-password>`` in the login box that opens and click ``Login`` 
+        - Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
             
-        === "Bianca"
+=== "Bianca"
         
-            - SSH: ``ssh <user>@bianca.uppmax.uu.se``
-            - ThinLinc Webaccess: 
-                - Put ``https://bianca.uppmax.uu.se`` in browser address bar 
-                - Follow the instructions!
-            - Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
+    - SSH: ``ssh <user>@bianca.uppmax.uu.se``
+    - ThinLinc Webaccess: 
+        - Put ``https://bianca.uppmax.uu.se`` in browser address bar 
+        - Follow the instructions!
+        - Note that you need  to setup <a href="https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/" target="_blank">TFA for Uppmax</a> when using either of the ThinLinc connections. 
             
-    - **LUNARC** 
-        - SSH: ``ssh <user>@cosmos.lunarc.lu.se``
-        - ThinLinc: 
-            - Server: ``cosmos-dt.lunarc.lu.se``
-            - Username: ``<your-lunarc-username>``
-            - Password: ``<your-lunarc-password>``
+=== "Cosmos" 
+ 
+    - SSH: ``ssh <user>@cosmos.lunarc.lu.se``
+    - ThinLinc: 
+        - Server: ``cosmos-dt.lunarc.lu.se``
+        - Username: ``<your-lunarc-username>``
+        - Password: ``<your-lunarc-password>``
         - Note that you need to setup <a href="https://lunarc-documentation.readthedocs.io/en/latest/getting_started/login_howto/" target="_blank">TFA (PocketPass)</a> to use LUNARC! 
-    - **PDC** 
-        - SSH: ``ssh <user>@dardel.pdc.kth.se`` 
-        - ThinLinc: 
-            - Server: ``dardel-vnc.pdc.kth.se`` 
-            - Username: ``<your-pdc-username>``
-            - Password: ``<your-pdc-password>`` 
+
+=== "Dardel" 
+
+    - SSH: ``ssh <user>@dardel.pdc.kth.se`` 
+    - ThinLinc: 
+        - Server: ``dardel-vnc.pdc.kth.se`` 
+        - Username: ``<your-pdc-username>``
+        - Password: ``<your-pdc-password>`` 
         - Note that you need to setup <a href="https://support.pdc.kth.se/doc/login/ssh_login/" target="_blank">SSH keys</a> or kerberos in order to login to PDC!    
-    - **C3SE**: 
-        - SSH: ``ssh <user>@alvis1.c3se.chalmers.se``
-               or 
-               ``ssh <user>@alvis2.c3se.chalmers.se``
-        - OpenOndemand portal: 
-            - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
-            - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box 
+
+=== "Alvis" 
+ 
+    - SSH: 
+        - ``ssh <user>@alvis1.c3se.chalmers.se``
+        or 
+        - ``ssh <user>@alvis2.c3se.chalmers.se``
+    - OpenOndemand portal: 
+        - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
+        - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box 
         - Note that Alvis is accessible via SUNET networks (i.e. most Swedish university networks). If you are not on one of those networks you need to use a VPN - preferrably your own Swedish university VPN. If this is not possible, contact ``support@chalmers.se`` and ask to be added to the Chalmers's eduVPN. 
 
 !!! note "2. Setup a working directory"
@@ -155,6 +163,8 @@ In order to type along and do the exercises, please prepare your course environm
 
 !!! note "3. Download the exercises" 
 
+    - ``wget https://github.com/hpc2n/selecting-modules/raw/refs/heads/main/exercises.tar.gz``
+
     ??? question "Bianca user"
 
         - Stay in the created folder (``cd $HOME/selecting-modules``)
@@ -163,8 +173,6 @@ In order to type along and do the exercises, please prepare your course environm
             - ``cp /proj/sens2025560/selecting_modules/exercises.tar.gz . ``
 
         - Let the teacher know if it is missing.
-
-    - ``wget https://github.com/hpc2n/selecting-modules/raw/refs/heads/main/exercises.tar.gz`` 
 
 !!! note "4. Extract the exercises" 
 
