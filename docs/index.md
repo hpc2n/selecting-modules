@@ -146,8 +146,7 @@ In order to type along and do the exercises, please prepare your course environm
 === "Alvis" 
  
     - SSH: 
-        - ``ssh <user>@alvis1.c3se.chalmers.se``
-        or 
+        - ``ssh <user>@alvis1.c3se.chalmers.se`` or 
         - ``ssh <user>@alvis2.c3se.chalmers.se``
     - OpenOndemand portal: 
         - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
