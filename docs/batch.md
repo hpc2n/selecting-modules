@@ -55,7 +55,7 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
 
     === "UPPMAX" 
 
-        Short serial example script for Rackham. Loading Python 3.11.8. Numpy is preinstalled and does not need to be loaded. 
+        Short serial example script for Pelle. Loading Python 3.12.3. Numpy is part of the SciPy-bundle module. 
 
         ```bash 
         #!/bin/bash -l
@@ -63,12 +63,11 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
         #SBATCH --time=00:10:00 # Asking for 10 minutes
         #SBATCH -n 1 # Asking for 1 core
 
-        # module purge is not recommended - if you do it you need to "module load uppmax" after 
-        # Load any modules you need, here Python 3.11.8.
-        module load python/3.11.8  # On Rackham
-        # module load Python/3.12.3-GCCcore-13.3.0  # On Pelle
+        # module purge is not recommended
+        # Load any modules you need, here Python 3.12.3 and compatible SciPy-bundle 
+        module load Python/3.12.3-GCCcore-13.3.0
+        module load SciPy-bundle 
         
-
         # Run your Python script
         python mmmult.py
         ```
