@@ -558,56 +558,55 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
 
     !!! note "Example, finding out how to load Python, version 3.11.5" 
 
-    ```bash 
-    [x_birbr@tetralith3 ~]$ module avail Python/3.11.5
+        ```bash 
+        [x_birbr@tetralith3 ~]$ module avail Python/3.11.5
 
-    ------------------------------------------ /software/sse2/tetralith_el9/modules -------------------------------------------
-       Python/3.11.5-bare-hpc1-gcc-2023b-eb    Python/3.11.5-env-hpc1-gcc-2023b-eb
-    ```
+        ------------------------------------------ /software/sse2/tetralith_el9/modules -------------------------------------------
+           Python/3.11.5-bare-hpc1-gcc-2023b-eb    Python/3.11.5-env-hpc1-gcc-2023b-eb
+        ```
 
-    This was not so helpful. Let us try with "module spider": 
+        This was not so helpful. Let us try with "module spider": 
 
-    ```bash
-    [x_birbr@tetralith3 ~]$ module spider Python/3.11.5
-    ####################################################################################################################################
-    # NOTE: At NSC the output of 'module spider' is generally not helpful as all relevant software modules are shown by 'module avail' #
-    # Some HPC centers hide software until the necessary dependencies have been loaded. NSC does not do that.                          #
-    ####################################################################################################################################
+        ```bash
+        [x_birbr@tetralith3 ~]$ module spider Python/3.11.5
+        ####################################################################################################################################
+        # NOTE: At NSC the output of 'module spider' is generally not helpful as all relevant software modules are shown by 'module avail' #
+        # Some HPC centers hide software until the necessary dependencies have been loaded. NSC does not do that.                          #
+        ####################################################################################################################################
 
-    -----------------------------------------------------------------------------------------------------------------------
-      Python: Python/3.11.5
-    -----------------------------------------------------------------------------------------------------------------------
+        -----------------------------------------------------------------------------------------------------------------------          
+          Python: Python/3.11.5
+        -----------------------------------------------------------------------------------------------------------------------
         Description:
           Python is a programming language that lets you work more quickly and integrate your systems more effectively.
 
 
         You will need to load all module(s) on any one of the lines below before the "Python/3.11.5" module is available to load.
 
-          buildtool-easybuild/.5.1.1-hpce5ba34320  GCCcore/13.2.0
-          buildtool-easybuild/4.8.0-hpce082752a2  GCCcore/13.2.0
-          buildtool-easybuild/4.9.4-hpc71cbb0050  GCCcore/13.2.0
+              buildtool-easybuild/.5.1.1-hpce5ba34320  GCCcore/13.2.0
+              buildtool-easybuild/4.8.0-hpce082752a2  GCCcore/13.2.0
+              buildtool-easybuild/4.9.4-hpc71cbb0050  GCCcore/13.2.0
  
         Help:
       
-          Description
-          ===========
-          Python is a programming language that lets you work more quickly and integrate your systems
-           more effectively.
+              Description
+              ===========
+              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
       
       
-          More information
-          ================
-           - Homepage: https://python.org/
+              More information
+              ================
+               - Homepage: https://python.org/
       
       
-          Included extensions
-          ===================
-          flit_core-3.9.0, packaging-23.2, pip-23.2.1, setuptools-68.2.2, setuptools-scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
-    ```
+              Included extensions
+              ===================
+              flit_core-3.9.0, packaging-23.2, pip-23.2.1, setuptools-68.2.2, setuptools-scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
+        ```
     
-    - Here we learn that there is a "bare" Python (like "Python/3.11.5-bare-hpc1-gcc-2023b-eb") that you can load directly
-    - Otherwise, you need to load the prerequisites of a buildtool and a GCCcore first, before loading Python. That is knowledge that can be useful for finding compatibility with other software modules  
-    - You also learn that there is a (small) number of extensions/packages with this Python  
+        - Here we learn that there is a "bare" Python (like "Python/3.11.5-bare-hpc1-gcc-2023b-eb") that you can load directly
+        - Otherwise, you need to load the prerequisites of a buildtool and a GCCcore first, before loading Python. That is knowledge that can be useful for finding compatibility with other software modules  
+        - You also learn that there is a (small) number of extensions/packages with this Python  
 
 === "PDC" 
 
