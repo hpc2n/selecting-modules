@@ -513,67 +513,46 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
 
 === "UPPMAX" 
 
-    !!! note "Example, Finding out how to load Python, version 3.11.8 (Rackham)" 
-
-        On Pelle things are more like NSC, have a look there!
+    !!! note "Example, Finding out how to load Python, version 3.12.3 (Pelle)" 
         
         ```bash 
-        [bbrydsoe@rackham1 ~]$ ml avail python/3.11.8
+        [bbrydsoe@pelle2 ~]$ ml spider Python/3.12.3-GCCcore-13.3.0 
 
-        ----------------------------------- /sw/mf/rackham/compilers -----------------------------------
-           python/3.11.8
+        ------------------------------------------------------------------------------------------------------
+          Python: Python/3.12.3-GCCcore-13.3.0
+        ------------------------------------------------------------------------------------------------------
+            Description:
+              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
 
-        Use "module spider" to find all possible modules and extensions.
-        Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
-        ``` 
+            This module can be loaded directly: module load Python/3.12.3-GCCcore-13.3.0
 
-        This did not tell us much! Let us try ``module spider`` 
+            This module provides the following extensions:
 
-        ```bash
-        [bbrydsoe@rackham1 ~]$ module spider python/3.11.8
+               flit_core/3.9.0 (E), packaging/24.0 (E), pip/24.0 (E), setuptools/70.0.0 (E), setuptools_scm/8.1.0 (E), tomli/2.0.1 (E), typing_extensions/4.11.0
+ (E), wheel/0.43.0 (E)
 
-        --------------------------------------------------------------------------------------------
-          python: python/3.11.8
-        --------------------------------------------------------------------------------------------
-
-            This module can be loaded directly: module load python/3.11.8
-
-            Help:
-      
-              Python - use python/3.11.8
-         
-                  Version 3.11.8
-       
-                  https://python.org
-      
-              This module was built with 
-      
-                   gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11
+          Help:
+            Description
+            ===========
+            Python is a programming language that lets you work more quickly and integrate your systems more effectively.
       
       
-              This module provides the executable names 'python' and 'python3'.
+            More information
+            ================
+            - Homepage: https://python.org/
       
-              Several additional python packages are also installed in this module. The complete list of packages in this module, produced using 'pip list', is:
       
-              Package                   Version
-              ------------------------- ---------------
-              anndata                   0.10.5.post1
-              anyio                     4.2.0
-              argon2-cffi               23.1.0
-              argon2-cffi-bindings      21.2.0
-              array_api_compat          1.4.1
-              arrow                     1.3.0
-              asteval                   0.9.31
-              asttokens                 2.4.1
-              async-lru                 2.0.4
-              ... 
+            Included extensions
+            ===================
+            flit_core-3.9.0, packaging-24.0, pip-24.0, setuptools-70.0.0,
+            setuptools_scm-8.1.0, tomli-2.0.1, typing_extensions-4.11.0, wheel-0.43.0
         ```
 
         Here we learn: 
 
-        - You can load "python/3.11.8" directly
-        - It was built with "gcc/12.3.0 sqlite/3.34.0 Tcl-Tk/8.6.11" (might be useful for compatibility with other things). 
-        - It lists all the extensions (here Python packages) loaded with it - and it is a lot, around 250 packages. 
+        - You can load "Python/3.12.3" directly
+        - It was built with "gcc/13.3.0" (might be useful for compatibility with other things). 
+        - It lists all the extensions (here Python packages) loaded with it - not very many, as most are loaded as part of various Python bundles.  
 
 === "NSC" 
 
@@ -630,6 +609,109 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
     - Otherwise, you need to load the prerequisites of a buildtool and a GCCcore first, before loading Python. That is knowledge that can be useful for finding compatibility with other software modules  
     - You also learn that there is a (small) number of extensions/packages with this Python  
 
+=== "PDC" 
+
+    !!! note "Example, finding out how to load Python, version 3.12.3"
+
+        ```bash 
+        bbrydsoe@login1:~> ml spider python/3.12.3
+
+        ------------------------------------------------------------------------------------------------------
+            python: python/3.12.3
+        ------------------------------------------------------------------------------------------------------
+            Description:
+              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+
+
+            This module can be loaded directly: module load python/3.12.3
+
+            Help:
+              Description
+              ===========
+              Python is a programming language that lets you work more quickly and integrate your systems more effectively.
+      
+      
+              More information
+              ================
+              - Homepage: https://python.org/
+        ```
+
+        However, checking their website, this is generally not the Python you should load, but rather this one (now checking on version 3.11.7): 
+
+        ```bash
+        bbrydsoe@login1:~> ml spider cray-python/3.11.7
+
+        ------------------------------------------------------------------------------------------------------
+          cray-python: cray-python/3.11.7
+        ------------------------------------------------------------------------------------------------------
+
+            This module can be loaded directly: module load cray-python/3.11.7
+
+            Help:
+              This modulefile defines the system paths and environment
+              variables needed to use cray-python.
+      
+              cray-python 3.11.7
+              ====================
+      
+              Release Date
+              ------------
+              July 2024
+      
+              Purpose
+              -------
+              Cray Python is an implementation of the Python programming language for the Cray Programming Environment. The numpy and scipy modules are configured to call Cray Libsci routines. The mpi4py module is configured to call Cray MPICH routines.
+              Cray Python is designed to run Python codes on the compute nodes of an HPE supercomputer. HPE does not make changes to the Python source or any of its libraries nor does it plan to make changes in future releases.
+      
+              The cray-python 3.11.7 release contains
+      
+              - python-3.11.7
+              - numpy-1.24.4
+              - scipy-1.10.1
+              - mpi4py-3.1.4
+              - dask-2023.6.1
+      
+              Product and OS Dependencies
+              ---------------------------
+              The cray-python 3.11.7 release is supported on
+              - Cray EX systems running SLES 15 or RHEL 8
+      
+              Documentation
+              -------------
+              https://www.python.org/doc
+      
+              Changelog
+              ---------
+              https://docs.python.org/release/3.11.7/whatsnew/changelog.html
+      
+              Modulefile
+              ----------
+                  module load cray-python/3.11.7
+      
+              Installation
+              ------------
+                  rpm -ihv cray-python-3.11.7-20240617153007.0687944-1.sles15sp4.x86_64.rpm
+      
+              To make this the default version, execute
+      
+                  /opt/cray/pe/admin-pe/set_default_files/set_default_python_3.11.7
+      
+              Certain components, files, or programs contained within this package are
+              © Copyright 2021-2024 Hewlett Packard Enterprise Development LP
+      
+      
+              ===================================================================
+              To re-display python/3.11.7 release information,
+              type:    less /opt/cray/pe/python/3.11.7/release_info
+              ===================================================================
+        ```  
+
+        We learn: 
+ 
+        - Generally use cray-python instead of python 
+        - You can load it with no prerequisites (there are normally prerequisites on Dardel (PDC)) 
+
+
 ### Loading 
 
 To load a software module, do: 
@@ -645,7 +727,7 @@ When you have loaded the module, you can see that your list of loaded modules ha
 
 !!! hint 
 
-    Type along! 
+    Type along! Below is seen an example for HPC2N where almost everything has prerequisites. 
 
 !!! note "Example, HPC2N"
 
