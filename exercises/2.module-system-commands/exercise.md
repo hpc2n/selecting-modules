@@ -37,7 +37,7 @@ At UPPMAX it is not recommended, but the only module you need load again if you 
 
 1. Try loading one or more modules again: 
     - HPC2N, LUNARC: GCC/12.3.0 and perhaps Python/3.11.3
-    - UPPMAX: python/3.11.8
+    - UPPMAX: Python/3.12.3-GCCcore-13.3.0 
     - C3SE: Python/3.12.3-GCCcore-13.3.0
     - NSC: Python/3.11.5-env-hpc1-gcc-2023b-eb
     - PDC: cray-python/3.11.5
