@@ -528,8 +528,7 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
 
             This module provides the following extensions:
 
-               flit_core/3.9.0 (E), packaging/24.0 (E), pip/24.0 (E), setuptools/70.0.0 (E), setuptools_scm/8.1.0 (E), tomli/2.0.1 (E), typing_extensions/4.11.0
- (E), wheel/0.43.0 (E)
+               flit_core/3.9.0 (E), packaging/24.0 (E), pip/24.0 (E), setuptools/70.0.0 (E), setuptools_scm/8.1.0 (E), tomli/2.0.1 (E), typing_extensions/4.11.0 (E), wheel/0.43.0 (E)
 
           Help:
             Description
