@@ -151,7 +151,8 @@ In order to type along and do the exercises, please prepare your course environm
     - OpenOndemand portal: 
         - Put ``https://alvis.c3se.chalmers.se`` in browser address bar 
         - Put ``<your-c3se-username>`` and ``<your-c3se-password>`` in the login box 
-        - Note that Alvis is accessible via SUNET networks (i.e. most Swedish university networks). If you are not on one of those networks you need to use a VPN - preferrably your own Swedish university VPN. If this is not possible, contact ``support@chalmers.se`` and ask to be added to the Chalmers's eduVPN. 
+        - Note that Alvis is accessible via SUNET networks (i.e. most Swedish university networks). If you are not on one of those networks you need to use a VPN (preferrably your own Swedish university VPN). If this is not possible, contact ``support@chalmers.se`` and ask to be added to the Chalmers's eduVPN. 
+
 
 !!! note "2. Setup a working directory"
 
