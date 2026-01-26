@@ -182,6 +182,47 @@ This is the recommended way to find existing software modules at **UPPMAX** and 
 
     ``module avail`` can be written in short form as ``ml av`` 
 
+
+??? note "Example, Pelle (NSC works the same)" 
+
+    ```bash
+
+    [bjornc@pelle3-ae ~]$ ml av
+
+    -------------------------------------------------- /sw/arch/local/modules ---------------------------------------------------
+       BLAST_databases/latest                 MMseqs2_data/20240202      NONMEM/7.6.0                  (D)    dds-cli/latest
+       GaussView/5.0.8                        NCBI_taxonomy/latest       PsN/5.3.1                            matlab/R2019a
+       Gaussian/g09.d01                       NONMEM/7.4.3-GCC-13.3.0    RStudio/2025.09.0-387                nf-core/latest
+       Kraken2_data/latest                    NONMEM/7.4.3               SMC++/1.15.5.dev14+g6779faec7        pixi-tools/latest
+       KrakenUniq_data/latest                 NONMEM/7.4.4-GCC-13.3.0    VASP/6.5.0                           pixy/2.0.0.beta14
+       KrakenUniq_data/20230619-104733 (D)    NONMEM/7.5.1-GCC-13.3.0    bioinfo-tools/latest                 uv-tools/latest
+    
+    -------------------------------------------------- /sw/arch/eb/modules/all --------------------------------------------------
+       A5-miseq/20160825-GCCcore-13.3.0
+       ABySS/2.3.10-foss-2024a
+       ACTC/1.1-GCCcore-13.3.0
+       ADMIXTURE/1.3.0
+       AGAT/1.4.1-GCCcore-13.3.0
+       AGE/0.4-GCCcore-13.3.0
+       ANIcalculator/1.0-GCCcore-13.3.0
+       ANNOVAR/20250302-GCCcore-13.3.0
+       ANTLR/2.7.7-GCCcore-13.3.0
+       AOCL-BLAS/5.0-GCC-13.3.0
+       AOCL-BLAS/5.0-GCC-14.2.0
+       AOCL-BLAS/5.1-GCC-14.3.0                                        (D)
+       ATK/2.38.0-GCCcore-13.3.0
+           ATSAS/3.2.1-1
+       AUGUSTUS/3.5.0-foss-2024a
+       Abseil/20230125.3-GCCcore-12.3.0
+       Abseil/20240722.0-GCCcore-13.3.0                                (D)
+       AdapterRemoval/2.3.4-GCCcore-13.3.0
+       Amber/24.3-foss-2023a-AmberTools-24.10-CUDA-12.1.1-PLUMED-2.9.0
+       Amber/24.3-foss-2023a-AmberTools-24.10-CUDA-12.1.1
+
+    --More--
+
+    ```
+
 ??? note "Example, Bianca (NSC works the same)" 
 
     ```bash
