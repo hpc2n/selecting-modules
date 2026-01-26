@@ -322,13 +322,13 @@ Finding available versions of Python.
     ??? note "Click to show" 
 
         ```bash
-        [bbrydsoe@rackham1 ~]$ module avail python
+        [[bjornc@sens2025560-bianca ~]$ module avail python
 
-        --------------------------------- /sw/mf/rackham/applications ----------------------------------
+        --------------------------------- /sw/mf/bianca/applications ----------------------------------
            python_GIS_packages/3.10.8      python_ML_packages/3.9.5-gpu         wrf-python/1.3.1
            python_ML_packages/3.9.5-cpu    python_ML_packages/3.11.8-cpu (D)
 
-        ----------------------------------- /sw/mf/rackham/compilers -----------------------------------
+        ----------------------------------- /sw/mf/bianca/compilers -----------------------------------
            python/2.7.6     python/3.4.3    python/3.9.5         python3/3.6.0     python3/3.11.4
            python/2.7.9     python/3.5.0    python/3.10.8        python3/3.6.8     python3/3.11.8
            python/2.7.11    python/3.6.0    python/3.11.4        python3/3.7.2     python3/3.12.1
@@ -458,10 +458,11 @@ Thus; if the centers suggests you do ``module spider`` you will need to check th
     - **HPC2N**: most software modules have prerequisites (GCC/Intel, OpenMPI, ...), a few do not (MATLAB, ...)
     - **LUNARC**: most software modules have prerequisites (GCC/Intel, OpenMPI, ...), a few do not (MATLAB, ...)
     - **UPPMAX**: software modules can generally be loaded directly unless its is related to bioinformatics (then load ``bioinfo-tools`` first). New cluster Pelle does not require you to load ``bioinfo-tools``
+    
         !!! note 
         
-            - **On Pelle things are more like NSC, you may follow the examples for that cluster instead of Rackham**
-            - Though, note that outputdetails will most probably be different on Pelle!
+            - **On Pelle things are more like NSC, you may follow the examples for that cluster instead of Bianca**
+            - Though, note that output details will most probably be different on Pelle!
 
     - **NSC**: software modules can generally be loaded directly
     - **PDC**: most software modules have prerequisites (PDC which is a collection of compilers and libraries), a few do not (MATLAB, cray-modules, ...)
@@ -1042,7 +1043,7 @@ The command ``module purge`` removes all the loaded modules, except the "sticky"
 
     At PDC, there are a lot of necessary, "system-modules" that are preloaded. When you do ``module purge`` they will also be unloaded and things may not work as it should! 
 
-    At UPPMAX (Rackham and Bianca, not Pelle), the system-module "uppmax" will get unloaded with ``module purge``, but can easily be reloaded with ``module load uppmax``. 
+    At UPPMAX (Bianca, not Pelle), the system-module "uppmax" will get unloaded with ``module purge``, but can easily be reloaded with ``module load uppmax``. 
 
     - To see what the ``uppmax`` module does, do: ``ml show uppmax``. It sets some environment variables and aliases.
 
@@ -1059,8 +1060,9 @@ Unloading one module, with no prerequisites (for clarity, we also do ``module li
     First load a suitable module for your center (with no prerequisites). Suggestions: 
 
     - HPC2N, LUNARC: GCC/12.3.0
-    - UPPMAX: Python/3.12.3-GCCcore-13.3.0
-    - C3SE: Python/3.12.3-GCCcore-13.3.0
+    - UPPMAX (Pelle): Python/3.12.3-GCCcore-13.3.0
+    - UPPMAX (Bianca): python/3.12.3-GCCcore-13.3.0    
+    - C3SE: Python/3.12.7
     - NSC: Python/3.11.5-env-hpc1-gcc-2023b-eb
     - PDC: cray-python/3.11.5
 
