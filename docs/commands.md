@@ -9,7 +9,7 @@
     - Unload software modules, including specific versions 
     - Unload all software modules with ``module purge``
         - This should never be done at PDC! 
-        - You can do this at UPPMAX, but load the ``uppmax`` module afterwards.
+        - You can do this at Bianca (UPPMAX), but load the ``uppmax`` module afterwards.
     - List the loaded modules 
     - Get some information about a module (``module show`` and ``module help``)  
     - Learn about module collections to load/unload a bunch of modules (``module save <collection>`` and ``module restore <collection>``)
