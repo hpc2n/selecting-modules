@@ -319,10 +319,50 @@ Finding available versions of Python.
     module avail python
     ``` 
 
-    ??? note "Click to show" 
+    ??? note "Click to show for Pelle" 
 
         ```bash
-        [[bjornc@sens2025560-bianca ~]$ module avail python
+
+        [bjornc@pelle3-ae ~]$ ml av python
+        
+        -------------------------------------------------- /sw/arch/eb/modules/all --------------------------------------------------
+           Biopython/1.76-foss-2024a-Python-2.7.18              SciPy-bundle/2024.06-foss-2024a-Python-2.7.18
+           Biopython/1.84-foss-2024a                            Seaborn/0.9.1-foss-2024a-Python-2.7.18
+           Biopython/1.84-gfbf-2024a                            SeqAn/2.4.0-GCCcore-13.3.0-Python-2.7.18
+           Biopython/1.86-gfbf-2025b                     (D)    Tkinter/2.7.18-GCCcore-12.3.0-Python-2.7.18
+           Bowtie2/2.5.4-GCC-13.3.0-Python-2.7.18               Tkinter/2.7.18-GCCcore-13.3.0-Python-2.7.18
+           CONCOCT/1.1.0-foss-2024a-Python-2.7.18               TopHat/2.1.2-GCC-13.3.0-Python-2.7.18
+           CheckM/1.0.18-foss-2024a-Python-2.7.18               Trim_Galore/0.6.10-GCCcore-13.3.0-Python-2.7.18
+           Cython/0.27.3-GCCcore-12.3.0-Python-2.7.18           bx-python/0.13.0-gfbf-2024a
+           Cython/0.29.37-GCCcore-13.3.0-Python-2.7.18          cutadapt/1.18-GCCcore-13.3.0-Python-2.7.18
+           Cython/3.0.10-GCCcore-13.3.0-Python-3.8.6            fastStructure/1.0-foss-2023a-Python-2.7.18
+           DendroPy/4.5.2-GCCcore-13.3.0-Python-2.7.18          flatbuffers-python/24.3.25-GCCcore-13.3.0
+           IPython/8.28.0-GCCcore-13.3.0                        flit/3.5.1-GCCcore-13.3.0-Python-3.8.6
+           IPython/9.4.0-GCCcore-14.3.0                  (D)    hypothesis/4.57.1-GCCcore-12.3.0-Python-2.7.18
+           MEGAHIT/1.2.9-GCCcore-13.3.0-Python-2.7.18           hypothesis/4.57.1-GCCcore-13.3.0-Python-2.7.18
+           MaxBin/2.2.7-gompi-2024a-Python-2.7.18               hypothesis/4.57.1-GCCcore-13.3.0-Python-3.8.6
+           Pysam/0.20.0-GCC-13.3.0-Python-2.7.18                matplotlib/2.2.5-foss-2023a-Python-2.7.18
+           Python-bundle-PyPI/2023.06-GCCcore-12.3.0            matplotlib/2.2.5-foss-2024a-Python-2.7.18
+           Python-bundle-PyPI/2023.10-GCCcore-13.2.0            meson-python/0.13.2-GCCcore-12.3.0
+           Python-bundle-PyPI/2023.10-GCCcore-13.3.0            meson-python/0.15.0-GCCcore-13.2.0
+           Python-bundle-PyPI/2024.06-GCCcore-13.3.0            meson-python/0.16.0-GCCcore-13.3.0
+           Python-bundle-PyPI/2025.04-GCCcore-14.2.0            meson-python/0.18.0-GCCcore-14.3.0              (D)
+           Python-bundle-PyPI/2025.07-GCCcore-14.3.0     (D)    metaWRAP/1.4-20230728-foss-2024a-Python-2.7.18
+           Python/2.7.18-GCCcore-12.3.0                         numpy/1.16.6-foss-2023a-Python-2.7.18
+           Python/2.7.18-GCCcore-13.3.0                         numpy/1.16.6-foss-2024a-Python-2.7.18
+           Python/3.8.6-GCCcore-13.3.0                          numpy/1.16.6-foss-2024a-Python-3.8.6            (D)
+           Python/3.10.4-GCCcore-11.3.0-bare                    pkgconfig/1.5.5-GCCcore-13.3.0-python
+           Python/3.10.4-GCCcore-11.3.0                         protobuf-python/4.24.0-GCCcore-12.3.0
+           Python/3.10.8-GCCcore-12.2.0-bare                    protobuf-python/5.28.0-GCCcore-13.3.0           (D)
+
+        --More--
+
+        ```
+            
+    ??? note "Click to show for Bianca" 
+
+        ```bash
+        [bjornc@sens2025560-bianca ~]$ module avail python
 
         --------------------------------- /sw/mf/bianca/applications ----------------------------------
            python_GIS_packages/3.10.8      python_ML_packages/3.9.5-gpu         wrf-python/1.3.1
