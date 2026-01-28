@@ -78,7 +78,7 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
 
         ```bash 
         #!/bin/bash -l
-        #SBATCH -A uppmaxXXXX-Y-ZZZ # Change to your own project ID 
+        #SBATCH -A sensXXXX-Y-ZZZ # Change to your own project ID 
         #SBATCH --time=00:10:00 # Asking for 10 minutes
         #SBATCH -n 1 # Asking for 1 core
 
@@ -237,7 +237,7 @@ Continuing with a Python example
         ```bash
         #!/bin/bash
         # The name of the account you are running in, mandatory.
-        #SBATCH -A SENSXXXX-Y-ZZZ
+        #SBATCH -A sensXXXX-Y-ZZZ
         # Request resources - here for eight MPI tasks
         #SBATCH -n 8
         # Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum at most centres. Here asking for 15 min.
@@ -422,19 +422,16 @@ Here there are two things to pay attention to:
         python add-list.py
         ``` 
         
-    === "UPPMAX (Rackham)"
-
-        At UPPMAX the main thing to pay attention to is that the resource "Rackham" does not have GPUs and the batch jobs needing that are therefore submitted to "Snowy" which does have GPUs. 
+    === "UPPMAX (Bianca)"
 
         ```bash 
         #!/bin/bash -l  # -l is needed
         # Remember to change this to your own project ID!
-        #SBATCH -A uppmaxXXXX-Y-ZZZ
-        # We want to run on Snowy which has GPUs 
-        #SBATCH -M snowy
+        #SBATCH -A sensXXXX-Y-ZZZ
         # We are asking for 70 minutes. <= 60 min introduces as bug
         #SBATCH --time=01:10:00
         # Asking for one GPU
+        #SBATCH -C gpu 
         #SBATCH --gres=gpu:1
 
         # If you remove any loaded modules with "module purge" you need 
