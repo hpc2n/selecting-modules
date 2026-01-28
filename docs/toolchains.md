@@ -299,7 +299,7 @@ Here is a template for a script using OpenMPI (adapted from LUNARC
 documentation):
 
 ```bash
-#!/bin/sh
+#!/bin/bash
 #SBATCH -N 3                 # number of nodes (arbitrary number >1)
 #SBATCH --ntasks-per-node=16 # adapt for your needs
 #SBATCH --exclusive          # reserve whole nodes
