@@ -53,7 +53,7 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
         python mmmult.py        
         ``` 
 
-    === "UPPMAX" 
+    === "UPPMAX (Pelle)" 
 
         Short serial example script for Pelle. Loading Python 3.12.3. Numpy is part of the SciPy-bundle module. 
 
@@ -68,6 +68,24 @@ Here you do not need MPI-enabled modules. If the module has both a GPU and a CPU
         module load Python/3.12.3-GCCcore-13.3.0
         module load SciPy-bundle 
         
+        # Run your Python script
+        python mmmult.py
+        ```
+
+    === "UPPMAX (Bianca)" 
+
+        Short serial example script for Bianca. Loading Python 3.11.8. Numpy is part of this python module. 
+
+        ```bash 
+        #!/bin/bash -l
+        #SBATCH -A uppmaxXXXX-Y-ZZZ # Change to your own project ID 
+        #SBATCH --time=00:10:00 # Asking for 10 minutes
+        #SBATCH -n 1 # Asking for 1 core
+
+        # module purge is not recommended
+        # Load any modules you need, here Python 3.11.8
+        module load python/3.11.8 
+    
         # Run your Python script
         python mmmult.py
         ```
@@ -214,12 +232,12 @@ Continuing with a Python example
         srun ./integration2d_mpi.py
         ```
 
-    === "UPPMAX (Rackham)"
+    === "UPPMAX (Bianca)"
 
         ```bash
         #!/bin/bash
         # The name of the account you are running in, mandatory.
-        #SBATCH -A uppmaxXXXX-Y-ZZZ
+        #SBATCH -A SENSXXXX-Y-ZZZ
         # Request resources - here for eight MPI tasks
         #SBATCH -n 8
         # Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum at most centres. Here asking for 15 min.
@@ -238,7 +256,7 @@ Continuing with a Python example
         # source mympi4py/bin/activate
         # pip install mpi4py
 
-        module load python/3.11.8 python_ML_packages/3.11.8-cpu openmpi/4.1.5
+        module load python_ML_packages/3.11.8-cpu openmpi/4.1.5
         source mympi4py/bin/activate
         
         # And finally run the job - use srun for MPI jobs, but not for serial jobs
