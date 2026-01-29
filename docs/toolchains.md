@@ -100,6 +100,13 @@ any.
        * Need only a compiler? Search for available GCC or intel modules.
        * Need math libraries, like OpenBLAS? Search for that and GCC or intel will be a dependency.
        * Need MPI? See UPPMAX documentation about [combinations of compilers and MPI libraries](https://docs.uppmax.uu.se/software/parallel_comb/)
+           * On Bianca you need to load ``gcc`` and ``openmpi`` on separate lines, like:
+
+           ```bash
+           ml gcc/9.3.0
+           ml openmpi/3.1.5
+           ```
+           
 
     The **EasyBuild toolchains** below may be found for *some* tools in their names and dependencies, but are mainly intended to show which libraries go together. Use `ml avail <toolchain>` instead of `ml spider <toolchain>` to see if they are available:
     
