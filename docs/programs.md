@@ -419,7 +419,7 @@ For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless ther
 
 !!! important
 
-    Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is encumbant on users to determine the licensing requirements of specialised software packages.
+    Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is up to users to determine the licensing requirements of specialised software packages.
 
 ### Example: OpenFOAM
 
