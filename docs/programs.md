@@ -48,7 +48,56 @@ It varies between clusters how many packages are installed with the base Python 
     
 ### Bundles
 
-Python packages
+- The bundle names reflect the content, like Python packages, and its version, but also which Python version, compilers and libraries that are compatible with it.
+
+- The module endings may contain GCCcore-X.Y.Z and/or [YEAR-a/b]. Example ``SciPy-bundle/2024.05-gfbf-2024a`` or ``Python/3.12.3-GCCcore-13.3.0``
+    - GCCcore reflects the GCC compiler version that is compatible when using C/C++ "back end" code.
+    - The year reflects an EasyBuild toolchain, see [FOSS toolchains](https://docs.easybuild.io/common-toolchains/#common_toolchains_overview_foss).
+
+!!! info "FOSS tool chains and Python version using them"
+
+    FOSS | Python version| GCC version | Bundle version
+    -----| --------------|-------------|---------------
+    2023b| 3.11.5        | 13.2.0      | not installed on Pelle
+    2024a| 3.12.3        | 13.3.0      | 2024.06/06
+    2025a| 3.13.1        | 14.2.0      | not installed on Pelle
+    2025b| 3.13.5        | 14.3.0      | 2025.07
+
+    - ``foss`` is the full level toolchain.
+    - ``gfbf`` means that the libraries FlexiBLAS (incl. LAPACK) + FFTW are included.
+    - ``gompi`` means that the MPI library OpenMPI is included.
+
+    - See [Toolchain diagram](https://docs.easybuild.io/common-toolchains/#toolchains_diagram)
+
+!!! warning
+
+    - Make sure to use bundles that are compatible with each-other and with needed Python version.
+    - Otherwise it is better to create isolated environments with Conda or virtual environments, see [Virtual environments in Python](python_virtual_environments.md).
+
+??? Some well-known bundles
+
+    - Biopython
+    - HPC and big data
+        - dask
+        - mpi4py
+        - numba
+    - Scientific tools
+        - SciPy-bundles: ``numpy``, ``pandas``, ``scipy``
+        - xarray
+    - Interactivity
+        - iPython
+        - JupyterLab
+    - Graphics
+        - Matplotlib
+        - Seaborn
+    - Machine Learning
+        - scikit-learn
+        - PyTorch
+        - TensorFlow
+    - Bundle of useful packages
+        - Python-bundle-PyPI
+
+
 
 ### Principles
 
