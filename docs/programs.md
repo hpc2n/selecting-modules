@@ -1,11 +1,11 @@
-# Examples
+# Examples of specific tools
 
 !!! note "Objectives" 
 
     - Be able to find some typical software modules that are installed 
     - Learn how to load those software modules (and any prerequisites)
-    - Be able to find out if Python packages are installed as their own modules
-    - Learn how to find bundles of R packages installed as modules 
+    - Be able to find out if **Python packages** are installed as their own modules
+    - Learn how to find bundles of **R packages** installed as modules 
 
 In the previous section we looked at toolchains, which are often used to install or build your own software. In this chapter we will look at some examples of how to find and load some of the typical software modules that are installed at many of the Swedish HPC centres. 
 
@@ -25,15 +25,19 @@ Most of the examples below use outputs from Cosmos, but the workflows will be si
     
     For example, NumPy, SciPy, and Pandas, among other packages, are all are included in `SciPy-bundle`. If you have at least loaded a GCC version, you can use `ml show SciPy-bundle` to view all of the included extensions (Python modules) in the compatible SciPy-bundle.
 
-!!! tip
-    
-    `grep` does not work directly on the outputs of module commands like `ml show <module>`. To search for an extension in a very long Lua module file, copy the full path of the .lua file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present.
+
 
 ## Python-based packages
 
-It varies between centres how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequsites are required (most centres apart from PDC are the same), and the available version numbers. 
+We already learned how to load Python module of a specific version.
 
-???- note 
+
+
+
+
+It varies between clusters how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequsites are required (most centres apart from PDC are the same), and the available version numbers. 
+
+??? note "Packages at the clusters"
 
     - **HPC2N** and **C3SE:** Little is installed with the Python module, but most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...)
     - **LUNARC:** Little is installed with the Python module, but instead most of the common Python packages are available as extra modules (SciPy-bundle, Jupyter, mpi4py, matplotlib, tensorflow, PyTorch, Python-bundle-PyPi, ...). Anaconda3 bundles more into one module (SciPy, Pandas, Matplotlib, etc), but other modules loaded alongside it are typically not recognised. Additional modules must be installed in a custom environment.
@@ -42,12 +46,13 @@ It varies between centres how many packages are installed with the base Python p
     - **UPPMAX-Bianca:** Very many packages are installed with the Python module.  
     - **PDC:** most modules included in SciPy-bundle (NumPy, SciPy, Pandas, etc.) are in `cray-python` modules, and these are compatible with a couple of the installed versions of matplotlib. Python modules that do not include the `cray-` prefix have very little installed in them and are not compatible with most other Python-adjacent modules; these are typically intended as bases for users to build their own environments. Most programs on Dardel also have an extra prerequisite, `PDC/XX.XX` or `PDCOLD/XX.XX` that must be loaded before anything else.
     
-### Principles
-
-
 ### Bundles
 
 Python packages
+
+### Principles
+
+
 
 ### Example 1: Matplotlib
 
@@ -281,7 +286,17 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 
     The same list (and grep) approach works for Anaconda3. The only difference is that you should use `conda list` instead of `pip list` (although `pip list` usually still works). The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
 
-!!! Python IDEs
+!!! tip
+    
+    `grep` does not work directly on the outputs of module commands like `ml show <module>`. To search for an extension in a very long Lua module file, copy the full path of the ``.lua`` file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present.
+
+!!! question "Missing a package?"
+
+    - Install by conda, pip or other tool or contact support
+    - https://uppmax.github.io/HPC-python/day2/install_packages.html
+    - https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html
+    
+!!! info "Python IDEs"
 
    - Jupyter
    - Spyder
@@ -291,6 +306,8 @@ Extensions can be hard to find without knowing what includes them, but it is eas
        - [Starting from OnDemand](https://uppmax.github.io/HPC-python/day2/ondemand-desktop.html)
 
 ## R
+
+https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/
 
 ### R-based packages
 
@@ -308,6 +325,8 @@ At most HPC centres, the base R module usually contains relatively few extension
 !!! important
 
     Most facilities have only built a handful of R releases, so many of the dependent modules are adapted for multiple versions. The version of such any dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.
+
+https://uppmax.github.io/R-matlab-julia-HPC/r/packages/
 
 ### Principles
 
@@ -397,10 +416,18 @@ $ ml GCC/12.3.0  OpenMPI/4.1.5  R-bundle-Bioconductor/3.18-R-4.4.1
 
 In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centres, so pay attention to the prerequisites.
 
+!!! question "Missing a package?"
+
+    - Install by yourself or contact support
+    - https://uppmax.github.io/R-matlab-julia-HPC/r/packages/#installing-your-own-packages
+
 ### RStudio
 
+https://uppmax.github.io/R-matlab-julia-HPC/r/rstudio/
 
 ## Matlab
+
+https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/
 
 At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions).
 
@@ -444,6 +471,8 @@ The command after the colon (:) can be copied, pasted, and entered directly into
 $ ml MATLAB/2024a-hpc1-bdist
 ```
 
+https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/
+
 ## Specialised Applications
 
 For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically, without the need to choose a CUDA-containing toolchain.
@@ -458,83 +487,84 @@ As usual, we start by checking the versions available with `ml spider OpenFOAM` 
 
 An example output might look like this (from Cosmos):
 
-```bash
-$ ml spider OpenFOAM
+    ```bash
+    $ ml spider OpenFOAM
 
---------------------------------------------------------------------------------------
-  OpenFOAM:
---------------------------------------------------------------------------------------
-    Description:
-      OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
-      range of features to solve anything from complex fluid flows involving chemical
-      reactions, turbulence and heat transfer, to solid dynamics and
-      electromagnetics.
+    --------------------------------------------------------------------------------------
+      OpenFOAM:
+    --------------------------------------------------------------------------------------
+        Description:
+          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
+          range of features to solve anything from complex fluid flows involving chemical
+          reactions, turbulence and heat transfer, to solid dynamics and
+          electromagnetics.
 
-     Versions:
-        OpenFOAM/v2112
-        OpenFOAM/v2206
-        OpenFOAM/v2306
-        OpenFOAM/v2406
-        OpenFOAM/7-20200508
-        OpenFOAM/9
-        OpenFOAM/10
-        OpenFOAM/11
+         Versions:
+            OpenFOAM/v2112
+            OpenFOAM/v2206
+            OpenFOAM/v2306
+            OpenFOAM/v2406
+            OpenFOAM/7-20200508
+            OpenFOAM/9
+            OpenFOAM/10
+            OpenFOAM/11
 
---------------------------------------------------------------------------------------
-  For detailed information about a specific "OpenFOAM" package (including how to load the 
-modules) use the module's full name.
-  Note that names that have a trailing (E) are extensions provided by other modules.
-  For example:
+    --------------------------------------------------------------------------------------
+      For detailed information about a specific "OpenFOAM" package (including how to load the 
+    modules) use the module's full name.
+      Note that names that have a trailing (E) are extensions provided by other modules.
+      For example:
 
-     $ module spider OpenFOAM/11
---------------------------------------------------------------------------------------
-```
+         $ module spider OpenFOAM/11
+    --------------------------------------------------------------------------------------
+    ```
 
-Let us look at a recent version:
+    Let us look at a recent version:
 
-```bash
-$ ml spider OpenFOAM/11
---------------------------------------------------------------------------------------
-  OpenFOAM: OpenFOAM/11
---------------------------------------------------------------------------------------
-    Description:
-      OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
-      range of features to solve anything from complex fluid flows involving chemical
-      reactions, turbulence and heat transfer, to solid dynamics and
-      electromagnetics.
+    ```bash
+    $ ml spider OpenFOAM/11
+    --------------------------------------------------------------------------------------
+      OpenFOAM: OpenFOAM/11
+    --------------------------------------------------------------------------------------
+        Description:
+          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
+          range of features to solve anything from complex fluid flows involving chemical
+          reactions, turbulence and heat transfer, to solid dynamics and
+          electromagnetics.
 
 
-    You will need to load all module(s) on any one of the lines below before the "OpenFOAM
-/11" module is available to load.
+        You will need to load all module(s) on any one of the lines below before the "OpenFOAM
+    /11" module is available to load.
 
-      GCC/11.3.0  OpenMPI/4.1.4
- 
-    Help:
-      Description
-      ===========
-      OpenFOAM is a free, open source CFD software package.
-       OpenFOAM has an extensive range of features to solve
-       anything from complex fluid flows involving chemical
-       reactions, turbulence and heat transfer, to solid dynamics
-       and electromagnetics.
-      
-      
-      More information
-      ================
-       - Homepage: https://www.openfoam.org/
-```
+          GCC/11.3.0  OpenMPI/4.1.4
 
-On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
+        Help:
+          Description
+          ===========
+          OpenFOAM is a free, open source CFD software package.
+           OpenFOAM has an extensive range of features to solve
+           anything from complex fluid flows involving chemical
+           reactions, turbulence and heat transfer, to solid dynamics
+           and electromagnetics.
 
-Now we can load everything all at once like so:
 
-```bash
-$ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
-```
+          More information
+          ================
+           - Homepage: https://www.openfoam.org/
+    ```
 
-or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
+    On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
 
-## Exercises
+    Now we can load everything all at once like so:
+
+    ```bash
+    $ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
+    ```
+
+    or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
+
+
+## Exercises (Stop recording)
 
 - Choose 1 or 2
 
@@ -554,16 +584,37 @@ Exercise 4: Check if the python package XX is available in the present environme
 
 Exercise 1: Find R documentation of your cluster
 Exercise 2: Load R and start it!
-Exercise 3: Make the R package Seurat available to you by loading Biocnductor and test to load it in a R shell
+Exercise 3: Make the R package ``Seurat`` available to you by loading Biocnductor and test to load it (``library(Seurat)``)in a R shell
 
 
-### Matlab and other 
+### Matlab and another tool you will be using 
 
-## Wrap-up with questions
+Exercise 1: Try to find documentation of the program on your cluster
+Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed.
+Exercise 3. Load and start it.
+
+
+## Wrap-up with questions (No recording)
 
 - Did it work out?
+- Would you like a tol installed?
 - Questions?
+- DId
+
+## Courses
+
+- [Using Python in an HPC environment](https://uppmax.github.io/HPC-python/index.html)
+- [R-MATLAB-Julia](https://uppmax.github.io/R-matlab-julia-HPC/)
 
 !!! abstract "Summary"
+
+    - Many Python and R packages come in bundle modules.
+        - Python has >10 of them
+        - R has basically 2: CRAN and BioConductor.
+        - Load a bundle and the correct version of Python or R is loaded on the fly.
+    - All clusters have RStudio and Jupyter installed in some way. 
+        - Some clusters have Spyder and VS Code
+    - Some tools are licensed.
+        
 
     
