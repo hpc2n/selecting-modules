@@ -97,7 +97,7 @@ It varies between clusters how many packages are installed with the base Python 
     - Bundle of useful packages
         - Python-bundle-PyPI
 
-
+See also: https://docs.uppmax.uu.se/software/python_bundles/
 
 ### Principles
 
