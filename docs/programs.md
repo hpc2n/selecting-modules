@@ -54,13 +54,11 @@ It varies between clusters how many packages are installed with the base Python 
     - GCCcore reflects the GCC compiler version that is compatible when using C/C++ "back end" code.
     - The year reflects an EasyBuild toolchain, see [FOSS toolchains](https://docs.easybuild.io/common-toolchains/#common_toolchains_overview_foss).
 
-!!! info "FOSS tool chains and Python version using them"
+!!! info "Some FOSS tool chains and Python version using them"
 
     FOSS | Python version| GCC version | Bundle version
     -----| --------------|-------------|---------------
-    2023b| 3.11.5        | 13.2.0      | not installed on Pelle
     2024a| 3.12.3        | 13.3.0      | 2024.06/06
-    2025a| 3.13.1        | 14.2.0      | not installed on Pelle
     2025b| 3.13.5        | 14.3.0      | 2025.07
 
     - ``foss`` is the full level toolchain.
@@ -76,7 +74,6 @@ It varies between clusters how many packages are installed with the base Python 
 
 ??? Some well-known bundles
 
-    - Biopython
     - HPC and big data
         - dask
         - mpi4py
@@ -84,10 +81,11 @@ It varies between clusters how many packages are installed with the base Python 
     - Scientific tools
         - SciPy-bundles: ``numpy``, ``pandas``, ``scipy``
         - xarray
+    - Biopython
     - Interactivity
         - iPython
         - JupyterLab
-    - Graphics
+    - Graphics and diagrams
         - Matplotlib
         - Seaborn
     - Machine Learning
@@ -101,239 +99,27 @@ See also: https://docs.uppmax.uu.se/software/python_bundles/
 
 ### Principles
 
+- Decide what you need!
+    1. Start new project with newest toolchain
+    2. Go for version you have used before (reproduce)
+    3. Exact versions of many packages may need an isolated environment.
+- Load one or several bundleP, python is loaded on the fly!
 
+!!! Isolated environment
 
-### Example 1: Matplotlib
+    - The course Python in an HPC environment: [isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
 
-Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run)). 
+??? warning "Using Bianca?"
 
-If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
+    - There are no bundle modules on Bianca
+    - But, the Python modules have very many packages installed already.
 
-??? admonition "``matplotlib``"
-
-    All of the following code blocks in this example are taken from Cosmos.
-
-    ```bash
-    $ ml spider matplotlib
-
-    ----------------------------------------------------------------------------
-      matplotlib:
-    ----------------------------------------------------------------------------
-        Description:
-          matplotlib is a python 2D plotting library which produces publication
-          quality figures in a variety of hardcopy formats and interactive
-          environments across platforms. matplotlib can be used in python
-          scripts, the python and ipython shell, web application servers, and
-          six graphical user interface toolkits.
-
-         Versions:
-            matplotlib/2.2.5-Python-2.7.18
-            matplotlib/3.3.3
-            matplotlib/3.4.2
-            matplotlib/3.4.3
-            matplotlib/3.5.2
-            matplotlib/3.7.0
-            matplotlib/3.7.2
-            matplotlib/3.8.2
-            matplotlib/3.9.2
-
-    ----------------------------------------------------------------------------
-    ```
-
-    If you try the above command at your local HPC centre and get a "not found" error, that probably means Matplotlib is an extension of another module (e.g. on Bianca, there are versions that are part of the base Python module and versions that are part of `python_ML_packages`).
-
-    Let us look at `matplotlib/3.8.2`, for example:
-
-    ```bash
-    $ ml spider matplotlib/3.8.2
-
-    ---------------------------------------------------------------------------------
-      matplotlib: matplotlib/3.8.2
-    ---------------------------------------------------------------------------------
-        Description:
-          matplotlib is a python 2D plotting library which produces publication
-          quality figures in a variety of hardcopy formats and interactive
-          environments across platforms. matplotlib can be used in python scripts,
-          the python and ipython shell, web application servers, and six graphical
-          user interface toolkits.
-
-
-        You will need to load all module(s) on any one of the lines below before the "mat
-    plotlib/3.8.2" module is available to load.
-
-          GCC/13.2.0
-    ```
-
-    This means that, on Cosmos at least, only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. At most facilities, that means SciPy-bundle is required.
-
-    Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. If `GCC` is loaded, then you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load.
-
-    The more typical scenario is that you want to move code developed on a personal laptop to the cluster. Then you will mainly be constrained to a range of Python versions `Python/X.Y.Z`, in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or two versions, and Z is usually not that important. In a bash terminal, you can check your Python version with `python --version`.
-
-    Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to select subsets of `ml spider` or `ml avail` outputs, so one must view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
-
-    ```bash
-    $ ml spider Python
-    ---------------------------------------------------------------------------------
-      Python:
-    ---------------------------------------------------------------------------------
-        Description:
-          Python is a programming language that lets you work more quickly and integrate
-    your systems more effectively.
-
-         Versions:
-            Python/2.7.18-bare
-            Python/2.7.18
-            Python/3.8.6
-            Python/3.9.5-bare
-            Python/3.9.5
-            Python/3.9.6-bare
-            Python/3.9.6
-            Python/3.10.4-bare
-            Python/3.10.4
-            Python/3.10.8-bare
-            Python/3.10.8
-            Python/3.11.3
-            Python/3.11.5
-            Python/3.12.3
-         Other possible modules matches:
-            Biopython  GitPython  IPython  Python-bundle  Python-bundle-PyPI
-            bx-python  flatbuffers-python  graphviz-python  meson-python  ...
-    ```
-
-    The closest result is `Python/3.11.5` (though probably anything from 3.10.x to 3.12.x would work). Let's check what that requires:
-
-    ```bash
-    $ ml spider Python/3.11.5
-    ---------------------------------------------------------------------------------
-      Python: Python/3.11.5
-    ---------------------------------------------------------------------------------
-        Description:
-          Python is a programming language that lets you work more quickly and
-          integrate your systems more effectively.
-
-
-        You will need to load all module(s) on any one of the lines below before the
-        "Python/3.11.5" module is available to load.
-
-          GCCcore/13.2.0
-
-        Help:
-
-          Description
-          ===========
-          Python is a programming language that lets you work more quickly and integrate 
-    your systems more effectively.
-
-
-          More information
-          ================
-           - Homepage: https://python.org/
-
-
-          Included extensions
-          ===================
-          flit_core-3.9.0, packaging-23.2, pip-23.2.1, setuptools-68.2.2, setuptools-
-          scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
-    ```
-
-    On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module apart from the bare Python itself requires GCC, so you may as well use GCC every time.
-
-    On some facilities, each version of Matplotlib and SciPy-bundle is only be associated with one Python version, so you can load them all at once, using the GCC version to select for everything else, like this:
-
-    ```bash
-    ml GCC/13.2.0 Python matplotlib SciPy-bundle
-    ```
-
-    However, this is considered bad practice since sometimes additional versions are installed later. We should instead check `ml avail` to see what versions of Matplotlib and Scipy-bundle we can load:
-
-
-    ```bash
-    $ ml avail Scipy-bundle
-
-    ----------------------------- /sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0 -----------------------------
-       SciPy-bundle/2023.11
-    ```
-
-    (Note: some output omitted for brevity)
-
-    ```bash
-    $ ml avail Matplotlib
-
-    ----------------------------- /sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0 -----------------------------
-       matplotlib/3.8.2
-    ```
-
-    Then the one-line loading command should look like this:
-
-    ```bash
-    ml GCC/13.2.0 Python/3.11.5 matplotlib/3.8.2 SciPy-bundle/2023.11
-    ```
-
-    If we check what was loaded with `ml` or `module list`, the output looks like this: 
-
-    ```bash
-    $ ml
-
-    Currently Loaded Modules:
-      1) SoftwareTree/Milan         (S)  26) expat/2.5.0
-      2) GCCcore/13.2.0                  27) util-linux/2.39
-      3) zlib/1.2.13                     28) fontconfig/2.14.2
-      4) binutils/2.40                   29) xorg-macros/1.20.0
-      5) GCC/13.2.0                      30) libpciaccess/0.17
-      6) bzip2/1.0.8                     31) X11/20231019
-      7) ncurses/6.4                     32) Tk/8.6.13
-      8) libreadline/8.2                 33) Tkinter/3.11.5
-      9) Tcl/8.6.13                      34) NASM/2.16.01
-     10) SQLite/3.43.1                   35) libjpeg-turbo/3.0.1
-     11) XZ/5.4.4                        36) jbigkit/2.1
-     12) libffi/3.4.4                    37) gzip/1.13
-     13) OpenSSL/1.1                     38) lz4/1.9.4
-     14) Python/3.11.5                   39) zstd/1.5.5
-     15) OpenBLAS/0.3.24                 40) libdeflate/1.19
-     16) FlexiBLAS/3.3.1                 41) LibTIFF/4.6.0
-     17) FFTW/3.3.10                     42) giflib/5.2.1
-     18) cffi/1.15.1                     43) libwebp/1.3.2
-     19) cryptography/41.0.5             44) OpenJPEG/2.5.0
-     20) virtualenv/20.24.6              45) LittleCMS/2.15
-     21) Python-bundle-PyPI/2023.10      46) Pillow/10.2.0
-     22) pybind11/2.11.1                 47) Qhull/2020.2
-     23) libpng/1.6.40                   48) matplotlib/3.8.2
-     24) Brotli/1.1.0                    49) SciPy-bundle/2023.11
-     25) freetype/2.13.2
-
-      Where:
-       S:  Module is Sticky, requires --force to unload or purge
-    ```
-
-    If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
 
 
 
 If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
-### Example 2: Check if a Python extension is loaded
-
-Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with `ml avail`, `ml spider`, or `ml show <module>`, you should also check `pip list` and `grep` for the package after loading the rest of your modules. 
-
-??? note "Example: `psutil`"
-
-    For example, `psutil` is part of Python-bundle-PyPI, which is silently loaded with any SciPy-bundle. Here is the easiest way to find `psutil`:
-    
-    ```bash
-    $ pip list | grep psutil
-    psutil                            5.9.5
-    
-    [notice] A new release of pip is available: 23.1.2 -> 25.1.1
-    [notice] To update, run: pip install --upgrade pip
-    ```
-    
-    The `pip list | grep` approach is also helpful if you want to see the version of a package without having to open a Python interpreter.
-
-!!! tip
-
-    The same list (and grep) approach works for Anaconda3. The only difference is that you should use `conda list` instead of `pip list` (although `pip list` usually still works). The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
 
 !!! tip
     
@@ -627,7 +413,237 @@ An example output might look like this (from Cosmos):
 Exercise 1: Find python documentation of your cluster
 Exercise 2: Load python and start it!
 Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell
+
+Example Matplotlib
+
+Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run)). 
+
+If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
+
+??? admonition "``matplotlib``"
+
+    All of the following code blocks in this example are taken from Cosmos.
+
+    ```bash
+    $ ml spider matplotlib
+
+    ----------------------------------------------------------------------------
+      matplotlib:
+    ----------------------------------------------------------------------------
+        Description:
+          matplotlib is a python 2D plotting library which produces publication
+          quality figures in a variety of hardcopy formats and interactive
+          environments across platforms. matplotlib can be used in python
+          scripts, the python and ipython shell, web application servers, and
+          six graphical user interface toolkits.
+
+         Versions:
+            matplotlib/2.2.5-Python-2.7.18
+            matplotlib/3.3.3
+            matplotlib/3.4.2
+            matplotlib/3.4.3
+            matplotlib/3.5.2
+            matplotlib/3.7.0
+            matplotlib/3.7.2
+            matplotlib/3.8.2
+            matplotlib/3.9.2
+
+    ----------------------------------------------------------------------------
+    ```
+
+    If you try the above command at your local HPC centre and get a "not found" error, that probably means Matplotlib is an extension of another module (e.g. on Bianca, there are versions that are part of the base Python module and versions that are part of `python_ML_packages`).
+
+    Let us look at `matplotlib/3.8.2`, for example:
+
+    ```bash
+    $ ml spider matplotlib/3.8.2
+
+    ---------------------------------------------------------------------------------
+      matplotlib: matplotlib/3.8.2
+    ---------------------------------------------------------------------------------
+        Description:
+          matplotlib is a python 2D plotting library which produces publication
+          quality figures in a variety of hardcopy formats and interactive
+          environments across platforms. matplotlib can be used in python scripts,
+          the python and ipython shell, web application servers, and six graphical
+          user interface toolkits.
+
+
+        You will need to load all module(s) on any one of the lines below before the "mat
+    plotlib/3.8.2" module is available to load.
+
+          GCC/13.2.0
+    ```
+
+    This means that, on Cosmos at least, only GCC must be loaded before Matplotlib. However, Matplotlib is barely usable without the tools to read in or create the data arrays, so NumPy and/or Pandas are also needed. At most facilities, that means SciPy-bundle is required.
+
+    Note that `ml show matplotlib/<version>` does **not** show which Python version is associated with that version of Matplotlib. If `GCC` is loaded, then you can use `ml avail` with `Python`, `matplotlib`, and/or `SciPy-bundle` to see which versions of these are available to load.
+
+    The more typical scenario is that you want to move code developed on a personal laptop to the cluster. Then you will mainly be constrained to a range of Python versions `Python/X.Y.Z`, in which X absolutely *must* match what you used, Y *should* match but may be flexible by one or two versions, and Z is usually not that important. In a bash terminal, you can check your Python version with `python --version`.
+
+    Let's say you built a script using Python 3.11.8 and a compatible version of Matplotlib on your own laptop. Glob patterns do not work to select subsets of `ml spider` or `ml avail` outputs, so one must view the full list with `ml spider Python` (`ml spider cray-python` on Dardel). Here is the output on Cosmos:
+
+    ```bash
+    $ ml spider Python
+    ---------------------------------------------------------------------------------
+      Python:
+    ---------------------------------------------------------------------------------
+        Description:
+          Python is a programming language that lets you work more quickly and integrate
+    your systems more effectively.
+
+         Versions:
+            Python/2.7.18-bare
+            Python/2.7.18
+            Python/3.8.6
+            Python/3.9.5-bare
+            Python/3.9.5
+            Python/3.9.6-bare
+            Python/3.9.6
+            Python/3.10.4-bare
+            Python/3.10.4
+            Python/3.10.8-bare
+            Python/3.10.8
+            Python/3.11.3
+            Python/3.11.5
+            Python/3.12.3
+         Other possible modules matches:
+            Biopython  GitPython  IPython  Python-bundle  Python-bundle-PyPI
+            bx-python  flatbuffers-python  graphviz-python  meson-python  ...
+    ```
+
+    The closest result is `Python/3.11.5` (though probably anything from 3.10.x to 3.12.x would work). Let's check what that requires:
+
+    ```bash
+    $ ml spider Python/3.11.5
+    ---------------------------------------------------------------------------------
+      Python: Python/3.11.5
+    ---------------------------------------------------------------------------------
+        Description:
+          Python is a programming language that lets you work more quickly and
+          integrate your systems more effectively.
+
+
+        You will need to load all module(s) on any one of the lines below before the
+        "Python/3.11.5" module is available to load.
+
+          GCCcore/13.2.0
+
+        Help:
+
+          Description
+          ===========
+          Python is a programming language that lets you work more quickly and integrate 
+    your systems more effectively.
+
+
+          More information
+          ================
+           - Homepage: https://python.org/
+
+
+          Included extensions
+          ===================
+          flit_core-3.9.0, packaging-23.2, pip-23.2.1, setuptools-68.2.2, setuptools-
+          scm-8.0.4, tomli-2.0.1, typing_extensions-4.8.0, wheel-0.41.2
+    ```
+
+    On this cluster, the base Python module requires GCCcore, but we already saw that Matplotlib requires GCC (whch GCCcore is part of). In fact, nearly every other Python-based module apart from the bare Python itself requires GCC, so you may as well use GCC every time.
+
+    On some facilities, each version of Matplotlib and SciPy-bundle is only be associated with one Python version, so you can load them all at once, using the GCC version to select for everything else, like this:
+
+    ```bash
+    ml GCC/13.2.0 Python matplotlib SciPy-bundle
+    ```
+
+    However, this is considered bad practice since sometimes additional versions are installed later. We should instead check `ml avail` to see what versions of Matplotlib and Scipy-bundle we can load:
+
+
+    ```bash
+    $ ml avail Scipy-bundle
+
+    ----------------------------- /sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0 -----------------------------
+       SciPy-bundle/2023.11
+    ```
+
+    (Note: some output omitted for brevity)
+
+    ```bash
+    $ ml avail Matplotlib
+
+    ----------------------------- /sw/easybuild_milan/modules/all/Compiler/GCC/13.2.0 -----------------------------
+       matplotlib/3.8.2
+    ```
+
+    Then the one-line loading command should look like this:
+
+    ```bash
+    ml GCC/13.2.0 Python/3.11.5 matplotlib/3.8.2 SciPy-bundle/2023.11
+    ```
+
+    If we check what was loaded with `ml` or `module list`, the output looks like this: 
+
+    ```bash
+    $ ml
+
+    Currently Loaded Modules:
+      1) SoftwareTree/Milan         (S)  26) expat/2.5.0
+      2) GCCcore/13.2.0                  27) util-linux/2.39
+      3) zlib/1.2.13                     28) fontconfig/2.14.2
+      4) binutils/2.40                   29) xorg-macros/1.20.0
+      5) GCC/13.2.0                      30) libpciaccess/0.17
+      6) bzip2/1.0.8                     31) X11/20231019
+      7) ncurses/6.4                     32) Tk/8.6.13
+      8) libreadline/8.2                 33) Tkinter/3.11.5
+      9) Tcl/8.6.13                      34) NASM/2.16.01
+     10) SQLite/3.43.1                   35) libjpeg-turbo/3.0.1
+     11) XZ/5.4.4                        36) jbigkit/2.1
+     12) libffi/3.4.4                    37) gzip/1.13
+     13) OpenSSL/1.1                     38) lz4/1.9.4
+     14) Python/3.11.5                   39) zstd/1.5.5
+     15) OpenBLAS/0.3.24                 40) libdeflate/1.19
+     16) FlexiBLAS/3.3.1                 41) LibTIFF/4.6.0
+     17) FFTW/3.3.10                     42) giflib/5.2.1
+     18) cffi/1.15.1                     43) libwebp/1.3.2
+     19) cryptography/41.0.5             44) OpenJPEG/2.5.0
+     20) virtualenv/20.24.6              45) LittleCMS/2.15
+     21) Python-bundle-PyPI/2023.10      46) Pillow/10.2.0
+     22) pybind11/2.11.1                 47) Qhull/2020.2
+     23) libpng/1.6.40                   48) matplotlib/3.8.2
+     24) Brotli/1.1.0                    49) SciPy-bundle/2023.11
+     25) freetype/2.13.2
+
+      Where:
+       S:  Module is Sticky, requires --force to unload or purge
+    ```
+
+    If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
+
+
 Exercise 4: Check if the python package XX is available in the present environment
+
+### Example 2: Check if a Python extension is loaded
+
+Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with `ml avail`, `ml spider`, or `ml show <module>`, you should also check `pip list` and `grep` for the package after loading the rest of your modules. 
+
+??? note "Example: `psutil`"
+
+    For example, `psutil` is part of Python-bundle-PyPI, which is silently loaded with any SciPy-bundle. Here is the easiest way to find `psutil`:
+    
+    ```bash
+    $ pip list | grep psutil
+    psutil                            5.9.5
+    
+    [notice] A new release of pip is available: 23.1.2 -> 25.1.1
+    [notice] To update, run: pip install --upgrade pip
+    ```
+    
+    The `pip list | grep` approach is also helpful if you want to see the version of a package without having to open a Python interpreter.
+
+!!! tip
+
+    The same list (and grep) approach works for Anaconda3. The only difference is that you should use `conda list` instead of `pip list` (although `pip list` usually still works). The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
+
 
 ### R
 
