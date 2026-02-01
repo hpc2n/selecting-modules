@@ -35,7 +35,7 @@ We already learned how to load Python module of a specific version.
 
 
 
-It varies between clusters how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequsites are required (most centres apart from PDC are the same), and the available version numbers. 
+It varies between clusters how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequisites are required (most centres apart from PDC are the same), and the available version numbers. 
 
 ??? note "Packages at the clusters"
 
