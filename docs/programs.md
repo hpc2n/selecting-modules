@@ -95,7 +95,7 @@ It varies between clusters how many packages are installed with the base Python 
     - Bundle of useful packages
         - Python-bundle-PyPI
 
-See also: https://docs.uppmax.uu.se/software/python_bundles/
+[See also about Python bundles at Pelle](https://docs.uppmax.uu.se/software/python_bundles/)
 
 ### Principles
 
@@ -103,7 +103,7 @@ See also: https://docs.uppmax.uu.se/software/python_bundles/
     1. Start new project with newest toolchain
     2. Go for version you have used before (reproduce)
     3. Exact versions of many packages may need an isolated environment.
-- Load one or several bundleP, python is loaded on the fly!
+- Load one or several bundles, python is loaded on the fly!
 
 !!! Isolated environment
 
@@ -658,7 +658,7 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 
 Exercise 1: Find R documentation of your cluster
 Exercise 2: Load R and start it!
-Exercise 3: Make the R package ``Seurat`` available to you by loading Biocnductor and test to load it (``library(Seurat)``)in a R shell
+Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``)in a R shell
 
 
 ### Matlab and another tool you will be using 
@@ -671,9 +671,8 @@ Exercise 3. Load and start it.
 ## Wrap-up with questions (No recording)
 
 - Did it work out?
-- Would you like a tol installed?
+- Would you like a tool installed?
 - Questions?
-- DId
 
 ## Courses
 
