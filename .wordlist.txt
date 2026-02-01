@@ -94,3 +94,13 @@ iccifortcuda
 iimpic
 intelcuda
 fosscuda
+
+centres
+prerequsites
+GCCcore
+EasyBuild
+GROMACS
+Nextflow
+VASP
+OpenFOAM
+Matplotlib
