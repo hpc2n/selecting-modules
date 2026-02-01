@@ -267,7 +267,7 @@ Many R-packages conveniently specify the version of R they are compatible with i
 
 ## Matlab
 
-At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions).
+At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
 
 **All Add-Ons and Toolboxes should be available through the Matlab GUI.**
 
@@ -425,7 +425,7 @@ Exercise 3: Make the Python package Matplotlib available to you and test to load
 
 Example Matplotlib
 
-Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day2/matplotlib-intro.html#load-and-run)). 
+Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day3/new-matplotlib-intro.html#load-and-run)). 
 
 If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
