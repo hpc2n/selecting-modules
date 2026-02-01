@@ -96,7 +96,7 @@ intelcuda
 fosscuda
 
 centres
-prerequsites
+prerequisites
 GCCcore
 EasyBuild
 GROMACS
@@ -104,3 +104,17 @@ Nextflow
 VASP
 OpenFOAM
 Matplotlib
+IDEs
+Jupyter
+Spyder
+OnDemand
+Alvis
+genomic
+julia
+matlab
+Bioconductor
+RStudio
+Capitalisation
+Ons
+Specialised
+specialised
