@@ -258,11 +258,11 @@ In this case, R-bundle-Bioconductor loads the version of R that it is based on a
 
 ### RStudio
 
-https://uppmax.github.io/R-matlab-julia-HPC/r/rstudio/
+??? info "Course"
+
+    [RStudio](https://uppmax.github.io/R-matlab-julia-HPC/r/rstudio/)
 
 ## Matlab
-
-https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/
 
 At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html#check-for-matlab-versions).
 
@@ -276,37 +276,41 @@ At most HPC centres, Matlab can be loaded directly, but PDC requires the usual p
 
 At most centres, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
 
-```bash
-$ ml avail matlab
+??? note "Output from ``ml avail matlab``"
 
---------------------- /software/sse2/tetralith_el9/modules ---------------------
-   MATLAB/recommendation (D)    MATLAB/2024a-hpc1-bdist
-   MATLAB/2023a-bdist           MATLAB/2025a-hpc1-bdist
-   MATLAB/2023b-bdist
+    ```bash
+    $ ml avail matlab
+    
+    --------------------- /software/sse2/tetralith_el9/modules ---------------------
+       MATLAB/recommendation (D)    MATLAB/2024a-hpc1-bdist
+       MATLAB/2023a-bdist           MATLAB/2025a-hpc1-bdist
+       MATLAB/2023b-bdist
+    
+      Where:
+       D:  Default Module
+    ```
 
-  Where:
-   D:  Default Module
-```
+    Once you have chosen a specific version, use `ml spider` to check if there are prerequisites, like so:
 
-Once you have chosen a specific version, use `ml spider` to check if there are prerequisites, like so:
+    ```bash
+    $ ml spider MATLAB/2024a-hpc1-bdist
+    ```
 
-```bash
-$ ml spider MATLAB/2024a-hpc1-bdist
-```
+    The full output is too verbose to reprint in full here, but the one important line reads: 
 
-The full output is too verbose to reprint in full here, but the one important line reads: 
+    ```bash
+        This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
+    ```
 
-```bash
-    This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
-```
+    The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:
+    
+    ```bash
+    $ ml MATLAB/2024a-hpc1-bdist
+    ```
+    
+??? info "MATLAB in HPC course"
 
-The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:
-
-```bash
-$ ml MATLAB/2024a-hpc1-bdist
-```
-
-https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/
+    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
 
 ## Specialised Applications
 
@@ -321,6 +325,8 @@ For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless ther
 As usual, we start by checking the versions available with `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
 
 An example output might look like this (from Cosmos):
+
+??? note "Example OpenFOAM at Cosmos"
 
     ```bash
     $ ml spider OpenFOAM
