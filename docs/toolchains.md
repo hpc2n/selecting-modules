@@ -38,7 +38,7 @@ any.
     ml PDC
     ```
 
-    load the relevant PDCOLD module to access older software versions.
+    Access to older software versions is provided by loading the relevant `PDCOLD` module .
 
     In contrast to other systems, it is not advisable to do a `module purge` on Dardel when wanting to remove software.  Use 
     
@@ -46,7 +46,7 @@ any.
     - `module swap` to exchange one module for another
     - `module load` which will load a module and unloads everything that conflicts
 
-    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite* and the *AMD AOCC compilers: are available. The compilers can be accessed by loading on of:
+    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite* and the *AMD AOCC compilers*: are available. The compilers can be accessed by loading on of:
 
     ```
     ml PrgEnv-cray
