@@ -103,31 +103,39 @@ It varies between clusters how many packages are installed with the base Python 
 
 - Check versions
 
-    ml spider matplotlib
+```console
+ml spider matplotlib
+```
 
 or
 
-    ml avail matplotlib
+```console
+ml avail matplotlib
+```
 
 - Load prerequisites, if needed, and then
 
-    ml matplotlib/<version>
+```console
+ml matplotlib/<version>
+```
 
 or
 
-    ml matplotlib/<version>
+```console
+ml matplotlib/<version>
+```
 
 - Start Python session in a console with
 
-    python
+```console
+python
+```
 
 - Load a needed library, like
 
 ```python
 import matplotlib
 ```
-
-
 
 !!! Isolated environment
 
@@ -171,20 +179,12 @@ Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be lo
 ### Principles
 
 - Check versions
-
-    ml spider R
-
-or 
-
-    ml avail R
-
-- Load prerequisites if needed and then
-
-    ml R
-
+- Load prerequisites if needed and then R
 - Start R console with
 
-    R
+```console
+R
+```
 
 ### R-based packages
 
@@ -211,23 +211,33 @@ Many R-packages conveniently specify the version of R they are compatible with i
 
 - Check versions
 
-    ml spider R-bundle
+```console
+ml spider R-bundle
+```
 
 or
 
-    ml avail R-bundle
+```console
+ml avail R-bundle
+```
 
 - Load prerequisites, if needed, and then
 
-    ml R-bundle-CRAN/<version>
+```console
+ml R-bundle-CRAN/<version>
+```
 
 or
 
-    ml R-bundle-Bioconductor/<version>
+```console
+ml R-bundle-Bioconductor/<version>
+```
 
 - Start R session in a console with
 
-    R
+```console
+R
+```
 
 - Load a needed library, like
 
@@ -304,7 +314,7 @@ For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless ther
 
 !!! important
 
-    Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the licensed user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is up to users to determine the licensing requirements of specialised software packages.
+    Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the **licensed** user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is up to users to determine the licensing requirements of specialised software packages.
 
 ### Example: OpenFOAM
 
@@ -312,83 +322,6 @@ As usual, we start by checking the versions available with `ml spider OpenFOAM` 
 
 An example output might look like this (from Cosmos):
 
-??? note "Example OpenFOAM at Cosmos"
-
-    ```bash
-    $ ml spider OpenFOAM
-
-    --------------------------------------------------------------------------------------
-      OpenFOAM:
-    --------------------------------------------------------------------------------------
-        Description:
-          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
-          range of features to solve anything from complex fluid flows involving chemical
-          reactions, turbulence and heat transfer, to solid dynamics and
-          electromagnetics.
-
-         Versions:
-            OpenFOAM/v2112
-            OpenFOAM/v2206
-            OpenFOAM/v2306
-            OpenFOAM/v2406
-            OpenFOAM/7-20200508
-            OpenFOAM/9
-            OpenFOAM/10
-            OpenFOAM/11
-
-    --------------------------------------------------------------------------------------
-      For detailed information about a specific "OpenFOAM" package (including how to load the 
-    modules) use the module's full name.
-      Note that names that have a trailing (E) are extensions provided by other modules.
-      For example:
-
-         $ module spider OpenFOAM/11
-    --------------------------------------------------------------------------------------
-    ```
-
-    Let us look at a recent version:
-
-    ```bash
-    $ ml spider OpenFOAM/11
-    --------------------------------------------------------------------------------------
-      OpenFOAM: OpenFOAM/11
-    --------------------------------------------------------------------------------------
-        Description:
-          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
-          range of features to solve anything from complex fluid flows involving chemical
-          reactions, turbulence and heat transfer, to solid dynamics and
-          electromagnetics.
-
-
-        You will need to load all module(s) on any one of the lines below before the "OpenFOAM
-    /11" module is available to load.
-
-          GCC/11.3.0  OpenMPI/4.1.4
-
-        Help:
-          Description
-          ===========
-          OpenFOAM is a free, open source CFD software package.
-           OpenFOAM has an extensive range of features to solve
-           anything from complex fluid flows involving chemical
-           reactions, turbulence and heat transfer, to solid dynamics
-           and electromagnetics.
-
-
-          More information
-          ================
-           - Homepage: https://www.openfoam.org/
-    ```
-
-    On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
-
-    Now we can load everything all at once like so:
-
-    ```bash
-    $ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
-    ```
-
-    or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
 
 
 ## Exercises (Stop recording)
@@ -741,6 +674,84 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 Exercise 1: Try to find documentation of the program on your cluster
 Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed.
 Exercise 3. Load and start it.
+
+??? note "Example OpenFOAM at Cosmos"
+
+    ```bash
+    $ ml spider OpenFOAM
+
+    --------------------------------------------------------------------------------------
+      OpenFOAM:
+    --------------------------------------------------------------------------------------
+        Description:
+          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
+          range of features to solve anything from complex fluid flows involving chemical
+          reactions, turbulence and heat transfer, to solid dynamics and
+          electromagnetics.
+
+         Versions:
+            OpenFOAM/v2112
+            OpenFOAM/v2206
+            OpenFOAM/v2306
+            OpenFOAM/v2406
+            OpenFOAM/7-20200508
+            OpenFOAM/9
+            OpenFOAM/10
+            OpenFOAM/11
+
+    --------------------------------------------------------------------------------------
+      For detailed information about a specific "OpenFOAM" package (including how to load the 
+    modules) use the module's full name.
+      Note that names that have a trailing (E) are extensions provided by other modules.
+      For example:
+
+         $ module spider OpenFOAM/11
+    --------------------------------------------------------------------------------------
+    ```
+
+    Let us look at a recent version:
+
+    ```bash
+    $ ml spider OpenFOAM/11
+    --------------------------------------------------------------------------------------
+      OpenFOAM: OpenFOAM/11
+    --------------------------------------------------------------------------------------
+        Description:
+          OpenFOAM is a free, open source CFD software package. OpenFOAM has an extensive
+          range of features to solve anything from complex fluid flows involving chemical
+          reactions, turbulence and heat transfer, to solid dynamics and
+          electromagnetics.
+
+
+        You will need to load all module(s) on any one of the lines below before the "OpenFOAM
+    /11" module is available to load.
+
+          GCC/11.3.0  OpenMPI/4.1.4
+
+        Help:
+          Description
+          ===========
+          OpenFOAM is a free, open source CFD software package.
+           OpenFOAM has an extensive range of features to solve
+           anything from complex fluid flows involving chemical
+           reactions, turbulence and heat transfer, to solid dynamics
+           and electromagnetics.
+
+
+          More information
+          ================
+           - Homepage: https://www.openfoam.org/
+    ```
+
+    On this system, GCC and OpenMPI must be loaded first, but this is not true for every system. Indeed, some versions on some systems (e.g. at NSC) load and use the compilers, MPI libraries, and mathematics libraries from Intel toolchains.
+
+    Now we can load everything all at once like so:
+
+    ```bash
+    $ ml GCC/11.3.0  OpenMPI/4.1.4 OpenFOAM/11
+    ```
+
+    or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
 
 
 ## Wrap-up with questions (No recording)
