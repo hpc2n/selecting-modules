@@ -286,7 +286,6 @@ ml <module name>
 - Start the tool by following documentation of the tool or the local cluster documentation.
 - Usually it is the tool name with lower case or with the first letter capitalised. Or, like for OpenFoam, commands starting with ``foam``.
 
-
 You may try out one or several tools in Exercise 3.
 
 - There we also give a bit more detailed info about
@@ -310,14 +309,22 @@ You may try out one or several tools in Exercise 3.
 
 ## Exercises (Stop recording)
 
-- Choose 1 or 2
+- Choose 1 or 2 
 
-- Break-out rooms
-    - Python
-    - R
-    - Matlab and other  
+- Python
+- R (Tip, do not choose if using Tetralith, Alvis or Dardel)
+- Matlab and other
+
+Break-out rooms according to interest!
 
 ### Python
+
+These clusters do NOT have python bundles:
+
+- Dardel
+- Tetralith
+- Alvis
+
 
 Exercise 1: Find python documentation of your cluster
 Exercise 2: Load python and start it!
@@ -556,17 +563,25 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 
 ### R
 
+These clusters do NOT have R bundles:
+
+- Bianca has R_packages that contains CRAN and BioConductor packages
+    - You can load that instead of a bundle in the below exercises.
+- Dardel
+- Tetralith
+- Alvis
+
+
 #### Exercise 1: Find R documentation of your cluster
 
 #### Exercise 2: Load R and start it!
 
 ??? tip "Answer"
 
-    COurse page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
+    Course page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
 
 #### Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell.
 
-:warning: Tetralith does not have Seurat installed anywhere
 
 ??? note "Example at Cosmos"
 
