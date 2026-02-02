@@ -67,6 +67,33 @@ any.
     
     In the interest of time, we refer readers to [this page on the CPE](https://support.pdc.kth.se/doc/software_development/development/#the-cray-programming-environment) and [this page on CPE-based toolchains](https://support.pdc.kth.se/doc/software_development/easybuild/#toolchains).
 
+=== "Tetralith"
+      
+    The toolchains available on Tetralith are called **buildenv**, which stands for build environment.   For CPU code build environments based on the Intel compiler and the GNU compiler suite are provided.
+
+    Check
+
+    ```
+    module avail buildenv-gcc
+    ```
+
+    or 
+
+    ```
+    module avail buildenv-intel
+    ```
+
+    To check the available versions.  For example command
+
+    ```
+    module help buildenv-gcc/2023b-eb
+    ```
+
+    shows what is included in the module. In case of `buildenv-gcc/2023b-eb` it is OpenMPI for MPI support, OpenBLAS (BLAS and LAPACK support), FFTW and ScaLAPACK in addtion to the GCC compiler suite.  
+
+    The `buildenv-intel/2023a-eb` contains Intel C/C++ and Fortran compilers, Intel MPI and Intel MKL.
+    
+
 === "Kebnekaise"
 
     **GCC Compiler Toolchains**
@@ -99,23 +126,6 @@ any.
        * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "Tetralith"
-      
-    Note that unlike most clusters, on Tetralith, users must load a module of the form
-    `buildtool-easybuild/<version>` before loading any of the toolchains below.
-    After loading that prerequisite, users should check the available toolchains with
-    `ml avail <toolchain>` instead of `ml spider <toolchain>`.
-    
-    **GCC Compiler Toolchains**
-    
-       * **GCC**: GCC compiler only
-       * **foss**: GCC, OpenMPI, OpenBLAS, FFTW, BLACS, ScaLAPACK
-       * **gfbf**: GCC, FlexiBLAS, FFTW  (no MPI)
-       
-    **Intel Compiler Toolchains**
-    
-       * **intel**: icc, ifort, Intel MPI, MKL
-       * **intel-compilers**: icc, icpc, ifort, icx, icpx, ifx (no MPI or MKL)
 
 === "Pelle"
 
@@ -163,6 +173,13 @@ any.
 
 ### CUDA based toolchains for GPU nodes
 
+=== "Tetralith"
+
+    **GCC Compiler Toolchains for GPU**
+    
+       * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
+
+
 === "Kebnekaise"
 
     - As of today you load GCC and CUDA separately.
@@ -184,11 +201,6 @@ any.
        * **iimpic**: icc, ifort, CUDA, Intel MPI
        * **intelcuda**: icc, ifort, CUDA, Intel MPI, MKL
 
-=== "Tetralith"
-
-    **GCC Compiler Toolchains for GPU**
-    
-       * **buildenv-gcccuda**: GCC, CUDA, OpenMPI, OpenBLAS, FFTW, ScaLAPACK
 
 === "Pelle"
 
