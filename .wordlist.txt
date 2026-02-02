@@ -116,6 +116,7 @@ matlab
 Bioconductor
 RStudio
 Capitalisation
+capitalised
 Ons
 Specialised
 specialised
