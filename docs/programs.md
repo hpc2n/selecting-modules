@@ -31,10 +31,6 @@ Most of the examples below use outputs from Cosmos, but the workflows will be si
 
 We already learned how to load Python module of a specific version.
 
-
-
-
-
 It varies between clusters how many packages are installed with the base Python packages, how many are installed as separate modules, what prerequisites are required (most centres apart from PDC are the same), and the available version numbers. 
 
 ??? note "Packages at the clusters"
@@ -105,6 +101,34 @@ It varies between clusters how many packages are installed with the base Python 
     3. Exact versions of many packages may need an isolated environment.
 - Load one or several bundles, python is loaded on the fly!
 
+- Check versions
+
+    ml spider matplotlib
+
+or
+
+    ml avail matplotlib
+
+- Load prerequisites, if needed, and then
+
+    ml matplotlib/<version>
+
+or
+
+    ml matplotlib/<version>
+
+- Start Python session in a console with
+
+    python
+
+- Load a needed library, like
+
+```python
+import matplotlib
+```
+
+
+
 !!! Isolated environment
 
     - The course Python in an HPC environment: [isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
@@ -121,20 +145,20 @@ If you are comfortable editing code in a basic text editor and running at the co
     
     `grep` does not work directly on the outputs of module commands like `ml show <module>`. To search for an extension in a very long Lua module file, copy the full path of the ``.lua`` file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present.
 
-!!! question "Missing a package?"
+??? question "Missing a package?"
 
     - Install by conda, pip or other tool or contact support
-    - https://uppmax.github.io/HPC-python/day2/install_packages.html
-    - https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html
+    - [Install packages](https://uppmax.github.io/HPC-python/day2/install_packages.html)
+    - [Use isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
     
-!!! info "Python IDEs"
+??? info "Python IDEs"
 
-   - Jupyter
-   - Spyder
-   - Visual Studio Code
-   - HPC-python course
-       - [Starting from command line](https://uppmax.github.io/HPC-python/day2/IDEs_cmd.html)
-       - [Starting from OnDemand](https://uppmax.github.io/HPC-python/day2/ondemand-desktop.html)
+    - Jupyter
+    - Spyder
+    - Visual Studio Code
+    - HPC-python course
+        - [Starting from command line](https://uppmax.github.io/HPC-python/day2/IDEs_cmd.html)
+        - [Starting from OnDemand](https://uppmax.github.io/HPC-python/day2/ondemand-desktop.html)
 
 ## R
 
@@ -149,7 +173,7 @@ Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be lo
 - Check versions
 
     ml spider R
-  
+
 or 
 
     ml avail R
@@ -158,7 +182,7 @@ or
 
     ml R
 
-- Start with
+- Start R console with
 
     R
 
@@ -188,12 +212,12 @@ Many R-packages conveniently specify the version of R they are compatible with i
 - Check versions
 
     ml spider R-bundle
-  
-or 
+
+or
 
     ml avail R-bundle
 
-- Load prerequisites if needed and then
+- Load prerequisites, if needed, and then
 
     ml R-bundle-CRAN/<version>
 
@@ -207,7 +231,9 @@ or
 
 - Load a needed library, like
 
-    > library(parallel)
+```R
+> library(parallel)
+```
 
 !!! question "Missing a package?"
 
