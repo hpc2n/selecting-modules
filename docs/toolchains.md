@@ -12,11 +12,6 @@ EasyBuild deployment framework. Under this framework, software is built around
 linear algebra libraries, and other fundamental programs used internally by more
 familiar packages that users work with directly (e.g., Python, R, GROMACS, etc.).
 
-If you can think of familiar software packages like cars, then toolchains can be
-thought of like car *platforms*: similarly-sized cars from several brands often
-use standardized engine components, power steering systems, wheel axles, and other
-parts from the same manufacturer.
-
 Most HPC centers recommend using toolchains to build and compile software, whether
 you use EasyBuild not, to keep software versions consistent and reproducible.
 
@@ -28,6 +23,48 @@ For most of the following toolchains, multiple versions are available on each of
 the specified clusters. Use `ml spider <toolchain>` to determine which versions
 are available and what modules are required as prerequisites to load them, if
 any.
+
+=== "Dardel"
+
+    Dardel uses the **Cray Programming Environment (CPE)**, which differs significantly from the setup on other NAISS and University systems.  Load a `cpe` module to access a specific version of the CPE, e.g.
+
+    ```
+    ml cpe/24.11
+    ```
+    
+    To use installed software titles installed with the latest version of the CPE, load the PDC module
+
+    ```
+    ml PDC
+    ```
+
+    load the relevant PDCOLD module to access older software versions.
+
+    In contrast to other systems, it is not advisable to do a `module purge` on Dardel when wanting to remove software.  Use 
+    
+    - `module unload` to remove a module
+    - `module swap` to exchange one module for another
+    - `module load` which will load a module and unloads everything that conflicts
+
+    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite* and the *AMD AOCC compilers: are available. The compilers can be accessed by loading on of:
+
+    ```
+    ml PrgEnv-cray
+    ml PrgEnv-gnu
+    ml PrgEnv-aocc
+    ```
+
+    where `PrgEnv-cray`is loaded by default after login.  
+   
+    The modules `cray-libsci`, providing e.g. BLAS/LAPACK/ScaLAPACK and `cray-mpich` providing MPI capabilities are automatically included. 
+    
+    For software built or intended to be built with EasyBuild, there are 3 toolchains that help to assemble the appropriate combinations of the modules mentioned above, among other tools to support parallel programming.
+
+    - cpeCRAY: based on `PrgEnv-cray`
+    - cpeAMD: based on `PrgEnv-gnu`
+    - cpeGNU: based on `PrgEnv-aocc`
+    
+    In the interest of time, we refer readers to [this page on the CPE](https://support.pdc.kth.se/doc/software_development/development/#the-cray-programming-environment) and [this page on CPE-based toolchains](https://support.pdc.kth.se/doc/software_development/easybuild/#toolchains).
 
 === "Kebnekaise"
 
@@ -121,24 +158,6 @@ any.
        * **intel**: icc, ifort, Intel MPI, MKL
        * **iimpi**: icc, ifort, Intel MPI
 
-=== "Dardel"
-
-    On Dardel, nearly all software packages have a prerequisite called something like PDC/xx.xx or PDCOLD/xx.xx that will have to be loaded first. If you load the wrong one, use `ml unload`! **Do not purge!**
-    
-    Toolchains at PDC bear little resemblance to any other cluster covered here because PDC uses different hardware architecture and the Cray Programming Environment (CPE).
-    
-    - On Dardel, `PrgEnv-cray` and `cray-libsci` are loaded by default, and provide the compiler and linear algebra libraries, respectively.
-    - Loading `cpe/YY.XX` adds `cray-mpich` as the MPI library, and modifies `PrgEnv-cray` and `cray-libsci` if needed to maintain compatibility.
-    - The FFT library, `cray-fftw`, must be loaded separately.
-    - Alternative compilers are provided by `PrgEnv-gnu` (loads the GNU compiler suite) and `PrgEnv-aocc` (loads the AMD AOCC compilers).
-    
-    For software built or intended to be built with EasyBuild, there are 3 toolchains that help to assemble the appropriate combinations of the modules mentioned above, among other tools to support parallel programming.
-
-    - cpeCRAY: based on `PrgEnv-cray`
-    - cpeAMD: based on `PrgEnv-gnu`
-    - cpeGNU: based on `PrgEnv-aocc`
-    
-    In the interest of time, we refer readers to [this page on the CPE](https://support.pdc.kth.se/doc/software_development/development/#the-cray-programming-environment) and [this page on CPE-based toolchains](https://support.pdc.kth.se/doc/software_development/easybuild/#toolchains).
 
 
 ### CUDA based toolchains for GPU nodes
