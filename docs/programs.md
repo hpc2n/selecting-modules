@@ -138,6 +138,29 @@ If you are comfortable editing code in a basic text editor and running at the co
 
 ## R
 
+!!! important
+
+    Most facilities have only built a handful of R releases, so many of the dependent modules are adapted for multiple versions. The version of such any dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.
+
+Most HPC centres have prerequisites for R, but at a few, like Alvis, R can be loaded directly. Always check the prerequisites with `ml spider` or `ml avail`.
+
+### Principles
+
+- Check versions
+
+    ml spider R
+  
+or 
+
+    ml avail R
+
+- Load prerequisites if needed and then
+
+    ml R
+
+- Start with
+
+    R
 
 ### R-based packages
 
@@ -148,31 +171,52 @@ At most HPC centres, the base R module usually contains relatively few extension
     - **NSC (Tetralith):** R can be loaded directly, but **contains few installed packages, and there are no bundles** to provide more. Users are typically expected to install their own extension libraries. **RStudio is included in the base R module, however**.
     - **PDC (Dardel):** Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
     - **C3SE (Alvis):** R can be loaded directly, but has few installed packages. RStudio can only be reached from an OnDemand session.
-    - **UPPMAX (Bianca): R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
+    - **UPPMAX (Bianca)**: R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
     - **LUNARC:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
     - **UPPMAX (Pelle):** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module.
     - **HPC2N:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
 
-!!! important
+??? info "About packages on HPC systems"
 
-    Most facilities have only built a handful of R releases, so many of the dependent modules are adapted for multiple versions. The version of such any dependent package should always be specified to ensure reproducibility. If the version number is omitted, the latest will be loaded by default, and that version may change without warning.
+    Course module on [R packages](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/)
 
-https://uppmax.github.io/R-matlab-julia-HPC/r/packages/
-
-### Principles
-
-### Example 1: Bioconductor
 
 Many R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
 
+### Principles
 
+- Check versions
+
+    ml spider R-bundle
+  
+or 
+
+    ml avail R-bundle
+
+- Load prerequisites if needed and then
+
+    ml R-bundle-CRAN/<version>
+
+or
+
+    ml R-bundle-Bioconductor/<version>
+
+- Start R session in a console with
+
+    R
+
+- Load a needed library, like
+
+    > library(parallel)
 
 !!! question "Missing a package?"
 
     - Install by yourself or contact support
-    - https://uppmax.github.io/R-matlab-julia-HPC/r/packages/#installing-your-own-packages
+    - [Course material](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/#installing-your-own-packages)
 
 ### RStudio
+
+Many clusters have RStudio as a module but For Alvis and Dardel RStudio can only be reached from OnDemand.
 
 ??? info "Course"
 
