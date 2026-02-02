@@ -316,13 +316,28 @@ For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless ther
 
     Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the **licensed** user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is up to users to determine the licensing requirements of specialised software packages.
 
-### Example: OpenFOAM
+### Principle
 
-As usual, we start by checking the versions available with `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
+- Check versions
 
-An example output might look like this (from Cosmos):
+```console
+ml spider <module name>
+```
 
+or
 
+```console
+ml avail <module name
+```
+
+- Load prerequisites, if needed, and then
+
+```console
+ml <module name>
+```
+
+- Start the tool by following documentation of the tool or the local cluster documentation.
+    - Usually it is the tool name with lower case or with the first letter capitalised, like
 
 ## Exercises (Stop recording)
 
@@ -676,6 +691,9 @@ Exercise 2: Find version of it. Is it installed?? Look for other tools until you
 Exercise 3. Load and start it.
 
 ??? note "Example OpenFOAM at Cosmos"
+
+    As usual, we start by checking the versions available with, eg. `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
+
 
     ```bash
     $ ml spider OpenFOAM
