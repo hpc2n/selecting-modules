@@ -32,7 +32,7 @@ any.
     ml cpe/24.11
     ```
     
-    To use installed software titles installed with the latest version of the CPE, load the PDC module
+    To use installed software titles installed with the latest version of the CPE, load the `PDC` module
 
     ```
     ml PDC
@@ -46,7 +46,8 @@ any.
     - `module swap` to exchange one module for another
     - `module load` which will load a module and unloads everything that conflicts
 
-    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite* and the *AMD AOCC compilers*: are available. The compilers can be accessed by loading on of:
+    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite* and the 
+    *AMD AOCC compilers* are available. The compilers can be accessed by loading on of:
 
     ```
     ml PrgEnv-cray
@@ -54,7 +55,7 @@ any.
     ml PrgEnv-aocc
     ```
 
-    where `PrgEnv-cray`is loaded by default after login.  
+    The `PrgEnv-cray`is loaded by default after login.  
    
     The modules `cray-libsci`, providing e.g. BLAS/LAPACK/ScaLAPACK and `cray-mpich` providing MPI capabilities are automatically included. 
     
