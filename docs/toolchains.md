@@ -46,18 +46,19 @@ any.
     - `module swap` to exchange one module for another
     - `module load` which will load a module and unloads everything that conflicts
 
-    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite* and the 
+    On Dardel three different compilers are available.  By default you get the Cray compiling environment (CCE), commonly referred to as the *Cray compiler*.  In addition the *GNU compiler suite*, the *Intel Programming Environment* and the 
     *AMD AOCC compilers* are available. The compilers can be accessed by loading on of:
 
     ```
     ml PrgEnv-cray
     ml PrgEnv-gnu
+    ml PrgEng-intel
     ml PrgEnv-aocc
     ```
 
     The `PrgEnv-cray`is loaded by default after login.  
    
-    The modules `cray-libsci`, providing e.g. BLAS/LAPACK/ScaLAPACK and `cray-mpich` providing MPI capabilities are automatically included. 
+    The modules `cray-libsci`, providing e.g. BLAS/LAPACK/ScaLAPACK and `cray-mpich` providing MPI capabilities are automatically included with all four compiler choices.
     
     For software built or intended to be built with EasyBuild, there are 3 toolchains that help to assemble the appropriate combinations of the modules mentioned above, among other tools to support parallel programming.
 
@@ -207,76 +208,99 @@ any.
     - As of today you load GCC and CUDA separately.
     - New tools are typically build with the latest versions of both.
 
+
 ## Selecting a toolchain
 
 The above toolchain choices can be a bit overwhelming, especially for new users. 
 Good choices for general use are the toolchains:
 
-* **foss**, to use the GCC compiler suite
-* **intel**, to use the Intel compiler suite
-* **gomkl**, to use the GCC compiler suite with Intel's Math Kernel Library (MKL)
+=== "Dardel"
 
-**Example:** To check the foss versions available, use
+    * **PrgEnv-cray**, Cray compiling environment (CCE)
+    * **PrgEnv-gnu**, GNU compiler suite
+    * **PrgEnv-intel**, Intel Programming Environment
+    * **PrgEnv-aocc**, AMD AOCC compilers* 
 
-```bash
-  module avail foss
-```
+    **Example:** to check the Programming envrionmnets available, use
 
-and you will get an output similar to this example on COSMOS:
+    ```bash
+    ml avail PrgEnv
+    ```
+    
+=== "Tetralith"
 
-```bash
------------------ /sw/easybuild_milan/modules/all/Core ------------------
-   foss/2020b    foss/2022a    foss/2023b          fosscuda/2020b
-   foss/2021a    foss/2022b    foss/2024a
-   foss/2021b    foss/2023a    foss/2024.05 (D)
+    * **buildenv-gcc**, to use the GCC compiler suite
+    * **buildenv-intel** to use the Intel compiler suite
 
-  Where:
-   D:  Default Module
+    **Example:** to check the Programming envrionmnets available, use
 
-If the avail list is too long consider trying:
+    ```bash
+    ml avail buildenv
+    ```
 
-"module --default avail" or "ml -d av" to just list the default modules.
-"module overview" or "ml ov" to display the number of modules for each
-name.
+=== "Kebnekaise, Cosmos, Pelle"
 
-Use "module spider" to find all possible modules and extensions.
-Use "module keyword key1 key2 ..." to search for all possible modules
-matching any of the "keys".
-```
+    * **foss**, to use the GCC compiler suite
+    * **intel**, to use the Intel compiler suite
+    * **gomkl**, to use the GCC compiler suite with Intel's Math Kernel Library (MKL)
 
-The version numbers indicate roughly when each version was released. Version
-2023a was released at the beginning of 2023, 2023b in the middle of 2023, and
-2024a at the start of 2024. If you load e.g. the `foss/2024a` module as shown
-below,
+    **Example:** To check the foss versions available, use
 
+    ```bash
+     module avail foss
+    ```
 
-```bash
-module load foss/2024a
-```
+    and you will get an output similar to this example on COSMOS:
 
-It will load several modules for you, including the compiler, libraries, and
-other utilities. The command `module list`, or `ml` for short, can then show you
-what modules are now loaded and available for use. Below is the output of `ml`
-after loading `foss/2024a` on COSMOS:
+    ```bash
+    ----------------- /sw/easybuild_milan/modules/all/Core ------------------
+    foss/2020b    foss/2022a    foss/2023b          fosscuda/2020b
+    foss/2021a    foss/2022b    foss/2024a
+    foss/2021b    foss/2023a    foss/2024.05 (D)
 
-```bash
-Currently Loaded Modules:
-  1) SoftwareTree/Milan  (S)  13) UCX/1.16.0
-  2) GCCcore/13.3.0           14) libfabric/1.21.0
-  3) zlib/1.3.1               15) PMIx/5.0.2
-  4) binutils/2.42            16) PRRTE/3.0.5
-  5) GCC/13.3.0               17) UCC/1.3.0
-  6) numactl/2.0.18           18) OpenMPI/5.0.3
-  7) XZ/5.4.5                 19) OpenBLAS/0.3.27
-  8) libxml2/2.12.7           20) FlexiBLAS/3.4.4
-  9) libpciaccess/0.18.1      21) FFTW/3.3.10
- 10) hwloc/2.10.0             22) FFTW.MPI/3.3.10
- 11) OpenSSL/3                23) ScaLAPACK/2.2.0-fb
- 12) libevent/2.1.12          24) foss/2024a
+    Where:
+    D:  Default Module
 
-  Where:
-   S:  Module is Sticky, requires --force to unload or purge
-```
+    If the avail list is too long consider trying:
+
+    "module --default avail" or "ml -d av" to just list the default modules.
+    "module overview" or "ml ov" to display the number of modules for each 
+    name.  
+    
+    Use "module spider" to find all possible modules and extensions.
+    Use "module keyword key1 key2 ..." to search for all possible modules
+    matching any of the "keys".
+    ```
+
+    The version numbers indicate roughly when each version was released. Version 2023a was released at the beginning of 2023, 2023b in the middle of 2023, and  2024a at the start of 2024. If you load e.g. the `foss/2024a` module as shown below,
+
+    ```bash
+    module load foss/2024a
+    ```
+
+    It will load several modules for you, including the compiler, libraries, and
+    other utilities. The command `module list`, or `ml` for short, can then show you
+    what modules are now loaded and available for use. Below is the output of `ml`
+    after loading `foss/2024a` on COSMOS:
+
+    ```bash
+    Currently Loaded Modules:
+     1) SoftwareTree/Milan  (S)  13) UCX/1.16.0
+     2) GCCcore/13.3.0           14) libfabric/1.21.0
+     3) zlib/1.3.1               15) PMIx/5.0.2
+     4) binutils/2.42            16) PRRTE/3.0.5
+     5) GCC/13.3.0               17) UCC/1.3.0
+     6) numactl/2.0.18           18) OpenMPI/5.0.3
+     7) XZ/5.4.5                 19) OpenBLAS/0.3.27
+     8) libxml2/2.12.7           20) FlexiBLAS/3.4.4
+     9) libpciaccess/0.18.1      21) FFTW/3.3.10
+    10) hwloc/2.10.0             22) FFTW.MPI/3.3.10
+    11) OpenSSL/3                23) ScaLAPACK/2.2.0-fb
+    12) libevent/2.1.12          24) foss/2024a
+
+    Where:
+     S:  Module is Sticky, requires --force to unload or purge
+    ```
 
 After loading a toolchain, many new modules become available, each reliant on
 the specific versions of the modules included in the toolchain. Use `ml avail`
@@ -302,58 +326,77 @@ toolchain. These should be avoided since they are subject to change.
     
 ## Compiling serial code using a toolchain
 
-If you have loaded a toolchain, choose your compiler from the following table
-based on your coding language and toolchain choice. Note that there are 2 Intel
-versions per language; versions ending with x are newer OneAPI versions supported
-from 2023 onward.
+=== "Dardel"
 
-| Coding Language | If GCC Toolchain | If Intel Toolchain |
-| :-------------- | :--------------- | :----------------- |
-| C               | gcc              | icc, icx           |
-| C++             | g++              | icpc, icpx         |
-| Fortran         | gfortran         | ifort, ifx         |
+    After loading a PrgEnv one always uses the same compiler wrappers for compiling, independent of the compiler suite used.  These wrappers are recommended for serail and parallel code.
 
-For some open-source toolchains, there may be no difference between compiling
-serial code with a toolchain and using a built-in compiler. The differences are
-more visible when using an Intel toolchain or when using MPI.
+    | Coding Language | Compiler wrapper |
+    | :-------------- | :--------------- |
+    | C               | cc               |
+    | C++             | CC               |
+    | Fortran         | ftn              |
+
+
+=== "Tetralith"
+
+    After loading your buildenv choose your compiler command from the following table based on your coding language.
+
+    | Coding Language | If buildenv-gcc  | If buildenv-intel  |
+    | :-------------- | :--------------- | :----------------- |
+    | C               | gcc              | icc                |
+    | C++             | g++              | icpc               |
+    | Fortran         | gfortran         | ifort              |
+
+=== "Kebnekaise, Cosmos, Pelle"
+
+    If you have loaded a toolchain, choose your compiler from the following table
+    based on your coding language and toolchain choice. Note that there are 2 Intel
+    versions per language; versions ending with x are newer OneAPI versions supported
+    from 2023 onward.
+
+    | Coding Language | If GCC Toolchain | If Intel Toolchain |
+    | :-------------- | :--------------- | :----------------- |
+    | C               | gcc              | icc, icx           |
+    | C++             | g++              | icpc, icpx         |
+    | Fortran         | gfortran         | ifort, ifx         |
+
+    For some open-source toolchains, there may be no difference between compiling
+    serial code with a toolchain and using a built-in compiler. The differences are
+    more visible when using an Intel toolchain or when using MPI.
 
 ### Toolchains using MPI
 
-The table below shows which MPI compiler to use given your choices of toolchain
-and coding language:
+=== "Dardel"
 
-| Coding Language | If Toolchain with OpenMPI | If Intel Toolchain |
-| :-------------- | :------------------------ | :----------------- |
-| C               | mpicc                     | mpiicc             |
-| C++             | mpicxx                    | mpiicpc            |
-| Fortran         | mpifort                   | mpiifort           |
+    After loading a PrgEnv one always uses the same compiler wrappers for compiling, independent of the compiler suite used.  These wrappers are recommended for serail and parallel code.
+
+    | Coding Language | Compiler wrapper |
+    | :-------------- | :--------------- |
+    | C               | cc               |
+    | C++             | CC               |
+    | Fortran         | ftn              |
+
+=== "Tetralith"
+  
+    The table below shows which MPI compiler to use given your choices of toolchain
+    and coding language:
+
+    | Coding Language | If buildenv-gcc           | If buildenv-intel  |
+    | :-------------- | :------------------------ | :----------------- |
+    | C               | mpicc                     | mpiicc             |
+    | C++             | mpicxx                    | mpiicpc            |
+    | Fortran         | mpifort                   | mpiifort           |
+     
+
+
+=== "Kebnekaise, Cosmos, Pelle"
+
+    The table below shows which MPI compiler to use given your choices of toolchain
+    and coding language:
+
+    | Coding Language | If Toolchain with OpenMPI | If Intel Toolchain |
+    | :-------------- | :------------------------ | :----------------- |
+    | C               | mpicc                     | mpiicc             |
+    | C++             | mpicxx                    | mpiicpc            |
+    | Fortran         | mpifort                   | mpiifort           |
  
-Inside your job script, executables built with OpenMPI need to be run using the
-`mpirun` command. For OpenMPI jobs not using threads, we recommend task binding
-(i.e., use the `mpirun` option `--bind-to core`)
-
-For Intel-based MPI scripts, the script should be run with `srun` command.
-
-Here is a template for a script using OpenMPI (adapted from LUNARC
-documentation):
-
-```bash
-#!/bin/bash
-#SBATCH -N 3                 # number of nodes (arbitrary number >1)
-#SBATCH --ntasks-per-node=16 # adapt for your needs
-#SBATCH --exclusive          # reserve whole nodes
-#SBATCH -t 0:60:0            # run time
-#SBATCH -J my_mpi_job        # job name in queue
-#SBATCH -o result_%j.out     # output file
-#SBATCH -e result_%j.err     # error file
-#SBATCH -A <project-ID>      # replace with your project ID
-
-cat $0
-
-# module load statement(s) - adapt for your package(s)
-module load foss/2023a
-
-# run the jobs - here we assume an executable name: my_program
-mpirun --bind-to core my_program
-# for intel toolchains, the command is srun
-```
