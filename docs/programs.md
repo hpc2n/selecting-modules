@@ -114,10 +114,6 @@ It varies between clusters how many packages are installed with the base Python 
     - There are no bundle modules on Bianca
     - But, the Python modules have very many packages installed already.
 
-
-
-
-
 If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
 
@@ -142,7 +138,6 @@ If you are comfortable editing code in a basic text editor and running at the co
 
 ## R
 
-https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/
 
 ### R-based packages
 
@@ -150,12 +145,13 @@ At most HPC centres, the base R module usually contains relatively few extension
 
 ??? note "Cluster-specific approaches"
 
-    - **HPC2N:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
+    - **NSC (Tetralith):** R can be loaded directly, but **contains few installed packages, and there are no bundles** to provide more. Users are typically expected to install their own extension libraries. **RStudio is included in the base R module, however**.
+    - **PDC (Dardel):** Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
+    - **C3SE (Alvis):** R can be loaded directly, but has few installed packages. RStudio can only be reached from an OnDemand session.
+    - **UPPMAX (Bianca): R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
     - **LUNARC:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module, and is available as an On-Demand application that automatically loads R and various bundles at start-up.
     - **UPPMAX (Pelle):** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module.
-    - **UPPMAX (Bianca) and C3SE (Alvis):** R can be loaded directly, but has few installed packages. More common modules are available as extensions with the `R_packages` module. RStudio is also a separate module.
-    - **NSC (Tetralith):** R can be loaded directly, but **contains few installed packages, and there are no bundles** to provide more. Users are typically expected to install their own extension libraries. RStudio is included in the base R module, however.
-    - **PDC (Dardel):** Like most programs on Dardel, R also has the prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`, but the compiler and MPI library are chosen for you. There are about 250 packages available in the basic R module, and there are no additional bundles to provide more packages. Users are typically expected to install their own extension libraries. 
+    - **HPC2N:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
 
 !!! important
 
@@ -169,89 +165,6 @@ https://uppmax.github.io/R-matlab-julia-HPC/r/packages/
 
 Many R-packages conveniently specify the version of R they are compatible with in the module name. One example of this is Bioconductor.
 
-??? note "Example at XX"
-
-    ```bash
-    $ ml spider bioconductor
-
-    ---------------------------------------------------------------------------------
-      R-bundle-Bioconductor:
-    ---------------------------------------------------------------------------------
-        Description:
-          Bioconductor provides tools for the analysis and coprehension of
-          high-throughput genomic data.
-
-         Versions:
-            R-bundle-Bioconductor/3.15-R-4.2.1
-            R-bundle-Bioconductor/3.18-R-4.3.2
-            R-bundle-Bioconductor/3.18-R-4.4.1
-            R-bundle-Bioconductor/3.19-R-4.4.1
-
-    ---------------------------------------------------------------------------------
-      For detailed information about a specific "R-bundle-Bioconductor" package (includin
-    g how to load the modules) use the module's full name.
-      Note that names that have a trailing (E) are extensions provided by other modules.
-      For example:
-
-         $ module spider R-bundle-Bioconductor/3.19-R-4.4.1
-    ---------------------------------------------------------------------------------
-    ```
-
-    Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. Do not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded.
-
-    To check the prerequisites with `ml spider`, the specific version number must be included anyway, for all software.
-
-    ```bash
-    $ ml spider R-bundle-Bioconductor/3.18-R-4.4.1
-
-    ---------------------------------------------------------------------------------
-      R-bundle-Bioconductor: R-bundle-Bioconductor/3.18-R-4.4.1
-    ---------------------------------------------------------------------------------
-        Description:
-          Bioconductor provides tools for the analysis and coprehension of
-          high-throughput genomic data.
-
-
-        You will need to load all module(s) on any one of the lines below before the "R-b
-    undle-Bioconductor/3.18-R-4.4.1" module is available to load.
-
-          GCC/12.3.0  OpenMPI/4.1.5
-
-        Help:
-
-          Description
-          ===========
-          Bioconductor provides tools for the analysis and coprehension
-           of high-throughput genomic data.
-
-
-          More information
-          ================
-           - Homepage: https://bioconductor.org
-
-
-          Included extensions
-          ===================
-          affxparser-1.74.0, affy-1.80.0, affycoretools-1.74.0, affyio-1.72.0,
-          AgiMicroRna-2.52.0, agricolae-1.3-7, ALDEx2-1.34.0, ALL-1.44.0, ANCOMBC-2.4.0,
-          annaffy-1.74.0, annotate-1.80.0, AnnotationDbi-1.64.1,
-          AnnotationFilter-1.26.0, AnnotationForge-1.44.0, AnnotationHub-3.10.0,
-          anytime-0.3.9, aroma.affymetrix-3.2.1, aroma.apd-0.7.0, aroma.core-3.3.0,
-          aroma.light-3.32.0, ash-1.0-15, ATACseqQC-1.26.0, AUCell-1.24.0,
-          aws.s3-0.3.21, aws.signature-0.6.0, babelgene-22.9, ballgown-2.34.0,
-          basilisk-1.14.2, basilisk.utils-1.14.1, batchelor-1.18.1, baySeq-2.36.0,
-          beachmat-2.18.0, BH-1.84.0-0, Biobase-2.62.0, BiocBaseUtils-1.4.0, ...
-    ```
-
-    The list of extensions is too long to copy here, but some popular extensions included in this module are: DeSeq2, GenomeInfoDb, MStats, Seurat, Rsamtools, and more.
-
-    The above prerequisites and the main package can be loaded either one at a time or all at once with,
-
-    ```bash
-    $ ml GCC/12.3.0  OpenMPI/4.1.5  R-bundle-Bioconductor/3.18-R-4.4.1
-    ```
-
-    In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centres, so pay attention to the prerequisites.
 
 
 !!! question "Missing a package?"
@@ -656,9 +569,101 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 
 ### R
 
-Exercise 1: Find R documentation of your cluster
-Exercise 2: Load R and start it!
-Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``)in a R shell
+#### Exercise 1: Find R documentation of your cluster
+
+#### Exercise 2: Load R and start it!
+
+??? tip "Answer"
+
+    COurse page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
+
+#### Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell.
+
+:warning: Tetralith does not have Seurat installed anywhere
+
+??? note "Example at Cosmos"
+
+    ```bash
+    $ ml spider bioconductor
+
+    ---------------------------------------------------------------------------------
+      R-bundle-Bioconductor:
+    ---------------------------------------------------------------------------------
+        Description:
+          Bioconductor provides tools for the analysis and coprehension of
+          high-throughput genomic data.
+
+         Versions:
+            R-bundle-Bioconductor/3.15-R-4.2.1
+            R-bundle-Bioconductor/3.18-R-4.3.2
+            R-bundle-Bioconductor/3.18-R-4.4.1
+            R-bundle-Bioconductor/3.19-R-4.4.1
+
+    ---------------------------------------------------------------------------------
+      For detailed information about a specific "R-bundle-Bioconductor" package (includin
+    g how to load the modules) use the module's full name.
+      Note that names that have a trailing (E) are extensions provided by other modules.
+      For example:
+
+         $ module spider R-bundle-Bioconductor/3.19-R-4.4.1
+    ---------------------------------------------------------------------------------
+    ```
+
+    Notice that in this case, there are 2 versions of the Bioconductor bundle associated with `R/4.4.1`, and that there are 2 versions of R associated with `R-bundle-Bioconductor/3.18`. Do not rely on the prerequisites to set which version of `R-bundle-Bioconductor` gets loaded.
+
+    To check the prerequisites with `ml spider`, the specific version number must be included anyway, for all software.
+
+    ```bash
+    $ ml spider R-bundle-Bioconductor/3.18-R-4.4.1
+
+    ---------------------------------------------------------------------------------
+      R-bundle-Bioconductor: R-bundle-Bioconductor/3.18-R-4.4.1
+    ---------------------------------------------------------------------------------
+        Description:
+          Bioconductor provides tools for the analysis and coprehension of
+          high-throughput genomic data.
+
+
+        You will need to load all module(s) on any one of the lines below before the "R-b
+    undle-Bioconductor/3.18-R-4.4.1" module is available to load.
+
+          GCC/12.3.0  OpenMPI/4.1.5
+
+        Help:
+
+          Description
+          ===========
+          Bioconductor provides tools for the analysis and coprehension
+           of high-throughput genomic data.
+
+
+          More information
+          ================
+           - Homepage: https://bioconductor.org
+
+
+          Included extensions
+          ===================
+          affxparser-1.74.0, affy-1.80.0, affycoretools-1.74.0, affyio-1.72.0,
+          AgiMicroRna-2.52.0, agricolae-1.3-7, ALDEx2-1.34.0, ALL-1.44.0, ANCOMBC-2.4.0,
+          annaffy-1.74.0, annotate-1.80.0, AnnotationDbi-1.64.1,
+          AnnotationFilter-1.26.0, AnnotationForge-1.44.0, AnnotationHub-3.10.0,
+          anytime-0.3.9, aroma.affymetrix-3.2.1, aroma.apd-0.7.0, aroma.core-3.3.0,
+          aroma.light-3.32.0, ash-1.0-15, ATACseqQC-1.26.0, AUCell-1.24.0,
+          aws.s3-0.3.21, aws.signature-0.6.0, babelgene-22.9, ballgown-2.34.0,
+          basilisk-1.14.2, basilisk.utils-1.14.1, batchelor-1.18.1, baySeq-2.36.0,
+          beachmat-2.18.0, BH-1.84.0-0, Biobase-2.62.0, BiocBaseUtils-1.4.0, ...
+    ```
+
+    The list of extensions is too long to copy here, but some popular extensions included in this module are: DeSeq2, GenomeInfoDb, MStats, Seurat, Rsamtools, and more.
+
+    The above prerequisites and the main package can be loaded either one at a time or all at once with,
+
+    ```bash
+    $ ml GCC/12.3.0  OpenMPI/4.1.5  R-bundle-Bioconductor/3.18-R-4.4.1
+    ```
+
+    In this case, R-bundle-Bioconductor loads the version of R that it is based on automatically (along with about 130 other modules!). That is not the case for all R-bundles at all HPC centres, so pay attention to the prerequisites.
 
 
 ### Matlab and another tool you will be using 
