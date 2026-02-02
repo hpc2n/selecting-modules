@@ -66,7 +66,7 @@ This NAISS course is given under under NAISS, by staff working at the branches l
 | 09:20 | Module system: versions, loading, unloading, listing | Lecture+type along+exercise | BB |
 | 09:50 | Break | | |
 | 10:05 | Compiler toolchains | Lecture+type along | JH |
-| 10:25 | Software modules | Lecture+type along | BC |
+| 10:25 | Software modules | Lecture+type along+exercise | BC |
 | 11:05 | Break | | | 
 | 11:10 | Modules in batch scripts | Lecture | BB |
 | 11:25 | Summary | | All |

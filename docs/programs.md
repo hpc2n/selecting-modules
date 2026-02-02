@@ -11,11 +11,19 @@ In the previous section we looked at toolchains, which are often used to install
 
 Loading modules works the same whether the modules are toolchains or standalone packages, with and without prerequisites. The procedure is usually some variation on the following:
 
-1. Use `ml spider <package>` to see whether a module is installed, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
-2. Use `ml spider <package>/<version>` to view prerequisites for a specific version of the module, if any.
-3. Load the modules with `ml <prerequisite>/<version> <package>/<version>`.
+1. Use `ml spider <package>` to see **whether a module is installed**, and if so, view the available versions. (At facilities that do not hide packages depending on prerequisites, `module avail <package>` may be preferred.)
+2. Use `ml spider <package>/<version>` to **view prerequisites** for a specific version of the module, if any.
+3. **Load** the modules with `ml <prerequisite>/<version> <package>/<version>`.
 
 Most of the examples below use outputs from Cosmos, but the workflows will be similar at other institutions except where otherwise noted.
+
+### Outline
+
+- Principles of making Python and R **packages** available to scripts and interactive analysis.
+- Start **popular tools** like MATLAB and OpenFOAM and notes about licensed software
+- **Exercise**: Dig deeper into **your favorite tools**
+
+## Packages
 
 !!! important
 
@@ -24,8 +32,6 @@ Most of the examples below use outputs from Cosmos, but the workflows will be si
     In these cases, if you have loaded at least the prerequisites of a standalone package containing the extension, you can use `ml show <package>` on the standalone package to view the Lua module file, which usually has a section on included extensions near the top.
     
     For example, NumPy, SciPy, and Pandas, among other packages, are all are included in `SciPy-bundle`. If you have at least loaded a GCC version, you can use `ml show SciPy-bundle` to view all of the included extensions (Python modules) in the compatible SciPy-bundle.
-
-
 
 ## Python-based packages
 
@@ -50,7 +56,7 @@ It varies between clusters how many packages are installed with the base Python 
     - GCCcore reflects the GCC compiler version that is compatible when using C/C++ "back end" code.
     - The year reflects an EasyBuild toolchain, see [FOSS toolchains](https://docs.easybuild.io/common-toolchains/#common_toolchains_overview_foss).
 
-!!! info "Some FOSS tool chains and Python version using them"
+??? info "Some FOSS tool chains and Python version using them"
 
     FOSS | Python version| GCC version | Bundle version
     -----| --------------|-------------|---------------
@@ -68,7 +74,7 @@ It varies between clusters how many packages are installed with the base Python 
     - Make sure to use bundles that are compatible with each-other and with needed Python version.
     - Otherwise it is better to create isolated environments with Conda or virtual environments, see [Virtual environments in Python](python_virtual_environments.md).
 
-??? Some well-known bundles
+??? info Some well-known bundles
 
     - HPC and big data
         - dask
@@ -252,84 +258,25 @@ R
 
 ### RStudio
 
-Many clusters have RStudio as a module but For Alvis and Dardel RStudio can only be reached from OnDemand.
+Many clusters have RStudio as a module but for Alvis and Dardel RStudio can only be reached from OnDemand.
 
-??? info "Course"
+??? info "RStudio from course"
 
     [RStudio](https://uppmax.github.io/R-matlab-julia-HPC/r/rstudio/)
 
-## Matlab
+## Popular tools
 
-At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
+There are of course many popular tools among cluster users. Many of them can be found in every cluster, but some clusters are more niched and may lack some of these common tools.
 
-**All Add-Ons and Toolboxes should be available through the Matlab GUI.**
+!!! note
 
-!!! important
+    Are you lacking a tool? Ask the support to install it!
 
-    The Matlab GUI is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
-
-### Example: Matlab on Tetralith (NSC)
-
-At most centres, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
-
-??? note "Output from ``ml avail matlab``"
-
-    ```bash
-    $ ml avail matlab
-    
-    --------------------- /software/sse2/tetralith_el9/modules ---------------------
-       MATLAB/recommendation (D)    MATLAB/2024a-hpc1-bdist
-       MATLAB/2023a-bdist           MATLAB/2025a-hpc1-bdist
-       MATLAB/2023b-bdist
-    
-      Where:
-       D:  Default Module
-    ```
-
-    Once you have chosen a specific version, use `ml spider` to check if there are prerequisites, like so:
-
-    ```bash
-    $ ml spider MATLAB/2024a-hpc1-bdist
-    ```
-
-    The full output is too verbose to reprint in full here, but the one important line reads: 
-
-    ```bash
-        This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
-    ```
-
-    The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:
-    
-    ```bash
-    $ ml MATLAB/2024a-hpc1-bdist
-    ```
-    
-??? info "MATLAB in HPC course"
-
-    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
-
-## Specialised Applications
-
-For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc), unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character, `ml spider` will tell you whether it is installed or not. If the full name of a module includes `CUDA`, then the relevant `CUDA` version will typically be loaded automatically, without the need to choose a CUDA-containing toolchain.
-
-!!! important
-
-    Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the **licensed** user group. If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. It is up to users to determine the licensing requirements of specialised software packages.
+Capitalisation and other naming conventions may vary between HPC centres.
 
 ### Principle
 
-- Check versions
-
-```console
-ml spider <module name>
-```
-
-or
-
-```console
-ml avail <module name
-```
-
+- Check versions with ``spider`` or ``avail``
 - Load prerequisites, if needed, and then
 
 ```console
@@ -337,18 +284,47 @@ ml <module name>
 ```
 
 - Start the tool by following documentation of the tool or the local cluster documentation.
-    - Usually it is the tool name with lower case or with the first letter capitalised, like
+- Usually it is the tool name with lower case or with the first letter capitalised. Or, like for OpenFoam, commands starting with ``foam``.
+
+You may try out one or several tools in Exercise 3.
+
+- There we also give a bit more detailed info about
+    - Matlab
+    - OpenFoam 
+
+## Specialised Applications
+
+- For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc),
+    - (unless there is reason to believe it is included in a larger package or you include a spurious non-alphanumeric character),
+    - `ml spider` will tell you whether it is installed or not.
+- If the full name of a module includes `CUDA`,
+    - then the relevant `CUDA` version will typically be loaded automatically,
+    - without the need to choose a CUDA-containing toolchain.
+
+!!! important "Licenses"
+
+    - Some specialised modules (e.g., Abaqus, Gaussian, and VASP) are license-restricted, so they may not load, or may load but refuse to run, if you are not part of the **licensed** user group. 
+    - If you run `ml spider` on a specific version of licensed software, the description may (as with VASP) or may not (as with Gaussian) specify that a license is required. 
+    - It is up to users to determine the licensing requirements of specialised software packages.
 
 ## Exercises (Stop recording)
 
-- Choose 1 or 2
+- Choose 1 or 2 
 
-- Break-out rooms
-    - Python
-    - R
-    - Matlab and other  
+- Python
+- R (Tip, do not choose if using Tetralith, Alvis or Dardel)
+- Matlab and other
+
+Break-out rooms according to interest!
 
 ### Python
+
+These clusters do NOT have python bundles:
+
+- Dardel
+- Tetralith
+- Alvis
+
 
 Exercise 1: Find python documentation of your cluster
 Exercise 2: Load python and start it!
@@ -587,17 +563,25 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 
 ### R
 
+These clusters do NOT have R bundles:
+
+- Bianca has R_packages that contains CRAN and BioConductor packages
+    - You can load that instead of a bundle in the below exercises.
+- Dardel
+- Tetralith
+- Alvis
+
+
 #### Exercise 1: Find R documentation of your cluster
 
 #### Exercise 2: Load R and start it!
 
 ??? tip "Answer"
 
-    COurse page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
+    Course page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
 
 #### Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell.
 
-:warning: Tetralith does not have Seurat installed anywhere
 
 ??? note "Example at Cosmos"
 
@@ -689,6 +673,59 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 Exercise 1: Try to find documentation of the program on your cluster
 Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed.
 Exercise 3. Load and start it.
+
+At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
+
+**All Add-Ons and Toolboxes should be available through the Matlab GUI.**
+
+!!! important
+
+    The Matlab GUI is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
+
+### Example: Matlab on Tetralith (NSC)
+
+At most centres, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
+
+### Matlab
+
+
+
+??? note "Output from ``ml avail matlab``"
+
+    ```bash
+    $ ml avail matlab
+    
+    --------------------- /software/sse2/tetralith_el9/modules ---------------------
+       MATLAB/recommendation (D)    MATLAB/2024a-hpc1-bdist
+       MATLAB/2023a-bdist           MATLAB/2025a-hpc1-bdist
+       MATLAB/2023b-bdist
+    
+      Where:
+       D:  Default Module
+    ```
+
+    Once you have chosen a specific version, use `ml spider` to check if there are prerequisites, like so:
+
+    ```bash
+    $ ml spider MATLAB/2024a-hpc1-bdist
+    ```
+
+    The full output is too verbose to reprint in full here, but the one important line reads: 
+
+    ```bash
+        This module can be loaded directly: module load MATLAB/2024a-hpc1-bdist
+    ```
+
+    The command after the colon (:) can be copied, pasted, and entered directly into the bash prompt to load the module, or you can type the short version as follows:
+    
+    ```bash
+    $ ml MATLAB/2024a-hpc1-bdist
+    ```
+    
+??? info "MATLAB in HPC course"
+
+    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
+
 
 ??? note "Example OpenFOAM at Cosmos"
 
