@@ -104,6 +104,7 @@ Nextflow
 VASP
 OpenFOAM
 Matplotlib
+matplotlib
 IDEs
 Jupyter
 Spyder
