@@ -113,6 +113,8 @@ It varies between clusters how many packages are installed with the base Python 
 ml spider matplotlib
 ```
 
+This is a very good way to find packages that are not in a bundle with the same name. For instance, ``pandas`` and ``numpy`` are parts of the ``SciPy-bundle``
+
 or
 
 ```console
