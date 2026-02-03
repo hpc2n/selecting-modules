@@ -74,7 +74,7 @@ It varies between clusters how many packages are installed with the base Python 
     - Make sure to use bundles that are compatible with each-other and with needed Python version.
     - Otherwise it is better to create isolated environments with Conda or virtual environments, see [Virtual environments in Python](python_virtual_environments.md).
 
-??? info Some well-known bundles
+??? info "Some well-known bundles"
 
     - HPC and big data
         - dask
@@ -143,7 +143,7 @@ python
 import matplotlib
 ```
 
-!!! Isolated environment
+!!! note "Isolated environments"
 
     - The course Python in an HPC environment: [isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
 
