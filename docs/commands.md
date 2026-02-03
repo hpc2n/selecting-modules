@@ -1627,13 +1627,11 @@ b-an01 [~]$
 ```
 
 You can get a listing of all your module collections by typing:
-
 ```bash
 b-an01 [~]$ module savelist
 ```
 
 To query the contents of a module collection use
-
 ```bash
 b-an01 [~]$ module describe mypython
 ```
