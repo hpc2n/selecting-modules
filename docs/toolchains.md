@@ -13,7 +13,12 @@ linear algebra libraries, and other fundamental programs used internally by more
 familiar packages that users work with directly (e.g., Python, R, GROMACS, etc.).
 
 Most HPC centers recommend using toolchains to build and compile software, whether
-you use EasyBuild not, to keep software versions consistent and reproducible.
+you use EasyBuild not.  Toolchains:
+
+- keep software consitent, everything is build using the same compiler and the same underlying libraries
+- provides access to modern versions of the compiler, offering recent language standards and optimisation techniques.   
+    - System compilers are often old -  **Don't use for compiling production software**
+- integrates with the module system - makes linking libraries easy
 
 ## Available Toolchains by HPC Center
 
