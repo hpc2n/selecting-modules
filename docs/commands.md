@@ -1613,8 +1613,7 @@ b-an01 [~]$
 - Then, maybe later you find you also need ``mpi4py`` so you load it and add it to the collection: 
 ```bash
 b-an01 [~]$ ml mpi4py/3.1.4 
-b-an01 [~]$ 
-module save mypython
+b-an01 [~]$ module save mypython
 Saved current collection of modules to: "mypython"
 
 b-an01 [~]$ 
@@ -1625,6 +1624,18 @@ b-an01 [~]$
 b-an01 [~]$ module restore mypython
 Restoring modules from user's mypython
 b-an01 [~]$ 
+```
+
+You can get a listing of all your module collections by typing:
+
+```bash
+b-an01 [~]$ module savelist
+```
+
+To query the contents of a module collection use
+
+```bash
+b-an01 [~]$ module describe mypython
 ```
 
 !!! warning 
