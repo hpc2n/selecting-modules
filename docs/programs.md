@@ -727,10 +727,6 @@ Break-out rooms according to interest and/or cluster
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed"
 
-!!! note " <img src="../images/shell-logo_small.png"> Exercise 3. Load and start it"
-
-    At most HPC centres, Matlab and other tools can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
-
 ??? note "Output from ``ml avail matlab``"
 
     ```bash
@@ -843,6 +839,11 @@ Break-out rooms according to interest and/or cluster
     ```
 
     or load each one at a time. The above command loads almost 90 modules, including several Python packages and visualisation libraries, all of which can be viewed by entering `ml`.
+
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 3. Load and start it"
+
+    At most HPC centres, Matlab and other tools can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
+
 
 
 ## Wrap-up with questions (No recording)
