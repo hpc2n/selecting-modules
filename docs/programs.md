@@ -598,13 +598,13 @@ Break-out rooms according to interest and/or cluster
         - [PDC](https://support.pdc.kth.se/doc/contact/contact_support/)
         - [UPPMAX](../software/r.md)
 
-??? note "Exercise 2: Load R and start it!
+??? note "Exercise 2: Load R and start it!"
 
     ??? note "Answer"
 
         Course page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
 
-??? note "Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell.
+??? note "Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell"
 
 
     ??? note "Example at Cosmos"
@@ -694,11 +694,13 @@ Break-out rooms according to interest and/or cluster
 
 ### Matlab and another tool you will be using 
 
-Exercise 1: Try to find documentation of the program on your cluster
-Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed.
-Exercise 3. Load and start it.
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 1: Try to find documentation of the program on your cluster"
 
-At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find version of it. Is it installed?? Look for other tools until you find one that is installed"
+
+!!! note " <img src="../images/shell-logo_small.png"> Exercise 3. Load and start it"
+
+    At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
 
 **All Add-Ons and Toolboxes should be available through the Matlab GUI.**
 
@@ -710,7 +712,7 @@ At most HPC centres, Matlab can be loaded directly, but PDC requires the usual p
 
 At most centres, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
 
-### Matlab
+
 
 
 
@@ -749,7 +751,6 @@ At most centres, where modules are hidden if prerequisites are not loaded, it is
 ??? info "MATLAB in HPC course"
 
     [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
-
 
 ??? note "Example OpenFOAM at Cosmos"
 
