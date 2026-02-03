@@ -1598,7 +1598,7 @@ Assuming we need pandas and matplotlib at HPC2N (very similar to LUNARC):
 ```bash
 b-an01 [~]$ module load GCC/12.3.0 
 b-an01 [~]$ module load Python/3.11.3 
-b-an01 [~odule load OpenMPI/4.1.5 
+b-an01 [~]$ module load OpenMPI/4.1.5 
 b-an01 [~]$ module load SciPy-bundle/2023.07 
 b-an01 [~]$ module load matplotlib/3.7.2 
 ```
