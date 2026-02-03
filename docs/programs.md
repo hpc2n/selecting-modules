@@ -298,6 +298,20 @@ You may try out one or several tools in Exercise 3.
     - MATLAB
     - OpenFOAM 
 
+??? note "MATLAB in HPC course"
+
+    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
+
+??? note "MATLAB Add-Ons and Toolboxes 
+
+    These should be available through the Matlab GUI.
+
+!!! important
+
+    - The Matlab GUI and many other graphical tools is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. 
+    - In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. 
+    - For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
+
 ## Specialised Applications
 
 - For most specialised packages (Amber, GROMACS, Nextflow, VASP, etc),
@@ -715,16 +729,7 @@ Break-out rooms according to interest and/or cluster
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 3. Load and start it"
 
-    At most HPC centres, Matlab can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
-
-**All Add-Ons and Toolboxes should be available through the Matlab GUI.**
-
-!!! important
-
-    The Matlab GUI and many other graphical tools is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
-
-
-
+    At most HPC centres, Matlab and other tools can be loaded directly, but PDC requires the usual prerequisite `PDC/XX.XX` or `PDCOLD/XX.XX`. Capitalisation and other naming conventions also vary between HPC centres; for more information, refer to [this section of the R, Matlab, and Julia for HPC course](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab/#check-for-matlab-versions).
 
 ??? note "Output from ``ml avail matlab``"
 
@@ -758,10 +763,6 @@ Break-out rooms according to interest and/or cluster
     $ ml MATLAB/2024a-hpc1-bdist
     ```
     
-??? note "MATLAB in HPC course"
-
-    [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
-
 ??? note "Example OpenFOAM at Cosmos"
 
     As usual, we start by checking the versions available with, eg. `ml spider OpenFOAM` (or `ml avail OpenFOAM` at a facility like NSC where all modules are visible regardless of the presence of prerequisites). 
