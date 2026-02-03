@@ -284,13 +284,13 @@ ml <module name>
 ```
 
 - Start the tool by following documentation of the tool or the local cluster documentation.
-- Usually it is the tool name with lower case or with the first letter capitalised. Or, like for OpenFoam, commands starting with ``foam``.
+- Usually it is the tool name with lower case or with the first letter capitalised. Or, like for OpenFOAM, commands starting with ``foam``.
 
 You may try out one or several tools in Exercise 3.
 
 - There we also give a bit more detailed info about
-    - Matlab
-    - OpenFoam 
+    - MATLAB
+    - OpenFOAM 
 
 ## Specialised Applications
 
@@ -565,7 +565,7 @@ Extensions can be hard to find without knowing what includes them, but it is eas
 
 These clusters do NOT have R bundles:
 
-- Bianca has R_packages that contains CRAN and BioConductor packages
+- Bianca has R_packages that contains CRAN and Bioconductor packages
     - You can load that instead of a bundle in the below exercises.
 - Dardel
 - Tetralith
@@ -824,7 +824,7 @@ At most centres, where modules are hidden if prerequisites are not loaded, it is
 
     - Many Python and R packages come in bundle modules.
         - Python has >10 of them
-        - R has basically 2: CRAN and BioConductor.
+        - R has basically 2: CRAN and Bioconductor.
         - Load a bundle and the correct version of Python or R is loaded on the fly.
     - All clusters have RStudio and Jupyter installed in some way. 
         - Some clusters have Spyder and VS Code
