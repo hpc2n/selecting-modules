@@ -239,6 +239,7 @@ or
 ml R-bundle-Bioconductor/<version>
 ```
 
+- The bundles should start the R interpreter ion the fly.
 - Start R session in a console with
 
 ```console
@@ -251,7 +252,7 @@ R
 > library(parallel)
 ```
 
-!!! question "Missing a package?"
+??? note "Missing a package?"
 
     - Install by yourself or contact support
     - [Course material](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/#installing-your-own-packages)
@@ -260,7 +261,7 @@ R
 
 Many clusters have RStudio as a module but for Alvis and Dardel RStudio can only be reached from OnDemand.
 
-??? info "RStudio from course"
+??? note "RStudio from course"
 
     [RStudio](https://uppmax.github.io/R-matlab-julia-HPC/r/rstudio/)
 
@@ -268,11 +269,12 @@ Many clusters have RStudio as a module but for Alvis and Dardel RStudio can only
 
 There are of course many popular tools among cluster users. Many of them can be found in every cluster, but some clusters are more niched and may lack some of these common tools.
 
+Capitalisation and other naming conventions may vary between HPC centres.
+
 !!! note
 
     Are you lacking a tool? Ask the support to install it!
 
-Capitalisation and other naming conventions may vary between HPC centres.
 
 ### Principle
 
@@ -331,30 +333,31 @@ Break-out rooms according to interest and/or cluster
 
     ??? note "Cluster documentation of Python"
 
-      - [UPPMAX](https://docs.uppmax.uu.se/software/python/)
-      - [HPC2N](https://docs.hpc2n.umu.se/tutorials/userinstalls/#python__packages)
-      - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Python/)
-      - [NSC](https://www.nsc.liu.se/support/)
-      - [PDC](https://support.pdc.kth.se/doc/applications/python/)
-      - [C3SE](https://www.c3se.chalmers.se/documentation/module_system/python/)  
+        - [UPPMAX](https://docs.uppmax.uu.se/software/python/)
+        - [HPC2N](https://docs.hpc2n.umu.se/tutorials/userinstalls/#python__packages)
+        - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Python/)
+        - [NSC](https://www.nsc.liu.se/support/)
+        - [PDC](https://support.pdc.kth.se/doc/applications/python/)
+        - [C3SE](https://www.c3se.chalmers.se/documentation/module_system/python/)  
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Find if there is a `matplotlib` package in a module"
 
-    !!! note "Tip"
+    ??? note "Tip"
 
         ``ml spider`` is good here.
 
+    ??? note "Matplotlib across centres"
+
+        Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day3/new-matplotlib-intro.html#load-and-run)). 
+
+        If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
+
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell"
 
-    !!! note "Tip"
+    ??? note "Tip"
 
         ``ml <module name>`` is good here.
 
-    ??? note "Matplotlib across centres"
-
-    Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day3/new-matplotlib-intro.html#load-and-run)). 
-
-    If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
     ??? note "Example workflow"
 
