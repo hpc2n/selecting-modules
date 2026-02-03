@@ -206,7 +206,7 @@ At most HPC centres, the base R module usually contains relatively few extension
     - **UPPMAX (Pelle):** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN or R-bundle-Bioconductor. RStudio is also a separate module.
     - **HPC2N:** Little is installed with the basic R module, but most common packages are available as extensions of R-bundle-CRAN, R-bundle-CRAN-extra, or R-bundle-Bioconductor. RStudio is a separate module and only runs on the login nodes via Thinlinc, so it should be used sparingly.
 
-??? info "About packages on HPC systems"
+??? note "About packages on HPC systems"
 
     Course module on [R packages](https://uppmax.github.io/R-matlab-julia-HPC/r/packages/)
 
@@ -717,12 +717,7 @@ Break-out rooms according to interest and/or cluster
 
 !!! important
 
-    The Matlab GUI is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
-
-### Example: Matlab on Tetralith (NSC)
-
-At most centres, where modules are hidden if prerequisites are not loaded, it is better to use `ml spider` to see what versions are available before accounting for preconditions. At centres where all modules are searchable without loading prerequisites, it is better to use `ml avail` to avoid listing modules that only exist as extensions or aliases of other modules, as in the case of Tetralith at NSC:
-
+    The Matlab GUI and many other graphical tools is prone to hogging resources if not launched carefully, which makes it risky to run on a login node. In general, the GUI should only be run via either Desktop On Demand or after booking interactive allocations on compute nodes with `salloc` or `interactive`. For more particulars on *running* Matlab, see the [relevant page of the R, Matlab, and Julia for HPC course materials](https://uppmax.github.io/R-matlab-julia-HPC/matlab/load_runMatlab.html).
 
 
 
@@ -759,7 +754,7 @@ At most centres, where modules are hidden if prerequisites are not loaded, it is
     $ ml MATLAB/2024a-hpc1-bdist
     ```
     
-??? info "MATLAB in HPC course"
+??? note "MATLAB in HPC course"
 
     [Intro to MATLAB](https://uppmax.github.io/R-matlab-julia-HPC/matlab/intro-matlab/)
 
