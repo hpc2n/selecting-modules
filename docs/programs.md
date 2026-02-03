@@ -152,9 +152,6 @@ import matplotlib
     - There are no bundle modules on Bianca
     - But, the Python modules have very many packages installed already.
 
-If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
-
-
 !!! tip
     
     `grep` does not work directly on the outputs of module commands like `ml show <module>`. To search for an extension in a very long Lua module file, copy the full path of the ``.lua`` file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present.
@@ -165,6 +162,11 @@ If you are comfortable editing code in a basic text editor and running at the co
     - [Install packages](https://uppmax.github.io/HPC-python/day2/install_packages.html)
     - [Use isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
     
+### Python IDEs
+
+- If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need.
+- For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
+
 ??? note "Python IDEs"
 
     - Jupyter
