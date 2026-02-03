@@ -352,7 +352,7 @@ Break-out rooms according to interest and/or cluster
     ??? note "Cluster documentation of Python"
 
         - [UPPMAX](https://docs.uppmax.uu.se/software/python/)
-        - [HPC2N](https://docs.hpc2n.umu.se/tutorials/userinstalls/#python__packages)
+        - [HPC2N](https://docs.hpc2n.umu.se/software/apps/#python__modules)
         - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Python/)
         - [NSC](https://www.nsc.liu.se/support/)
         - [PDC](https://support.pdc.kth.se/doc/applications/python/)
@@ -617,7 +617,7 @@ Break-out rooms according to interest and/or cluster
         - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Rscript/)
         - [NSC](https://ipv4.www.nsc.liu.se/software/catalogue/tetralith/modules/r.html)
         - [PDC](https://support.pdc.kth.se/doc/contact/contact_support/)
-        - [UPPMAX](../software/r.md)
+        - [UPPMAX](https://docs.uppmax.uu.se/software/r.md)
 
 !!! note " <img src="../images/shell-logo_small.png"> Exercise 2: Load R and start it!"
 
