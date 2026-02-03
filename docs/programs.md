@@ -56,7 +56,7 @@ It varies between clusters how many packages are installed with the base Python 
     - GCCcore reflects the GCC compiler version that is compatible when using C/C++ "back end" code.
     - The year reflects an EasyBuild toolchain, see [FOSS toolchains](https://docs.easybuild.io/common-toolchains/#common_toolchains_overview_foss).
 
-??? info "Some FOSS tool chains and Python version using them"
+??? note "Some FOSS tool chains and Python version using them"
 
     FOSS | Python version| GCC version | Bundle version
     -----| --------------|-------------|---------------
@@ -74,7 +74,7 @@ It varies between clusters how many packages are installed with the base Python 
     - Make sure to use bundles that are compatible with each-other and with needed Python version.
     - Otherwise it is better to create isolated environments with Conda or virtual environments, see [Virtual environments in Python](python_virtual_environments.md).
 
-??? info "Some well-known bundles"
+??? note "Some well-known bundles"
 
     - HPC and big data
         - dask
@@ -159,13 +159,13 @@ If you are comfortable editing code in a basic text editor and running at the co
     
     `grep` does not work directly on the outputs of module commands like `ml show <module>`. To search for an extension in a very long Lua module file, copy the full path of the ``.lua`` file from the `ml show` output, and use `less /path/to/module.lua | grep <extension>`. If there is no output, the extension is not present.
 
-??? question "Missing a package?"
+??? note "Missing a package?"
 
     - Install by conda, pip or other tool or contact support
     - [Install packages](https://uppmax.github.io/HPC-python/day2/install_packages.html)
     - [Use isolated environments](https://uppmax.github.io/HPC-python/day2/use_isolated_environments.html)
     
-??? info "Python IDEs"
+??? note "Python IDEs"
 
     - Jupyter
     - Spyder
@@ -321,33 +321,42 @@ Break-out rooms according to interest and/or cluster
 
 ### Python
 
-!!! warning These clusters do NOT have python bundles:
+!!! warning "These clusters do NOT have Python bundles"
 
-- Dardel
-- Tetralith
-- Alvis
+    - Dardel
+    - Tetralith
+    - Alvis
 
-??? question "Exercise 1: Find python documentation of your cluster"
+??? note "Exercise 1: Find python documentation of your cluster"
 
-??? question "Exercise 2: Find if there is a `matplotlib` package in a module"
+    ??? note "Cluster documentation of Python"
 
-    !!! tip
+      - [UPPMAX](https://docs.uppmax.uu.se/software/python/)
+      - [HPC2N](https://docs.hpc2n.umu.se/tutorials/userinstalls/#python__packages)
+      - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Python/)
+      - [NSC](https://www.nsc.liu.se/support/)
+      - [PDC](https://support.pdc.kth.se/doc/applications/python/)
+      - [C3SE](https://www.c3se.chalmers.se/documentation/module_system/python/)  
+
+??? note "Exercise 2: Find if there is a `matplotlib` package in a module"
+
+    !!! note "Tip"
 
         ``ml spider`` is good here.
 
-??? question "Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell"
+??? note "Exercise 3: Make the Python package Matplotlib available to you and test to load it in a python shell"
 
-    !!! tip
+    !!! note "Tip"
 
         ``ml <module name>`` is good here.
 
-    ??? tip "Matplotlib across centres"
+    ??? note "Matplotlib across centres"
 
     Matplotlib prerequisites vary significantly across HPC centres: some require none, some need one, some need more than one, and in some cases Matplotlib is only an extension of another module ([more info on how to find Matplotlib at different HPC centres here](https://uppmax.github.io/HPC-python/day3/new-matplotlib-intro.html#load-and-run)). 
 
     If you only want to see what Matplotlib depends on, a good starting point is to view the output of `ml spider matplotlib` (or `ml avail matplotlib` on NSC), pick an arbitrary version, and view `ml spider matplotlib/<version>`.
 
-    ??? tip "Example workflow"
+    ??? note "Example workflow"
 
         All of the following code blocks in this example are taken from Cosmos.
 
@@ -546,7 +555,7 @@ Break-out rooms according to interest and/or cluster
 
         If you are comfortable editing code in a basic text editor and running at the command-line, the modules used in the example above are all you need. For more information on choosing and loading IDEs to work with Matplotlib graphics interactively, we refer readers to [this documentation from the Python for HPC course](https://uppmax.github.io/HPC-python/day2/IDEs.html).
 
-??? question "Exercise 4: Check if the python package XX is available in the present environment"
+??? note "Exercise 4: Check if the python package XX is available in the present environment"
 
     Extensions can be hard to find without knowing what includes them, but it is easy to check if modules that are already loaded added the extension silently. If you cannot find a package you want with `ml avail`, `ml spider`, or `ml show <module>`, you should also check `pip list` and `grep` for the package after loading the rest of your modules. 
 
@@ -564,33 +573,41 @@ Break-out rooms according to interest and/or cluster
     
         The `pip list | grep` approach is also helpful if you want to see the version of a package without having to open a Python interpreter.
 
-    !!! tip
+    !!! note "Tip"
 
         The same list (and grep) approach works for Anaconda3. The only difference is that you should use `conda list` instead of `pip list` (although `pip list` usually still works). The Anaconda3 module file does **not** list the included extensions, so `conda list | grep <package>` is also the *only* way to see if a package is included without starting up a Python command line interface.
 
 ### R
 
-These clusters do NOT have R bundles:
+!!! warning "These clusters do NOT have R bundle"
 
-- Bianca has R_packages that contains CRAN and Bioconductor packages
-    - You can load that instead of a bundle in the below exercises.
-- Dardel
-- Tetralith
-- Alvis
+    - Bianca has R_packages that contains CRAN and Bioconductor packages
+        - You can load that instead of a bundle in the below exercises.
+    - Dardel
+    - Tetralith
+    - Alvis
 
+??? note "Exercise 1: Find R documentation of your cluster"
 
-??? question "Exercise 1: Find R documentation of your cluster"
+    ??? note "Tip"
+    
+        - [C3SE](https://www.c3se.chalmers.se/documentation/software/development/r/)
+        - [HPC2N](https://www.hpc2n.umu.se/resources/software/r)
+        - [LUNARC](https://lunarc-documentation.readthedocs.io/en/latest/guides/applications/Rscript/)
+        - [NSC](https://ipv4.www.nsc.liu.se/software/catalogue/tetralith/modules/r.html)
+        - [PDC](https://support.pdc.kth.se/doc/contact/contact_support/)
+        - [UPPMAX](../software/r.md)
 
-??? question "Exercise 2: Load R and start it!
+??? note "Exercise 2: Load R and start it!
 
-    ??? tip "Answer"
+    ??? note "Answer"
 
         Course page [how to load](https://uppmax.github.io/R-matlab-julia-HPC/r/load_run/)
 
-??? question "Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell.
+??? note "Exercise 3: Make the R package ``Seurat`` available to you by loading Bioconductor and test to load it (``library(Seurat)``) in a R shell.
 
 
-    ??? tip "Example at Cosmos"
+    ??? note "Example at Cosmos"
 
         ```bash
         $ ml spider bioconductor
