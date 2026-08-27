@@ -1,6 +1,9 @@
 # Course: selecting software modules
 
-This is the git repo for the NAISS course "selecting software modules". 
+**The new repo for this course can be found here: https://gitlab.naiss.se/hpc/training/selecting-modules **
+**And the rendered pages here: https://hpc.pages.naiss.se/training/selecting-modules/ **
+
+This is the old git repo for the NAISS course "selecting software modules". 
 
 Date: 3rd February 2026 
 
